@@ -1,0 +1,112 @@
+<div id="siaec_dg_ajax_container">
+<div id="siaec_dg_ajax_container_opacity" style="width:100%;position:relative;">
+<div id="siaec_ajax_loading_image" style="position:absolute;display:none;margin:0 auto;left:50%;right:50%;top:20px;width:32px;height:32px;"><img src="../datagrid/images/ajax_loading.gif" alt="Cargando informacion..." border="0" /></div>
+<div class="x-graphite_dg_caption">Cat&aacute;logo planteles</div><p></p><table border="0" class="tblToolBar" align="center" style="margin-left:auto;margin-right:auto;margin-bottom:5px;" width="90%" cellspacing="1" cellpadding="1"><tr><td align="left"></td><td class="dg_exi_td"><a style="cursor:pointer;" onclick="javascript:siaec__doPostBack('print','','?siaec_mode=&amp;siaec_page_size=10&amp;siaec_p=1');" class="x-graphite_dg_a"><img class="dg_opacity" src="../datagrid/images/print.gif" alt="Vista imprimible" title="Vista imprimible" /></a></td>
+</tr></table>
+<form name="siaec_frmMain" id="siaec_frmMain" action="" style="margin:0px;padding:0px" method="post"></form>
+<script type="text/javascript"><!--function siaec__doPostBack(mode,rid,param){
+        var f_part = "";
+        var f_part_a = "";
+        var s_part = "";
+        var p_part = "&siaec_page_size=10&siaec_p=1";
+        var p_part_default = "&amp;siaec_page_size=10&amp;siaec_p=1";
+        var h_part = "";
+        var h_part_print = "";
+        var param = (param == null) ? "" : param;
+        var details_url = ("?siaec_mode=details&siaec_rid=_RID_"+f_part+param).replace(/_RID_/g, rid).replace(/&amp;/g, "&");
+        var delete_url = ("?siaec_mode=delete&siaec_rid=_RID_"+f_part_a+param).replace(/_RID_/g, rid).replace(/&amp;/g, "&");
+        var edit_url = ("?siaec_mode=edit&siaec_rid=_RID_"+f_part+s_part+p_part+param).replace(/_RID_/g, rid).replace(/&amp;/g, "&");
+        var add_url = ("?siaec_mode=add&siaec_rid=_RID_"+f_part+param).replace(/_RID_/g, rid).replace(/&amp;/g, "&");
+ var back_url = ('?siaec_mode=cancel&siaec_rid=_RID_'+f_part+param).replace(/_RID_/g, rid).replace(/&amp;/g, '&');
+        var cancel_url  = ('?siaec_mode=cancel&siaec_rid=_RID_'+f_part+s_part+p_part+param).replace(/_RID_/g, rid).replace(/&amp;/g, '&');
+        var sorting_url = ('?siaec_mode=view'+f_part_a+param).replace(/&amp;/g, '&');sorting_url = sorting_url.replace(/\+\&/g, '%2B&');
+        var print_url   = (param).replace(/_RID_/g, '').replace(/&amp;/g, '&');
+        var export_url  = ('?siaec_mode='+f_part+param).replace(/_RID_/g, '').replace(/&amp;/g, '&');
+        var paging_url  = ('?siaec_mode=view'+f_part_a+param).replace(/&amp;/g, '&');
+        var page_resize_url = ('?siaec_mode=view'+f_part_a+param).replace(/&amp;/g, '&');
+        var reset_url   = ('?siaec_mode=view'+p_part_default+param).replace(/&amp;/g, '&');
+        var move_url    = ('?siaec_mode=move&siaec_rid=_RID_'+s_part+p_part+param).replace(/_RID_/g, rid).replace(/&amp;/g, '&');
+        var toggle_url  = ('?siaec_mode=update&siaec_rid=_RID_'+f_part+param).replace(/_RID_/g, rid).replace(/&amp;/g, '&');
+        var postback_method = 'post';
+
+        if(mode == 'details')    { siaec__doAjaxRequest(details_url, h_part_print); }
+        else if(mode == 'delete'){ siaec__doAjaxRequest(delete_url, h_part_print); }
+        else if(mode == 'edit')  { _dgDoSimpleRequest('siaec_', edit_url, h_part, postback_method); }
+        else if(mode == 'add')   { _dgDoSimpleRequest('siaec_', add_url, h_part, postback_method); }
+        else if(mode == 'back')  { _dgDoSimpleRequest('siaec_', cancel_url, h_part, postback_method); }
+        else if(mode == 'cancel'){ _dgDoSimpleRequest('siaec_', cancel_url, h_part, postback_method); }
+        else if(mode == 'sort')  { siaec__doAjaxRequest(sorting_url, h_part_print); }
+        else if(mode == 'paging'){ siaec__doAjaxRequest(paging_url, h_part_print); }
+        else if(mode == 'page_resize'){ siaec__doAjaxRequest(page_resize_url, h_part_print); }
+        else if(mode == 'reset') { _dgDoSimpleRequest('siaec_', reset_url, h_part, postback_method); }
+        else if(mode == 'print') { siaec_myRef=window.open(print_url+'&siaec_print=true'+h_part_print,'PrintableView','left=20,top=20,width=840,height=630,toolbar=0,menubar=0,resizable=0,location=0,scrollbars=1');siaec_myRef.focus(); }
+        else if(mode == 'export'){ siaec_myRef=window.open(export_url+'&siaec_export=true'+h_part_print,'ExportTo','left=100,top=100,width=240,height=138,toolbar=0,menubar=0,resizable=0,location=0,scrollbars=0');siaec_myRef.focus(); }
+        else if(mode == 'toggle_status') { siaec__doAjaxRequest(toggle_url, h_part_print); }
+        else if(mode == 'move')  { _dgDoSimpleRequest('siaec_', move_url, h_part, postback_method); }
+        else{  } }//-->
+</script>
+<table dir="ltr" align="center" id="siaec__contentTable" class="x-graphite_dg_table" style="margin-left:auto;margin-right:auto;" width="90%">
+<thead>
+<tr class="dg_tr" style="" id="siaec_row_"  onclick="onMouseClickRow('siaec_','','#f5f5f5','#f9f9f9','#ffffff');"  onmouseover="onMouseOverRow('siaec_','','#f5f5f5','');"  onmouseout="onMouseOutRow('siaec_','','','#f5f5f5');" >
+<th class="x-graphite_dg_th dg_center dg_nowrap"  style="width:26px;">&nbsp;</th>
+<th class="x-graphite_dg_th_normal dg_center dg_nowrap"  style="width:8%;"><img class='dg_opacity dg_pointer' onclick="javascript:siaec__doPostBack('add','-1','&amp;siaec_page_size=10&amp;siaec_p=1');" src='../datagrid/styles/x-graphite/images/add.gif' alt='Añadir nuevo registro' title='Añadir nuevo registro' /></th>
+<th class="x-graphite_dg_th dg_left" ><a class="x-graphite_dg_a_header" href="javascript:void('sort');" onclick="javascript:siaec__doPostBack('sort','','&amp;siaec_page_size=10&amp;siaec_p=1&amp;siaec_sort_field=2&amp;siaec_sort_field_by=&amp;siaec_sort_field_type=string|numeric&amp;siaec_sort_type=asc');" title="Ordenar" ><b>Plantel</b> </a></th>
+<th class="x-graphite_dg_th dg_left" ><a class="x-graphite_dg_a_header" href="javascript:void('sort');" onclick="javascript:siaec__doPostBack('sort','','&amp;siaec_page_size=10&amp;siaec_p=1&amp;siaec_sort_field=3&amp;siaec_sort_field_by=&amp;siaec_sort_field_type=string|numeric&amp;siaec_sort_type=asc');" title="Ordenar" ><b>Estado</b> </a></th>
+<th class="x-graphite_dg_th dg_center"  style="width:100px;"><a class="x-graphite_dg_a_header" href="javascript:void('sort');" onclick="javascript:siaec__doPostBack('sort','','&amp;siaec_page_size=10&amp;siaec_p=1&amp;siaec_sort_field=4&amp;siaec_sort_field_by=&amp;siaec_sort_field_type=string|numeric&amp;siaec_sort_type=asc');" title="Ordenar" ><b>Eliminar</b> </a></th>
+<th class="x-graphite_dg_th_normal dg_center dg_nowrap"  style="width:6%;">Vista</th>
+</tr>
+</thead>
+<tbody>
+<tr class="dg_tr" style="background-color:#ffffff;" id="siaec_row_0"  onclick="onMouseClickRow('siaec_','0','#f5f5f5','#f9f9f9','#ffffff');"  onmouseover="onMouseOverRow('siaec_','0','#f5f5f5','');"  onmouseout="onMouseOutRow('siaec_','0','#ffffff','#f5f5f5');" >
+<td class="x-graphite_dg_td dg_center dg_nowrap"><input onclick="onMouseClickRow('siaec_','0','#f5f5f5','#f9f9f9','#ffffff')" type="checkbox" name="siaec_checkbox_0" id="siaec_checkbox_0" value="2"  /></td>
+<td class="x-graphite_dg_td_main dg_center dg_nowrap" style="width:8%;"><img class='dg_opacity dg_pointer' onclick="javascript:siaec__doPostBack('edit','2','&amp;siaec_page_size=10&amp;siaec_p=1');" src='../datagrid/styles/x-graphite/images/edit.gif' alt='Editar registro' title='Editar registro' /></td>
+<td class="x-graphite_dg_td dg_left"><label class="x-graphite_dg_label" id=""  >COAPA</label></td>
+<td class="x-graphite_dg_td dg_left"><label class="x-graphite_dg_label" id=""  >ACTIVO</label></td>
+<td class="x-graphite_dg_td dg_center"><label class="x-graphite_dg_label" id=""  ><a class="Ntooltip"><img class="btn" src="images/delete.gif" onclick="set_EliminaRegistro(2)" id="Btn_Eliminar_Reg""/><span id = "span_ev">Eliminar Registro</span></a></label></td>
+<td class="x-graphite_dg_td dg_center dg_nowrap" style="width:6%;"><img class='dg_opacity dg_pointer' onclick="javascript:siaec__doPostBack('details','2','&amp;siaec_page_size=10&amp;siaec_p=1');" src='../datagrid/styles/x-graphite/images/details.gif' alt='Detalles de la vista' title='Detalles de la vista' /></td>
+</tr>
+<tr class="dg_tr" style="background-color:#f9f9f9;" id="siaec_row_1"  onclick="onMouseClickRow('siaec_','1','#f5f5f5','#f9f9f9','#ffffff');"  onmouseover="onMouseOverRow('siaec_','1','#f5f5f5','');"  onmouseout="onMouseOutRow('siaec_','1','#f9f9f9','#f5f5f5');" >
+<td class="x-graphite_dg_td dg_center dg_nowrap"><input onclick="onMouseClickRow('siaec_','1','#f5f5f5','#f9f9f9','#ffffff')" type="checkbox" name="siaec_checkbox_1" id="siaec_checkbox_1" value="3"  /></td>
+<td class="x-graphite_dg_td_main dg_center dg_nowrap" style="width:8%;"><img class='dg_opacity dg_pointer' onclick="javascript:siaec__doPostBack('edit','3','&amp;siaec_page_size=10&amp;siaec_p=1');" src='../datagrid/styles/x-graphite/images/edit.gif' alt='Editar registro' title='Editar registro' /></td>
+<td class="x-graphite_dg_td dg_left"><label class="x-graphite_dg_label" id=""  >SUR</label></td>
+<td class="x-graphite_dg_td dg_left"><label class="x-graphite_dg_label" id=""  >ACTIVO</label></td>
+<td class="x-graphite_dg_td dg_center"><label class="x-graphite_dg_label" id=""  ><a class="Ntooltip"><img class="btn" src="images/delete.gif" onclick="set_EliminaRegistro(3)" id="Btn_Eliminar_Reg""/><span id = "span_ev">Eliminar Registro</span></a></label></td>
+<td class="x-graphite_dg_td dg_center dg_nowrap" style="width:6%;"><img class='dg_opacity dg_pointer' onclick="javascript:siaec__doPostBack('details','3','&amp;siaec_page_size=10&amp;siaec_p=1');" src='../datagrid/styles/x-graphite/images/details.gif' alt='Detalles de la vista' title='Detalles de la vista' /></td>
+</tr>
+<tr class="dg_tr" style="background-color:#ffffff;" id="siaec_row_2"  onclick="onMouseClickRow('siaec_','2','#f5f5f5','#f9f9f9','#ffffff');"  onmouseover="onMouseOverRow('siaec_','2','#f5f5f5','');"  onmouseout="onMouseOutRow('siaec_','2','#ffffff','#f5f5f5');" >
+<td class="x-graphite_dg_td dg_center dg_nowrap"><input onclick="onMouseClickRow('siaec_','2','#f5f5f5','#f9f9f9','#ffffff')" type="checkbox" name="siaec_checkbox_2" id="siaec_checkbox_2" value="1"  /></td>
+<td class="x-graphite_dg_td_main dg_center dg_nowrap" style="width:8%;"><img class='dg_opacity dg_pointer' onclick="javascript:siaec__doPostBack('edit','1','&amp;siaec_page_size=10&amp;siaec_p=1');" src='../datagrid/styles/x-graphite/images/edit.gif' alt='Editar registro' title='Editar registro' /></td>
+<td class="x-graphite_dg_td dg_left"><label class="x-graphite_dg_label" id=""  >TLALPAN</label></td>
+<td class="x-graphite_dg_td dg_left"><label class="x-graphite_dg_label" id=""  >ACTIVO</label></td>
+<td class="x-graphite_dg_td dg_center"><label class="x-graphite_dg_label" id=""  ><a class="Ntooltip"><img class="btn" src="images/delete.gif" onclick="set_EliminaRegistro(1)" id="Btn_Eliminar_Reg""/><span id = "span_ev">Eliminar Registro</span></a></label></td>
+<td class="x-graphite_dg_td dg_center dg_nowrap" style="width:6%;"><img class='dg_opacity dg_pointer' onclick="javascript:siaec__doPostBack('details','1','&amp;siaec_page_size=10&amp;siaec_p=1');" src='../datagrid/styles/x-graphite/images/details.gif' alt='Detalles de la vista' title='Detalles de la vista' /></td>
+</tr>
+</tbody>
+</table>
+
+<table dir="ltr" align="center" border="0" style="margin-left:auto;margin-right:auto;" width="90%">
+<tr>
+<td align="left">
+<table border="0">
+                  <tr>
+                    <td align="left" class="dg_nowrap"><img tyle="margin:0px;padding:0px;border:0px;" src="../datagrid/styles/x-graphite/images/arrow_ltr.png" width="38" height="22" alt="arrow" /></td><td><a class="x-graphite_dg_a" href="javascript:void('check=all');" onclick="_dgSetCheckboxes('siaec_',0,3,'#f5f5f5','#ffffff','#f9f9f9',true); return false;">Seleccionar todo</a> / <a class="x-graphite_dg_a" href="javascript:void('uncheck=all');" onclick="_dgSetCheckboxes('siaec_',0,3,'#f5f5f5','#ffffff','#f9f9f9',false); return false;">Desmarcar todos</a><td><label class="x-graphite_dg_label" style="padding-left:10px;padding-right:0px;"><i>Con los seleccionados:</i></label></td>
+                                      <td align="left"  style="padding-bottom:3px;"><img src="../datagrid/images/spacer.gif" width="6px" height="5px" alt="spacer" /><img class='dg_opacity dg_pointer' onclick="return _dgJsVerifySelected('siaec_', '0', '3', 'ajax', 'wuvia1siizjxpcr6nds0', '?siaec_mode=edit&amp;siaec_page_size=10&amp;siaec_p=1', '', '', 'edit', '');" src='../datagrid/styles/x-graphite/images/edit.gif' alt='Editar Seleccionados' title='Editar Seleccionados' /><img src="../datagrid/images/spacer.gif" width="6px" height="5px" alt="spacer" /><img class='dg_opacity dg_pointer' onclick="return _dgJsVerifySelected('siaec_', '0', '3', 'ajax', 'wuvia1siizjxpcr6nds0', '?siaec_mode=details&amp;siaec_page_size=10&amp;siaec_p=1', '', '', 'details', '');" src='../datagrid/styles/x-graphite/images/details.gif' alt='Ver Seleccionados' title='Ver Seleccionados' />
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<form name="frmPagingsiaec_Lower" id="frmPagingsiaec_Lower" action="" style="margin:0px auto;padding:0px;"><table class="x-graphite_dg_paging_table" dir="ltr" style="height:7px;width:90%;margin-left:auto;margin-right:auto;" align="center" border="0"><tr><td align="left" class="dg_nowrap"> Resultados: 1 - 2 de 2 </td><td align="center" class="dg_nowrap"><table class="x-graphite_dg_paging_table" border="0" style="padding:0px;margin:0px;border:0px;" dir="ltr"><tr><td> Páginas:  <a class="x-graphite_dg_p_a_empty" >|&lt;&lt;</a> <a class="x-graphite_dg_p_a_empty" >&lt;&lt;</a> </td><td> <a class="x-graphite_dg_p_a dg_underline" style="text-decoration:underline;" title="actual" href="javascript:void('page=1');" onclick="javascript:siaec__doPostBack('paging','','&amp;siaec_page_size=10&amp;siaec_p=1')"><b>1</b></a> </td><td> <a class="x-graphite_dg_p_a_empty" >&gt;&gt;</a> <a class="x-graphite_dg_p_a_empty" >&gt;&gt;|</a></td></tr></table></td><td align="right" class="dg_nowrap"> Registros por página: <select class="x-graphite_dg_select" name="page_sizeLower" id="page_sizeLower" title="" onChange="siaec__doPostBack('page_resize','','&amp;siaec_page_size='+document.frmPagingsiaec_Lower.page_sizeLower.value)"   ><option selected="selected" style="font-weight:bold;" value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option><option value="250">250</option><option value="500">500</option><option value="1000">1000</option></select></td></tr></table></form>
+
+<script type="text/javascript" src='../datagrid/js/dg_ajax.js'></script>
+<script type="text/javascript"><!--function siaec__doAjaxRequest(query_string, h_part){
+                var http_url = 'http://siaec.test:8000/formularios/frm_ct_plan.php';
+                dg_doAjaxRequest(query_string+h_part, 'siaec_', http_url, false, '', '300');
+            }
+function siaec__doOpenFloatingCalendar(textbox_id, if_format, show_time){
+                Calendar.setup({firstDay : 0, inputField : textbox_id, ifFormat : if_format, showsTime : show_time, button : "img_"+textbox_id}); }
+//-->
+</script>
+</div></div><div id="siaec_dg_ajax_container_end"></div>
+<!-- END This code was generated by datagrid.class.php v8.2.7 (http://www.apphp.com/php-datagrid/index.php) END -->

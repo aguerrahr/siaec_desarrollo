@@ -1,0 +1,23 @@
+.resizable-textarea .grippie { BACKGROUND: url(../../images/grippie.png) #eee no-repeat center 2px; border-right:#d2d0bb 1px solid; border-top:#d2d0bb 1px solid; OVERFLOW: hidden; border-left:#d2d0bb 1px solid; CURSOR: s-resize; border-bottom:#d2d0bb 1px solid; HEIGHT:6px; }
+
+.x-graphite_dg_table {border-color: #dddddd; border-width: 1px; border-style: solid; border-collapse:collapse;border-spacing:0;}
+.x-graphite_dg_th_selected{ color:#ffffff; background-color:#444; }
+.x-graphite_dg_table th{color:#fff;}
+.x-graphite_dg_td{border-color: #600; border-width:0; border-style: solid; margin:0; padding:0px;}
+
+TH.x-graphite_dg_th,
+TH.x-graphite_dg_th_selected,
+TH.x-graphite_dg_th_normal { line-height:26px; background-color:#444; color:#fff; border:1px solid #555;}
+.x-graphite_dg_textbox{height:26px;}
+
+TABLE.x-graphite_dg_filter_table{ }
+TABLE.x-graphite_dg_filter_table TD {padding-bottom:3px;}
+TABLE.x-graphite_dg_filter_table TD INPUT,
+TABLE.x-graphite_dg_filter_table TD SELECT{margin-bottom:-3px;}
+TABLE.x-graphite_dg_filter_table TD IMG{margin-bottom:-13px;}
+TABLE.x-graphite_dg_filter_table TD  INPUT.x-graphite_dg_button{margin-top:-7px;padding:0 3px}
+
+TABLE.x-graphite_dg_paging_table TD SELECT{margin-bottom:-2px;}
+A.x-graphite_dg_p_a{margin-bottom:-2px;}
+
+DIV.x-graphite_dg_fieldset { padding:4px 0px 3px 2px; border:1px solid #dddddd; -webkit-border-radius:4px;-moz-border-radius:4px;border-radius:4px; }
