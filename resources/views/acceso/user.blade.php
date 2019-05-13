@@ -7,7 +7,7 @@
 @endsection
 @section('encabezado')		
 	<div class="row justify-content-center">
-		<h1>Mantenimiento de catálogos</h1>	
+		<h1>Mantenimiento de Usuarios</h1>	
 	</div>
 	<hr>
 @endsection
@@ -15,7 +15,7 @@
 @section('cuerpo')	
 	<div class="card">				
 		<div class="card-header text-white bg-dark mb-3">
-			Catálgo de Planteles
+			Usuarios
 		</div>
 		<div class="card-body">
 				<div class="row justify-content-start pb-3">
@@ -25,7 +25,8 @@
 					<thead class="thead-light">
 						<tr>
 							<th>#</th>
-							<th>Plantel</th>
+							<th>Nombre</th>
+							<th>Email</th>
 							<th>Estatus</th>
 							<th>&nbsp</th>
 						</tr>
@@ -81,7 +82,7 @@
 @endsection
 @section("scripts")
 
-<script src="../../js/ui-planteles.js"></script>
+{{-- <script src="../../js/ui-planteles.js"></script> --}}
 <script type="text/javascript">
 	var SITEURL = '{{URL::to('')}}';
 	$(function() {
@@ -93,11 +94,12 @@
 			/* Grid con datos */
 		$('#grdDatos').DataTable({
 			"serverSide": true,
-			"ajax": "{{ url('api/plan')}}",
+			"ajax": "{{ url('accesos')}}",
 			"processing": false,
 			"columns":[
-				{data:'Idplan'},
-				{data:'plan_desc'},
+				{data:'id'},
+				{data:'name'},
+				{data:'email'},
 				{data:'Est_UsuDesc','searchable': false, 'targets': 0},
 				{data:'btn','orderable': false},
 				//{data: 'action', orderable: false, searchable: false},

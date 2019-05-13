@@ -90,6 +90,7 @@ Route::get('/catalogos/accesos', function () {
 
 
 Route::resource('ajaxplans', 'PlanController'); //[0-9]+
+Route::resource('accesos', 'Acceso\UsersController'); //[0-9]+
 
 Route::get('stList', 'ServiciosController@getEstatus'); //[0-9]+
 Route::get('stList/{id}', 'ServiciosController@getIdEstatus')->where('id', '[0-9]+');
