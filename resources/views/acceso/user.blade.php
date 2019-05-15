@@ -19,7 +19,7 @@
 		</div>
 		<div class="card-body">
 				<div class="row justify-content-start pb-3">
-						<a href="javascript:void(0)" class="btn btn-success" id="create-new-plan"><i class="fa fa-plus-circle"></i> Agregar registro</a>
+						<a href="javascript:void(0)" class="btn btn-success" id="create-new-record"><i class="fa fa-plus-circle"></i> Agregar registro</a>
 				</div>
 				<table id="grdDatos" class="table table-responsive-lg table-hover">
 					<thead class="thead-light">
@@ -27,6 +27,7 @@
 							<th>#</th>
 							<th>Nombre</th>
 							<th>Email</th>
+							<th>Rol</th>
 							<th>Estatus</th>
 							<th>&nbsp</th>
 						</tr>
@@ -42,18 +43,38 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 			    <div class="modal-header">
-			        <h4 class="modal-title" id="planCrudModal"></h4>
+			        <h4 class="modal-title" id="rowCrudModal"></h4>
 			    </div>
 			    <div class="modal-body">
-			        <form id="planForm" name="planForm" class="form-horizontal">
-			           <input type="hidden" name="Idplan" id="Idplan">
+			        <form id="rowForm" name="rowForm" class="form-horizontal">
+			           <input type="hidden" name="id" id="id">
 			            <div class="form-group">
-			                <label for="plan_desc" class="col-sm-2 control-label">Plan</label>
+			                <label for="name" class="col-sm-2 control-label">Nombre</label>
 			                <div class="col-sm-12">
-			                    <input type="text" class="form-control" id="plan_desc" name="plan_desc" placeholder="Proporcione el nombre del Plantel" value="" maxlength="50" required="">
+			                    <input type="text" class="form-control" id="name" name="name" placeholder="Proporcione nombre" value="" maxlength="100" required>
 			                </div>
-			            </div>
-			            <div class="form-group">
+						</div>
+						<div class="form-group">
+								<label for="email" class="col-sm-2 control-label">Email</label>
+								<div class="col-sm-12">
+									<input type="email" class="form-control" id="email" name="email" placeholder="Proporcione email" value="" maxlength="100" required>
+								</div>
+						</div>
+						<div class="form-group">
+								<label for="password" class="col-sm-2 control-label">Password</label>
+								<div class="col-sm-12">
+									<input type="password" class="form-control" id="password" name="password" value="" maxlength="100" required>
+								</div>
+						</div>
+						
+						<div class="form-group">
+								<label for ="cboRol" class="col-sm-10 control-label">Rol usario</label>
+								<div class="col-md-10">
+									<select class="cs-select cs-skin-border select-gray" name="cboRol" id="cboRol"></select>
+								</div>	
+						</div>
+						
+						<div class="form-group">
 			                <label for ="cboEstatus" class="col-sm-2 control-label">Estatus</label>
 							<div class="col-md-6">
 								<select class="cs-select cs-skin-border select-gray" name="cboEstatus" id="cboEstatus"></select>
@@ -82,7 +103,7 @@
 @endsection
 @section("scripts")
 
-{{-- <script src="../../js/ui-planteles.js"></script> --}}
+<script src="../../js/ui-acceso.js"></script>
 <script type="text/javascript">
 	var SITEURL = '{{URL::to('')}}';
 	$(function() {
@@ -98,8 +119,9 @@
 			"processing": false,
 			"columns":[
 				{data:'id'},
-				{data:'name'},
+				{data:'nombre'},
 				{data:'email'},
+				{data:'rol'},
 				{data:'Est_UsuDesc','searchable': false, 'targets': 0},
 				{data:'btn','orderable': false},
 				//{data: 'action', orderable: false, searchable: false},
@@ -133,48 +155,52 @@
 			}
 			});
 			/*  Botón agreagar */
-		    $('#create-new-plan').click(function () {
-		        $('#btn-save').val("create-plan");
-		        $('#Idplan').val('');
-		        $('#planForm').trigger("reset");
-		        $('#planCrudModal').html("Agregar registro");
+		    $('#create-new-record').click(function () {
+		        $('#btn-save').val("create");
+		        $('#id').val('');
+				$('#rowForm').trigger("reset");
+				$('#cboEstatus option[value=0]').attr('selected', 'selected');
+				$('#cboRol option[value=0]').attr('selected', 'selected');
+				//$("#rowForm")[0].reset();
+				//document.getElementById('rowForm').reset();
+				$('#rowCrudModal').html("Agregar registro");
 		        $('#ajax-crud-modal').modal('show');
 			});
 			/*  Botón editar */
-			$('body').on('click', '.edit-plan', function () {
-				var Idplan = $(this).data('id');
+			$('body').on('click', '.edit-row', function () {
+				var idUsuario = $(this).data('id');
 
-				$.get("{{ route('ajaxplans.index') }}" +'/' + Idplan +'/edit', function (data) {
-					$('#planCrudModal').html("Editar registro");
-					$('#btn-save').val("edit-plan");
+				$.get("{{ route('accesos.index') }}" +'/' + idUsuario +'/edit', function (data) {
+					$('#rowCrudModal').html("Editar registro");
+					$('#btn-save').val("edit-row");
 					$('#ajax-crud-modal').modal('show');
-					$('#Idplan').val(data.Idplan);
-					$('#plan_desc').val(data.plan_desc);
-					$('#cboEstatus option[value=' + data.plan_idest + ']').attr('selected', 'selected');
-					//$('#cboEstatus option[value=' + $('#idPerfil_' + iCont).val() + ']').attr('selected', 'selected');
-					//document.getElementById("cboEstatus").selectedIndex = data.plan_idest-1;
-
-
-					
+					$('#id').val(data.usuario.id);
+					$('#name').val(data.usuario.name);
+					$('#email').val(data.usuario.email);
+					$('#cboEstatus option[value=' + data.usuario.IdEst + ']').attr('selected', 'selected');
+					//data.usuario.roles[0].id
+					$('#cboRol option[value=' + data.rol + ']').attr('selected', 'selected');
 				})
 			});
 		});
-		if ($("#planForm").length > 0) {
-	    	$("#planForm").validate({
+		if ($("#rowForm").length > 0) {
+	    	$("#rowForm").validate({
 		     submitHandler: function(form) {
 
 		      var actionType = $('#btn-save').val();
 		      $('#btn-save').html('Enviando..');
 
 		      $.ajax({
-		          data: $('#planForm').serialize(),
-		          url: "{{ route('ajaxplans.store') }}",
+		          data: $('#rowForm').serialize(),
+		          url: "{{ route('accesos.store') }}",
 		          type: "POST",
 		          dataType: 'json',
 		          success: function (data) {
 					if (data.success){
 						swal("¡Operación exitosa!", data.message, "success");
-						$('#planForm').trigger("reset");
+						$('#rowForm').trigger("reset");
+						$('#cboEstatus option[value=0]').attr('selected', 'selected');
+						$('#cboRol option[value=0]').attr('selected', 'selected');
 						$('#ajax-crud-modal').modal('hide');
 						$('#btn-save').html('Guardar Cambios');
 						var oTable = $('#grdDatos').dataTable();

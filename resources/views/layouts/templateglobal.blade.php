@@ -62,7 +62,7 @@
 			<nav class="navbar navbar-expand-md fixed-top navbar-light bg-warning">
 			{{-- <nav class="navbar navbar-expand-lg navbar-light nav-bk"> --}}
 					<a class="navbar-brand" href="{{ url("/")}}">
-					  <img src="/images/logo-coapa-azul.png" height="45" width="160">
+					  <img src="/images/logo-coapa-azul.png" height="45" width="180">
 					</a>
 					<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="siaec-navbar" aria-expanded="false" aria-label="Toggle navigation">
 					  <span class="navbar-toggler-icon"></span>
@@ -77,7 +77,7 @@
 												<a href="#" data-toggle="dropdown" class="dropdown-toggle">Acceso</a>
 												<ul class="dropdown-menu">
 														<li class="dropdown-item">
-																<a href="#">Usuarios</a>
+																<a href="{{ url("accesos") }}">Usuarios</a>
 														</li>
 														<li class="dropdown-item">
 																<a href="#">Roles</a>

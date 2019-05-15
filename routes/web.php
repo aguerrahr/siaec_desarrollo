@@ -97,6 +97,9 @@ Route::get('stList/{id}', 'ServiciosController@getIdEstatus')->where('id', '[0-9
 Route::get('stList/{desc}', 'ServiciosController@getDescEstatus')->where('desc', '[A-Za-z]+');
 
 
+Route::get('rolesList', 'ServiciosController@getRoles'); //[0-9]+
+
+
 /*Route::get('/caalogos/planteles/index', 'PlanController@index'); //[0-9]+
 Route::get('/catalogos/planteles/show', 'PlanController@show'); //[0-9]+
 Route::get('/catalogos/planteles/edit', 'PlanController@edit'); //[0-9]+*/

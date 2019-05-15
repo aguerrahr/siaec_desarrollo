@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use DataTables;
 use Redirect,Response;
 use Illuminate\Database\QueryException;
+use Spatie\Permission\Models\Role;
 
 
 class UsersController extends Controller
@@ -17,30 +18,47 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {
-        //
-        // $data = datatables()->eloquent(
-        //     User::join('est', 'est.IdEst', '=', 'users.IdEst')
-        //     ->select('users.name', 'users.email', 'est.Est_UsuDesc')
-        // )       
-        // ->toJson();
-        
-        //return view('acceso/user',compact('data'));
-        //return  view('acceso/user');
+    {   
+        try {
+            if ($request->ajax()) {
+                
+                return datatables()->eloquent(
+                    User::join('est', 'users.IdEst', '=', 'est.IdEst')
+                    ->join('model_has_roles', 'model_id', '=', 'users.id')
+                    ->join('roles', 'role_id', '=', 'roles.id')
+                    ->select('users.id','users.name as nombre', 'users.email', 'est.Est_UsuDesc','roles.name as rol')
+                )
+                ->addColumn('btn','acceso\actionsAcceso')
+                ->rawColumns(['btn'])
+                ->toJson();
+                
+            }            
+            
+            return view('acceso/user');
+        } 
+        catch (QueryException $e){
+            $strMensaje = "";
+            $error_code = $e->errorInfo[1];
+            switch($error_code)
+            {
+                case 1062:
+                    $strMensaje = '¡¡ Registro duplicado !!';
+                    break;
+                case 1452:
+                    $strMensaje = '¡¡ Debe indicar el Estatus !!';
+                    break;
+                default:
+                    $strMensaje = 'Código de Error = '. $e->errorInfo[1];
+                    break;
 
-        if ($request->ajax()) {
-            
-            return datatables()->eloquent(
-                User::join('est', 'users.IdEst', '=', 'est.IdEst')
-                ->select('id','users.name', 'users.email', 'est.Est_UsuDesc')
-            )
-            ->addColumn('btn','acceso\actionsAcceso')
-            ->rawColumns(['btn'])
-            ->toJson();
-            
-        }            
-        
-        return view('acceso/user');
+            }
+            return response()->json(['status'=>0,'success'=>false,'message'=>$strMensaje]);
+           
+        }
+        catch (\Exception $e)
+        {
+            return 'Fue otro tipo de error = '. $e->errorInfo[1];
+        }
     }
 
     /**
@@ -61,7 +79,46 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // date_default_timezone_set('America/Mexico_City');
+        // $hoy = date("Y-m-d H:i:s");
+         $idest = $request->cboEstatus;         
+         $password = encrypt($request->password);
+        
+        try {
+            
+            $usuario = User::updateOrCreate(['id' => $request->id],
+                  ['name' => $request->name, 'email' => $request->email, 'IdEst' => $idest,'password'=>$password]); 
+
+            
+            $usuario->assignRole($request->cboRol);
+            
+            
+            return response()->json(['status'=>1,'success'=>true,'message'=>'¡¡ Registro creado correctamente. !!']);
+           
+        } 
+        catch (QueryException $e){
+            $strMensaje = "";
+            $error_code = $e->errorInfo[1];
+            switch($error_code)
+            {
+                case 1062:
+                    $strMensaje = '¡¡ Registro duplicado !!';
+                    break;
+                case 1452:
+                    $strMensaje = '¡¡ Debe indicar el Estatus !!';
+                    break;
+                default:
+                    $strMensaje = 'Código de Error = '. $e->errorInfo[1];
+                    break;
+
+            }
+            return response()->json(['status'=>0,'success'=>false,'message'=>$strMensaje]);
+           
+        }
+        catch (\Exception $e)
+        {
+            return 'Fue otro tipo de error = '. $e->errorInfo[1];
+        }
     }
 
     /**
@@ -83,7 +140,14 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+         $usuario = User::find($id);         
+         $rol = $usuario->roles->first()->id;
+
+         //dd($usuario->roles);
+        // return response()->json($usuario);
+        //,'rol'=>$usuario->roles
+        //'usuario'=>$usuario
+        return response()->json(['usuario'=>$usuario,'rol'=>$rol]);
     }
 
     /**

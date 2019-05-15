@@ -134,7 +134,8 @@
 		    $('#create-new-plan').click(function () {
 		        $('#btn-save').val("create-plan");
 		        $('#Idplan').val('');
-		        $('#planForm').trigger("reset");
+				$('#planForm').trigger("reset");
+				$('#cboEstatus option[value=0]').attr('selected', 'selected');
 		        $('#planCrudModal').html("Agregar registro");
 		        $('#ajax-crud-modal').modal('show');
 			});
@@ -173,6 +174,7 @@
 					if (data.success){
 						swal("¡Operación exitosa!", data.message, "success");
 						$('#planForm').trigger("reset");
+						$('#cboEstatus option[value=0]').attr('selected', 'selected');
 						$('#ajax-crud-modal').modal('hide');
 						$('#btn-save').html('Guardar Cambios');
 						var oTable = $('#grdDatos').dataTable();
