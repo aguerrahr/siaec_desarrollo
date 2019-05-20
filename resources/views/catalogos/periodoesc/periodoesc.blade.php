@@ -15,17 +15,18 @@
 @section('cuerpo')	
 	<div class="card">				
 		<div class="card-header text-white bg-dark mb-3">
-			Catálgo de Planteles
+			Catálgo Periodo Escolar
 		</div>
 		<div class="card-body">
 				<div class="row justify-content-start pb-3">
-						<a href="javascript:void(0)" class="btn btn-success" id="create-new-plan"><i class="fa fa-plus-circle"></i> Agregar registro</a>
+						<a href="javascript:void(0)" class="btn btn-success" id="create-new-reg"><i class="fa fa-plus-circle"></i> Agregar registro</a>
 				</div>
 				<table id="grdDatos" class="table table-responsive-lg table-hover">
 					<thead class="thead-light">
 						<tr>
-							<th>#</th>
-							<th>Plantel</th>
+							<th>#</th>							
+							<th>per_idper</th>
+							<th>Curso</th>
 							<th>Estatus</th>
 							<th>&nbsp</th>
 						</tr>
@@ -38,18 +39,27 @@
 		<div class="modal-dialog">
 			<div class="modal-content">
 			    <div class="modal-header">
-			        <h4 class="modal-title" id="planCrudModal"></h4>
+			        <h4 class="modal-title" id="rowCrudModal"></h4>
 			    </div>
 			    <div class="modal-body">
-			        <form id="planForm" name="planForm" class="form-horizontal">
-			           <input type="hidden" name="Idplan" id="Idplan">
-			            <div class="form-group">
-			                <label for="plan_desc" class="col-sm-2 control-label">Plan</label>
+			        <form id="rowForm" name="rowForm" class="form-horizontal">
+			           <input type="hidden" name="IdPer" id="IdPer">
+                        
+                       <div class="form-group">
+			                <label for="per_idper" class="col-sm-2 control-label">per_idper</label>
 			                <div class="col-sm-12">
-			                    <input type="text" class="form-control" id="plan_desc" name="plan_desc" placeholder="Proporcione el nombre del Plantel" value="" maxlength="50" required="">
+			                    <input type="text" class="form-control" id="per_idper" name="per_idper" placeholder="per_idper" value="" maxlength="12" required="">
 			                </div>
-			            </div>
-			            <div class="form-group">
+                        </div>	
+
+                        <div class="form-group">
+			                <label for="per_desc" class="col-sm-2 control-label">Curso</label>
+			                <div class="col-sm-12">
+			                    <input type="text" class="form-control" id="per_desc" name="per_desc" placeholder="Descripción del curso" value="" maxlength="12" required="">
+			                </div>
+                        </div>	
+                        
+                        <div class="form-group">
 			                <label for ="cboEstatus" class="col-sm-2 control-label">Estatus</label>
 							<div class="col-md-6">
 								<select class="cs-select cs-skin-border select-gray" name="cboEstatus" id="cboEstatus"></select>
@@ -78,7 +88,7 @@
 @endsection
 @section("scripts")
 
-<script src="../../js/ui-planteles.js"></script>
+<script src="../../js/ui-peresc.js"></script>
 <script type="text/javascript">
 	var SITEURL = '{{URL::to('')}}';
 	$(function() {
@@ -90,14 +100,15 @@
 			/* Grid con datos */
 		$('#grdDatos').DataTable({
 			"serverSide": true,
-			"ajax": "{{ url('api/plan')}}",
+			"ajax": "{{ url('catalogos/periodoescolar')}}",
 			"processing": false,
 			"columns":[
-				{data:'Idplan'},
-				{data:'plan_desc'},
-				{data:'Est_UsuDesc','searchable': false, 'targets': 0},
-				{data:'btn','orderable': false},
-				//{data: 'action', orderable: false, searchable: false},
+				{data:'IdPer'},
+				{data:'per_idper'},
+				{data:'per_desc'},
+				{data:'Est_UsuDesc'},
+				//{data:'btn','orderable': false},
+				{data: 'action', orderable: false, searchable: false},
 			],
 			 "search": {
 	    		"caseInsensitive": false
@@ -128,49 +139,47 @@
 			}
 			});
 			/*  Botón agreagar */
-		    $('#create-new-plan').click(function () {
-		        $('#btn-save').val("create-plan");
-		        $('#Idplan').val('');
-				$('#planForm').trigger("reset");
-				$('#cboEstatus option[value=0]').attr('selected', 'selected');
-		        $('#planCrudModal').html("Agregar registro");
-		        $('#ajax-crud-modal').modal('show');
+		    $('#create-new-reg').click(function () {
+		        $('#btn-save').val("create-reg");
+                $('#IdPer').val('');
+                $('#per_idper').val('');	
+                $('#per_desc').val('');		
+				$('#rowForm').trigger("reset");
+		        $('#rowCrudModal').html("Agregar registro");
+                $('#ajax-crud-modal').modal('show');
+                $('#cboEstatus option[value=0]').attr('selected', 'selected');
 			});
 			/*  Botón editar */
-			$('body').on('click', '.edit-plan', function () {
-				var Idplan = $(this).data('id');
+			$('body').on('click', '.edit-row', function () {
+				var IdPer = $(this).data('id');
 
-				$.get("{{ route('planteles.index') }}" +'/' + Idplan +'/edit', function (data) {
-					$('#planCrudModal').html("Editar registro");
-					$('#btn-save').val("edit-plan");
-					$('#ajax-crud-modal').modal('show');
-					$('#Idplan').val(data.Idplan);
-					$('#plan_desc').val(data.plan_desc);
-					$('#cboEstatus option[value=' + data.plan_idest + ']').attr('selected', 'selected');
-					//$('#cboEstatus option[value=' + $('#idPerfil_' + iCont).val() + ']').attr('selected', 'selected');
-					//document.getElementById("cboEstatus").selectedIndex = data.plan_idest-1;
-
-
-					
+				$.get("{{ route('periodoescolar.index') }}" +'/' + IdPer +'/edit', function (data) {
+					$('#rowCrudModal').html("Editar registro");
+					$('#btn-save').val("edit-row");
+                    $('#ajax-crud-modal').modal('show');
+                    $('#cboEstatus option[value=' + data.per_idest + ']').attr('selected', 'selected');
+					$('#IdPer').val(data.IdPer);
+                    $('#per_idper').val(data.per_idper);	
+                    $('#per_desc').val(data.per_desc);					
 				})
 			});
 		});
-		if ($("#planForm").length > 0) {
-	    	$("#planForm").validate({
+		if ($("#rowForm").length > 0) {
+	    	$("#rowForm").validate({
 		     submitHandler: function(form) {
 
 		      var actionType = $('#btn-save').val();
 		      $('#btn-save').html('Enviando..');
 
 		      $.ajax({
-		          data: $('#planForm').serialize(),
-		          url: "{{ route('planteles.store') }}",
+		          data: $('#rowForm').serialize(),
+		          url: "{{ route('periodoescolar.store') }}",
 		          type: "POST",
 		          dataType: 'json',
 		          success: function (data) {
 					if (data.success){
 						swal("¡Operación exitosa!", data.message, "success");
-						$('#planForm').trigger("reset");
+						$('#rowForm').trigger("reset");
 						$('#cboEstatus option[value=0]').attr('selected', 'selected');
 						$('#ajax-crud-modal').modal('hide');
 						$('#btn-save').html('Guardar Cambios');

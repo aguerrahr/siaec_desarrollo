@@ -9,7 +9,7 @@
 		
 		
 		<!-- SwetAlert -->
-		<link rel="stylesheet" href="js/sweetalert/sweetalert.css">
+		<link rel="stylesheet" href="/js/sweetalert/sweetalert.css">
 		<script type="text/javascript" src="/js/sweetalert/sweetalert.js"></script>
 		
 		<!-- Bootstrap -->
@@ -67,116 +67,158 @@
 					<button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="siaec-navbar" aria-expanded="false" aria-label="Toggle navigation">
 					  <span class="navbar-toggler-icon"></span>
 					</button>				  
-					<div class="collapse navbar-collapse" id="siaec-navbar">
-					  <ul class="navbar-nav mr-auto">					
-							<li class="nav-item dropdown">
-								<a href="" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle text-dark">SIAEC</a>
-								<ul class="dropdown-menu">
-										<a class="dropdown-item" href="">Acceso por primera vez o bloqueo</a>
-										<li class="dropdown-item dropdown-submenu">
-												<a href="#" data-toggle="dropdown" class="dropdown-toggle">Acceso</a>
-												<ul class="dropdown-menu">
-														<li class="dropdown-item">
-																<a href="{{ url("accesos") }}">Usuarios</a>
-														</li>
-														<li class="dropdown-item">
-																<a href="#">Roles</a>
-														</li>														
-												</ul>
+					<div class="collapse navbar-collapse justify-content-between" id="siaec-navbar">						
+						<div class="navbar-nav">		
+								<ul class="navbar-nav mr-auto">					
+										@hasanyrole('administracion|super-usuario')
+										<li class="nav-item dropdown">								
+											<a href="" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle text-dark">SIAEC</a>
+											<ul class="dropdown-menu">
+													<a class="dropdown-item" href="">Acceso por primera vez o bloqueo</a>
+													<li class="dropdown-item dropdown-submenu">
+															<a href="#" data-toggle="dropdown" class="dropdown-toggle">Acceso</a>
+															<ul class="dropdown-menu">
+																	<li class="dropdown-item">
+																			<a href="{{ url("accesos") }}">Usuarios</a>
+																	</li>
+																	<li class="dropdown-item">
+																			<a href="#">Roles</a>
+																	</li>														
+															</ul>
+													</li>
+													<li class="dropdown-item dropdown-submenu">
+															<a href="#" data-toggle="dropdown" class="dropdown-toggle">Administración de Catálogos</a>
+															<ul class="dropdown-menu">
+																	<li class="dropdown-item">
+																	<a href="{{ url("catalogos/estatus")}}">Estatus</a>
+																	</li>
+																	<li class="dropdown-item">
+																			<a href="{{ url("catalogos/planteles") }}">Planteles</a>
+																	</li>			
+																	<li class="dropdown-item">
+																		<a href="{{ url("catalogos/periodoescolar") }}">Periodo escolar</a>
+																</li>												
+															</ul>
+													</li>
+													<a class="dropdown-item" href="">Provedores y Adquisiciones</a>
+													<a class="dropdown-item" href="">Acceso - Plantel</a>
+													<div class="dropdown-divider"></div>
+													<li class="dropdown-item dropdown-submenu">
+															<a href="#" data-toggle="dropdown" class="dropdown-toggle">Control Escolar</a>
+															<ul class="dropdown-menu">
+																	<li class="dropdown-item">
+																			<a href="#">Inscripciones</a>
+																	</li>
+																	<li class="dropdown-item">
+																			<a href="#">Datos Generales del Alumno</a>
+																	</li>
+																	<li class="dropdown-item">
+																			<a href="#">Grupo - Listas</a>
+																	</li>
+																	<li class="dropdown-item">
+																			<a href="#">Pagos</a>
+																	</li>
+																	<li class="dropdown-item">
+																			<a href="#">Resultado Exámenes</a>
+																	</li>
+																	<li class="dropdown-item">
+																			<a href="#">Credenciales</a>
+																	</li>
+															</ul>
+													</li>
+													<li class="dropdown-item dropdown-submenu">
+															<a href="#" data-toggle="dropdown" class="dropdown-toggle">Utilerias</a>
+															<ul class="dropdown-menu">
+																	<li class="dropdown-item">
+																			<a href="#">Importación Exámenes Cursos</a>
+																	</li>
+																	<li class="dropdown-item">
+																			<a href="#">Exportación Exámenes Cursos</a>
+																	</li>												
+															</ul>
+													</li>
+													<li class="dropdown-item dropdown-submenu">
+															<a href="#" data-toggle="dropdown" class="dropdown-toggle">Reportes</a>
+															<ul class="dropdown-menu">
+																	<li class="dropdown-item">
+																			<a href="#">Formatos</a>
+																	</li>
+																	<li class="dropdown-item">
+																			<a href="#">Otros</a>
+																	</li>												
+															</ul>
+													</li>									
+											</ul>
 										</li>
-										<li class="dropdown-item dropdown-submenu">
-												<a href="#" data-toggle="dropdown" class="dropdown-toggle">Administración de Catálogos</a>
-												<ul class="dropdown-menu">
-														<li class="dropdown-item">
-														<a href="{{ url("/formularios/est.php")}}">Estatus</a>
-														</li>
-														<li class="dropdown-item">
-																<a href="{{ url("ajaxplans") }}">Planteles</a>
-														</li>														
-												</ul>
+										@endhasanyrole
+										@hasanyrole('super-usuario|Pre-alumno')
+										<li class="nav-item dropdown">						  
+											<a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle text-dark">PRE-REGISTRO</a>
+											<div class="dropdown-menu" aria-labelledby="navbarSiaec">
+												<a class="dropdown-item" href="">Instrucciones</a>
+												<a class="dropdown-item" href="">Datos Generales</a>
+												<a class="dropdown-item" href="">Impresión Formato Pre-registro</a>								
+												<a class="dropdown-item" href="">Impresión Formato Pago</a>
+												<a class="dropdown-item" href="">Re-impresión</a>								
+											</div>
 										</li>
-										<a class="dropdown-item" href="">Provedores y Adquisiciones</a>
-										<a class="dropdown-item" href="">Acceso - Plantel</a>
-										<div class="dropdown-divider"></div>
-										<li class="dropdown-item dropdown-submenu">
-												<a href="#" data-toggle="dropdown" class="dropdown-toggle">Control Escolar</a>
-												<ul class="dropdown-menu">
-														<li class="dropdown-item">
-																<a href="#">Inscripciones</a>
-														</li>
-														<li class="dropdown-item">
-																<a href="#">Datos Generales del Alumno</a>
-														</li>
-														<li class="dropdown-item">
-																<a href="#">Grupo - Listas</a>
-														</li>
-														<li class="dropdown-item">
-																<a href="#">Pagos</a>
-														</li>
-														<li class="dropdown-item">
-																<a href="#">Resultado Exámenes</a>
-														</li>
-														<li class="dropdown-item">
-																<a href="#">Credenciales</a>
-														</li>
-												</ul>
+										<li class="nav-item dropdown">
+												<a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle text-dark">ALUMNOS</a>
+											<div class="dropdown-menu" aria-labelledby="navbarSiaec">
+													<a class="dropdown-item" href="">Acceso por primera vez o bloqueo</a>
+													<a class="dropdown-item" href="">Acceso</a>
+													<a class="dropdown-item" href="">Datos Generales</a>					
+													<a class="dropdown-item" href="">Trayectoria</a>
+													<a class="dropdown-item" href="">Resultado de Exámenes</a>
+													<a class="dropdown-item" href="">Pagos</a>
+											</div>
 										</li>
-										<li class="dropdown-item dropdown-submenu">
-												<a href="#" data-toggle="dropdown" class="dropdown-toggle">Utilerias</a>
-												<ul class="dropdown-menu">
-														<li class="dropdown-item">
-																<a href="#">Importación Exámenes Cursos</a>
-														</li>
-														<li class="dropdown-item">
-																<a href="#">Exportación Exámenes Cursos</a>
-														</li>												
-												</ul>
+										<li class="nav-item dropdown">
+												<a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle text-dark">PROFESORES</a>
+											<div class="dropdown-menu" aria-labelledby="navbarProfesoeres">
+													<a class="dropdown-item" href="">Acceso por primera vez o bloqueo</a>
+													<a class="dropdown-item" href="">Acceso</a>
+													<a class="dropdown-item" href="">Grupos-Listas</a>					
+													<a class="dropdown-item" href="">Resultado de Exámenes</a>
+													<a class="dropdown-item" href="">Retroalimentación</a>
+											</div>
 										</li>
-										<li class="dropdown-item dropdown-submenu">
-												<a href="#" data-toggle="dropdown" class="dropdown-toggle">Reportes</a>
-												<ul class="dropdown-menu">
-														<li class="dropdown-item">
-																<a href="#">Formatos</a>
+										@endhasanyrole									
+									</ul>
+						</div>
+						<div class="navbar-nav">
+								<ul class="navbar-nav ml-auto">
+										<!-- Authentication Links -->
+										@guest
+												<li class="nav-item">
+														<a class="nav-link" href="{{ route('login') }}">{{ __('Iniciar sesión') }}</a>
+												</li>
+												@if (Route::has('register'))
+														<li class="nav-item">
+																<a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
 														</li>
-														<li class="dropdown-item">
-																<a href="#">Otros</a>
-														</li>												
-												</ul>
-										</li>									
+												@endif
+										@else
+												<li class="nav-item dropdown">
+														<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+																{{ Auth::user()->name }} <span class="caret"></span>
+														</a>
+
+														<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+																<a class="dropdown-item" href="{{ route('logout') }}"
+																	 onclick="event.preventDefault();
+																								 document.getElementById('logout-form').submit();">
+																		{{ __('Cerrar Sesión') }}
+																</a>
+
+																<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+																		@csrf
+																</form>
+														</div>
+												</li>
+										@endguest
 								</ul>
-							</li>
-							<li class="nav-item dropdown">						  
-								<a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle text-dark">PRE-REGISTRO</a>
-								<div class="dropdown-menu" aria-labelledby="navbarSiaec">
-									<a class="dropdown-item" href="">Instrucciones</a>
-									<a class="dropdown-item" href="">Datos Generales</a>
-									<a class="dropdown-item" href="">Impresión Formato Pre-registro</a>								
-									<a class="dropdown-item" href="">Impresión Formato Pago</a>
-									<a class="dropdown-item" href="">Re-impresión</a>								
-								</div>
-							</li>
-							<li class="nav-item dropdown">
-									<a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle text-dark">ALUMNOS</a>
-								<div class="dropdown-menu" aria-labelledby="navbarSiaec">
-										<a class="dropdown-item" href="">Acceso por primera vez o bloqueo</a>
-										<a class="dropdown-item" href="">Acceso</a>
-										<a class="dropdown-item" href="">Datos Generales</a>					
-										<a class="dropdown-item" href="">Trayectoria</a>
-										<a class="dropdown-item" href="">Resultado de Exámenes</a>
-										<a class="dropdown-item" href="">Pagos</a>
-								</div>
-							</li>
-							<li class="nav-item dropdown">
-									<a href="#" id="menu" data-toggle="dropdown" class="nav-link dropdown-toggle text-dark">PROFESORES</a>
-								<div class="dropdown-menu" aria-labelledby="navbarProfesoeres">
-										<a class="dropdown-item" href="">Acceso por primera vez o bloqueo</a>
-										<a class="dropdown-item" href="">Acceso</a>
-										<a class="dropdown-item" href="">Grupos-Listas</a>					
-										<a class="dropdown-item" href="">Resultado de Exámenes</a>
-										<a class="dropdown-item" href="">Retroalimentación</a>
-								</div>
-							</li>
-					  </ul>
+						</div>
 					</div>
 			</nav>
 		</div>

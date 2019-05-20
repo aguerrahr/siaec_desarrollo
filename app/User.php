@@ -38,4 +38,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function setPassworAttribute($value)
+    {
+        if(!empty($value))
+        {
+            $this->attributes['password']= bcrypt($value);
+        }   
+    }
+
 }

@@ -1,16 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Acceso;
-use App\Http\Controllers\Controller;
-use App\User;
+namespace App\Http\Controllers\Catalogos;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use DataTables;
 use Redirect,Response;
 use Illuminate\Database\QueryException;
-use Spatie\Permission\Models\Role;
+use App\Per;
 
-
-class UsersController extends Controller
+class PeriodoEscolarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,23 +17,26 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {   
-        try {
-            if ($request->ajax()) {
-                
-                return datatables()->eloquent(
-                    User::join('est', 'users.IdEst', '=', 'est.IdEst')
-                    ->join('model_has_roles', 'model_id', '=', 'users.id')
-                    ->join('roles', 'role_id', '=', 'roles.id')
-                    ->select('users.id','users.name as nombre', 'users.email', 'est.Est_UsuDesc','roles.name as rol')
-                )
-                ->addColumn('btn','acceso\actionsAcceso')
-                ->rawColumns(['btn'])
-                ->toJson();
-                
-            }            
-            
-            return view('acceso/user');
+    {
+        try {                        
+            if ($request->ajax()) {                           
+                $data = Per::join('est', 'per_idest', '=', 'IdEst')
+                ->select('per.IdPer', 'per.per_idper','per.per_desc', 'est.Est_UsuDesc');
+
+                return Datatables::of($data)
+                    ->addColumn('action', function($row){
+                           //$btn = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->IdPer.'" data-original-title="Edit" class="edit btn btn-primary btn-sm editProduct">Editar</a>';
+                           $btn = '<div style="margin: 0 auto;text-align: center;" >
+                                        <a href="javascript:void(0)" data-toggle="tooltip"  data-id=' . $row->IdPer . ' data-original-title="Edit" class="edit btn btn-primary edit-row">
+                                            <i class="fa fa-pencil" aria-hidden="true"></i> Editar
+                                        </a>
+                                    </div>';                                            
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }                   
+            return view('catalogos/periodoesc/periodoesc');     
         } 
         catch (QueryException $e){
             $strMensaje = "";
@@ -57,7 +59,7 @@ class UsersController extends Controller
         }
         catch (\Exception $e)
         {
-            return 'Fue otro tipo de error = '. $e->errorInfo[1];
+            return 'Fue otro tipo de error = '. $e;
         }
     }
 
@@ -79,27 +81,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        // date_default_timezone_set('America/Mexico_City');
-        // $hoy = date("Y-m-d H:i:s");                
-        try {
-            $idest = $request->cboEstatus;
-            if ($request->password != null)
-            {
-                $password = bcrypt($request->password);
-                $usuario = User::updateOrCreate(['id' => $request->id],
-                ['name' => $request->name, 'email' => $request->email, 'IdEst' => $idest,'password'=>$password]); 
-
-            }
-            else{
-                $usuario = User::updateOrCreate(['id' => $request->id],
-                ['name' => $request->name, 'email' => $request->email, 'IdEst' => $idest]); 
-
-            }            
-            //$role->revokePermissionTo($permission);
-            //$permission->removeRole($role);
-            $usuario->syncRoles($request->cboRol);
-            //$usuario->assignRole($request->cboRol);                
-            return response()->json(['status'=>1,'success'=>true,'message'=>'¡¡ Registro creado correctamente. !!']);           
+        //
+        date_default_timezone_set('America/Mexico_City');
+         $hoy = date("Y-m-d H:i:s");
+         $per_idest = $request->cboEstatus;         
+         try {
+            // Validate the value...
+            Per::updateOrCreate(['IdPer' => $request->IdPer],
+                 ['per_idper' => $request->per_idper,'per_desc' => $request->per_desc, 'per_idest' => $per_idest,'per_fechalt'=>$hoy,'per_fechbaj'=>$hoy]); 
+            return response()->json(['status'=>1,'success'=>true,'message'=>'¡¡ Registro actualizado correctamente. !!']);
+           
         } 
         catch (QueryException $e){
             $strMensaje = "";
@@ -107,13 +98,13 @@ class UsersController extends Controller
             switch($error_code)
             {
                 case 1062:
-                    $strMensaje = '¡¡ Registro duplicado !!';
+                    $strMensaje = '¡¡ El plantel ya se encuentra registrado !!';
                     break;
                 case 1452:
                     $strMensaje = '¡¡ Debe indicar el Estatus !!';
                     break;
                 default:
-                    $strMensaje = 'Código de Error = '. $e->errorInfo[1];
+                    $strMensaje = 'Código de Error = '. $e->errorInfo[1] . ' Descripción error:' .'<br>'.$e->errorInfo[2];
                     break;
 
             }
@@ -145,14 +136,10 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-         $usuario = User::find($id);         
-         $rol = $usuario->roles->first()->id;
-
-         //dd($usuario->roles);
-        // return response()->json($usuario);
-        //,'rol'=>$usuario->roles
-        //'usuario'=>$usuario
-        return response()->json(['usuario'=>$usuario,'rol'=>$rol]);
+        //
+        $per = Per::find($id);
+        
+        return response()->json($per);
     }
 
     /**

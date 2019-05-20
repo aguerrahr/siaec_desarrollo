@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Acceso;
-use App\Http\Controllers\Controller;
-use App\User;
+namespace App\Http\Controllers\Catalogos;
+
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
 use DataTables;
 use Redirect,Response;
 use Illuminate\Database\QueryException;
-use Spatie\Permission\Models\Role;
+use App\Est;
 
-
-class UsersController extends Controller
+class EstatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,23 +18,18 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
-    {   
-        try {
-            if ($request->ajax()) {
-                
+    {
+
+        try {                        
+            if ($request->ajax()) {            
                 return datatables()->eloquent(
-                    User::join('est', 'users.IdEst', '=', 'est.IdEst')
-                    ->join('model_has_roles', 'model_id', '=', 'users.id')
-                    ->join('roles', 'role_id', '=', 'roles.id')
-                    ->select('users.id','users.name as nombre', 'users.email', 'est.Est_UsuDesc','roles.name as rol')
+                    Est::select('IdEst','Est_UsuDesc')
                 )
-                ->addColumn('btn','acceso\actionsAcceso')
+                ->addColumn('btn','catalogos\estatus\actionsEstatus')
                 ->rawColumns(['btn'])
                 ->toJson();
-                
-            }            
-            
-            return view('acceso/user');
+            }                   
+            return view('catalogos/estatus/estatus');     
         } 
         catch (QueryException $e){
             $strMensaje = "";
@@ -57,8 +52,9 @@ class UsersController extends Controller
         }
         catch (\Exception $e)
         {
-            return 'Fue otro tipo de error = '. $e->errorInfo[1];
+            return 'Fue otro tipo de error = '. $e;
         }
+        
     }
 
     /**
@@ -79,27 +75,11 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        // date_default_timezone_set('America/Mexico_City');
-        // $hoy = date("Y-m-d H:i:s");                
+
         try {
-            $idest = $request->cboEstatus;
-            if ($request->password != null)
-            {
-                $password = bcrypt($request->password);
-                $usuario = User::updateOrCreate(['id' => $request->id],
-                ['name' => $request->name, 'email' => $request->email, 'IdEst' => $idest,'password'=>$password]); 
-
-            }
-            else{
-                $usuario = User::updateOrCreate(['id' => $request->id],
-                ['name' => $request->name, 'email' => $request->email, 'IdEst' => $idest]); 
-
-            }            
-            //$role->revokePermissionTo($permission);
-            //$permission->removeRole($role);
-            $usuario->syncRoles($request->cboRol);
-            //$usuario->assignRole($request->cboRol);                
-            return response()->json(['status'=>1,'success'=>true,'message'=>'¡¡ Registro creado correctamente. !!']);           
+            
+            Est::updateOrCreate(['IdEst' => $request->IdEst],['Est_UsuDesc' => $request->Est_UsuDesc]);                      
+            return response()->json(['status'=>1,'success'=>true,'message'=>'¡¡ Registro actualizado correctamente. !!']);           
         } 
         catch (QueryException $e){
             $strMensaje = "";
@@ -113,7 +93,7 @@ class UsersController extends Controller
                     $strMensaje = '¡¡ Debe indicar el Estatus !!';
                     break;
                 default:
-                    $strMensaje = 'Código de Error = '. $e->errorInfo[1];
+                    $strMensaje = 'Código de Error = '. $e->errorInfo[1] . ', Descripción del error = '. $e->errorInfo[2];
                     break;
 
             }
@@ -145,14 +125,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-         $usuario = User::find($id);         
-         $rol = $usuario->roles->first()->id;
-
-         //dd($usuario->roles);
-        // return response()->json($usuario);
-        //,'rol'=>$usuario->roles
-        //'usuario'=>$usuario
-        return response()->json(['usuario'=>$usuario,'rol'=>$rol]);
+        $estatus = Est::find($id);    
+        return response()->json($estatus);
     }
 
     /**

@@ -12,7 +12,7 @@ use App\Plan;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 /*
 Route::get('/catalogos/estatus/{id}', function ($id) {
@@ -88,8 +88,9 @@ Route::get('/catalogos/accesos', function () {
     }
 });*/
 
-
-Route::resource('ajaxplans', 'PlanController'); //[0-9]+
+Route::resource('catalogos/estatus', 'Catalogos\EstatusController'); //[0-9]+
+Route::resource('catalogos/planteles', 'PlanController'); //[0-9]+
+Route::resource('catalogos/periodoescolar', 'Catalogos\PeriodoEscolarController'); //[0-9]+
 Route::resource('accesos', 'Acceso\UsersController'); //[0-9]+
 
 Route::get('stList', 'ServiciosController@getEstatus'); //[0-9]+
@@ -112,3 +113,6 @@ Route::get('/catalogos/planteles','PlanController@index');
 Route::get('/catalogos/planteles/muestra','PlanController@show');
 Route::get('/catalogos/planteles/crear','PlanController@create');
 Route::get('/catalogos/planteles/welcome','WelcomePlanController');*/
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

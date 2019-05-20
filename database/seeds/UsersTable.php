@@ -29,5 +29,17 @@ class UsersTable extends Seeder
         ]);
 
         $sa->assignRole('super-usuario');
+
+        // $p1 = User::create([
+        //     'name' => 'prueba1',
+        //     'email' =>  'prueba1@gmail.com',
+        //     'IdEst' => 1,
+        //     'password' => bcrypt('123456')
+        // ]);
+
+        // $p1->assignRole('super-usuario');
+
+
+
     }
 }
