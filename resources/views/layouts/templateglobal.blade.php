@@ -96,8 +96,18 @@
 																			<a href="{{ url("catalogos/planteles") }}">Planteles</a>
 																	</li>			
 																	<li class="dropdown-item">
+																		<a href="{{ url("catalogos/cursos") }}">Cursos</a>
+																	</li>												
+																	<li class="dropdown-item">
 																		<a href="{{ url("catalogos/periodoescolar") }}">Periodo escolar</a>
-																</li>												
+																	</li>												
+																	<li class="dropdown-item">
+																		<a href="{{ url("catalogos/horarios") }}">Horario escolar</a>
+																	</li>
+																	<li class="dropdown-item">
+																		<a href="{{ url("catalogos/planescolar") }}">Horario escolar</a>
+																	</li>												
+
 															</ul>
 													</li>
 													<a class="dropdown-item" href="">Provedores y Adquisiciones</a>

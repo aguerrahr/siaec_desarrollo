@@ -90,7 +90,10 @@ Route::get('/catalogos/accesos', function () {
 
 Route::resource('catalogos/estatus', 'Catalogos\EstatusController'); //[0-9]+
 Route::resource('catalogos/planteles', 'PlanController'); //[0-9]+
+Route::resource('catalogos/cursos', 'Catalogos\CursosController'); //[0-9]+
 Route::resource('catalogos/periodoescolar', 'Catalogos\PeriodoEscolarController'); //[0-9]+
+Route::resource('catalogos/horarios', 'Catalogos\HorariosController'); //[0-9]+
+Route::resource('catalogos/planescolar', 'Catalogos\PlanEscolarController'); //[0-9]+
 Route::resource('accesos', 'Acceso\UsersController'); //[0-9]+
 
 Route::get('stList', 'ServiciosController@getEstatus'); //[0-9]+
