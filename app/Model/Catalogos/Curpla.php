@@ -4,7 +4,7 @@ namespace App\Model\Catalogos;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Curplan extends Model
+class Curpla extends Model
 {
     //
     protected $table = 'curpla';

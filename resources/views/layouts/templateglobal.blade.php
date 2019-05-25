@@ -105,7 +105,7 @@
 																		<a href="{{ url("catalogos/horarios") }}">Horario escolar</a>
 																	</li>
 																	<li class="dropdown-item">
-																		<a href="{{ url("catalogos/planescolar") }}">Horario escolar</a>
+																		<a href="{{ url("catalogos/planescolar") }}">Plan escolar</a>
 																	</li>												
 
 															</ul>

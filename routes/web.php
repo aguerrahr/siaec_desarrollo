@@ -100,8 +100,18 @@ Route::get('stList', 'ServiciosController@getEstatus'); //[0-9]+
 Route::get('stList/{id}', 'ServiciosController@getIdEstatus')->where('id', '[0-9]+');
 Route::get('stList/{desc}', 'ServiciosController@getDescEstatus')->where('desc', '[A-Za-z]+');
 
-
 Route::get('rolesList', 'ServiciosController@getRoles'); //[0-9]+
+
+Route::get('plantelList','ServiciosController@getPlanteles');
+Route::get('cursoList','ServiciosController@getCursos');
+Route::get('periodoList','ServiciosController@getPeriodo');
+Route::get('horarioList','ServiciosController@getHorarios');
+
+
+
+Route::get('alumno/dtsGenerales','ServiciosController@getHorarios');
+
+
 
 
 /*Route::get('/caalogos/planteles/index', 'PlanController@index'); //[0-9]+

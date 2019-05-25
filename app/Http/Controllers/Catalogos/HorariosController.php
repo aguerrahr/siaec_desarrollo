@@ -100,7 +100,7 @@ class HorariosController extends Controller
             switch($error_code)
             {
                 case 1062:
-                    $strMensaje = '¡¡ El plantel ya se encuentra registrado !!';
+                    $strMensaje = '¡¡ Registro duplicado !!';
                     break;
                 case 1452:
                     $strMensaje = '¡¡ Debe indicar el Estatus !!';

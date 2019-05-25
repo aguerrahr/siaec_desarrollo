@@ -24,7 +24,6 @@
 				<table id="grdDatos" class="table table-responsive-lg table-hover">
 					<thead class="thead-light">
 						<tr>
-                            <th>#</th>
                             <th>Plantel</th>
                             <th>Curso</th>
                             <th>Periodo</th>
@@ -45,22 +44,37 @@
 			    </div>
 			    <div class="modal-body">
 			        <form id="rowForm" name="rowForm" class="form-horizontal">
-			           <input type="hidden" name="IdCur" id="IdCur">                    
+			            <input type="hidden" name="IdCurPlan" id="IdCurPlan">                    
                         <div class="form-group">
-			                <label for="cur_desc" class="col-sm-2 control-label">Curso</label>
-			                <div class="col-sm-12">
-			                    <input type="text" class="form-control" id="cur_desc" name="cur_desc" placeholder="Especifique el curso" value="" maxlength="12" required="">
-			                </div>
-                        </div>	
-                        
+			                <label for ="cboPlantel" class="col-sm-2 control-label">Plantel</label>
+							<div class="col-md-6">
+								<select class="cs-select cs-skin-border select-gray" name="cboPlantel" id="cboPlantel"></select>
+							</div>
+                        </div>
+                        <div class="form-group">
+			                <label for ="cboCurso" class="col-sm-2 control-label">Curso</label>
+							<div class="col-md-6">
+								<select class="cs-select cs-skin-border select-gray" name="cboCurso" id="cboCurso"></select>
+							</div>
+                        </div>
+                        <div class="form-group">
+			                <label for ="cboPeriodo" class="col-sm-2 control-label">Periodo</label>
+							<div class="col-md-6">
+								<select class="cs-select cs-skin-border select-gray" name="cboPeriodo" id="cboPeriodo"></select>
+							</div>
+                        </div>
+                        <div class="form-group">
+			                <label for ="cboHorario" class="col-sm-2 control-label">Horario</label>
+							<div class="col-md-6">
+								<select class="cs-select cs-skin-border select-gray" name="cboHorario" id="cboHorario"></select>
+							</div>
+                        </div>                        
                         <div class="form-group">
 			                <label for ="cboEstatus" class="col-sm-2 control-label">Estatus</label>
 							<div class="col-md-6">
 								<select class="cs-select cs-skin-border select-gray" name="cboEstatus" id="cboEstatus"></select>
 							</div>
-
 			            </div>
-
 			            <div class="col-sm-offset-2 col-sm-10">
 			             <button type="submit" class="btn btn-primary" id="btn-save" value="create"><i class="fa fa-floppy-o" aria-hidden="true"></i> Guardar Cambios
 			             </button>
@@ -82,7 +96,7 @@
 @endsection
 @section("scripts")
 
-<script src="../../js/ui-cursos.js"></script>
+<script src="../../js/ui-planescolar.js"></script>
 <script type="text/javascript">
 	var SITEURL = '{{URL::to('')}}';
 	$(function() {
@@ -94,11 +108,13 @@
 			/* Grid con datos */
 		$('#grdDatos').DataTable({
 			"serverSide": true,
-			"ajax": "{{ url('catalogos/cursos')}}",
+			"ajax": "{{ url('catalogos/planescolar')}}",
 			"processing": false,
 			"columns":[
-				{data:'IdCur'},
-				{data:'cur_desc'},
+				{data:'plan_desc'},
+                {data:'cur_desc'},
+                {data:'per_desc'},
+                {data:'hor_desc'},
 				{data:'Est_UsuDesc'},
 				//{data:'btn','orderable': false},
 				{data: 'action', orderable: false, searchable: false},
@@ -134,24 +150,37 @@
 			/*  Botón agreagar */
 		    $('#create-new-reg').click(function () {
 		        $('#btn-save').val("create-reg");
-                $('#IdCur').val('');
-                $('#cur_desc').val('');		
+                $('#IdCurPlan').val('');
+                
+                $('#cboCurso option[value=0]').attr('selected', 'selected');
+                $('#cboPlantel option[value=0]').attr('selected', 'selected');
+                $('#cboPeriodo option[value=0]').attr('selected', 'selected');
+                $('#cboHorario option[value=0]').attr('selected', 'selected');
+                $('#cboEstatus option[value=0]').attr('selected', 'selected');
+
+
 				$('#rowForm').trigger("reset");
 		        $('#rowCrudModal').html("Agregar registro");
                 $('#ajax-crud-modal').modal('show');
-                $('#cboEstatus option[value=0]').attr('selected', 'selected');
+                
 			});
 			/*  Botón editar */
 			$('body').on('click', '.edit-row', function () {
-				var IdCur = $(this).data('id');
+				var IdCurPlan = $(this).data('id');
 
-				$.get("{{ route('cursos.index') }}" +'/' + IdCur +'/edit', function (data) {
+				$.get("{{ route('planescolar.index') }}" +'/' + IdCurPlan +'/edit', function (data) {
 					$('#rowCrudModal').html("Editar registro");
 					$('#btn-save').val("edit-row");
                     $('#ajax-crud-modal').modal('show');
-                    $('#cboEstatus option[value=' + data.cur_idest + ']').attr('selected', 'selected');
-					$('#IdCur').val(data.IdCur);
-                    $('#cur_desc').val(data.cur_desc);					
+                    
+                    $('#cboCurso option[value=' + data.curpla_idcurso + ']').attr('selected', 'selected');
+                    $('#cboPlantel option[value=' + data.curpla_idplan + ']').attr('selected', 'selected');
+                    $('#cboPeriodo option[value=' + data.curpla_idper + ']').attr('selected', 'selected');
+                    $('#cboHorario option[value=' + data.curpla_idhor + ']').attr('selected', 'selected');
+                    $('#cboEstatus option[value=' + data.curpla_idest + ']').attr('selected', 'selected');
+                                        
+                    $('#IdCurPlan').val(data.IdCurPlan);
+                    			
 				})
 			});
 		});
@@ -164,15 +193,21 @@
 
 		      $.ajax({
 		          data: $('#rowForm').serialize(),
-		          url: "{{ route('cursos.store') }}",
+		          url: "{{ route('planescolar.store') }}",
 		          type: "POST",
 		          dataType: 'json',
 		          success: function (data) {
 					if (data.success){
 						swal("¡Operación exitosa!", data.message, "success");
 						$('#rowForm').trigger("reset");
-						$('#cboEstatus option[value=0]').attr('selected', 'selected');
-						$('#ajax-crud-modal').modal('hide');
+                        
+                        $('#cboEstatus option[value=0]').attr('selected', 'selected');
+                        $('#cboCurso option[value=0]').attr('selected', 'selected');
+                        $('#cboPlantel option[value=0]').attr('selected', 'selected');
+                        $('#cboPeriodo option[value=0]').attr('selected', 'selected');
+                        $('#cboHorario option[value=0]').attr('selected', 'selected');
+                        
+                        $('#ajax-crud-modal').modal('hide');
 						$('#btn-save').html('Guardar Cambios');
 						var oTable = $('#grdDatos').dataTable();
 						oTable.fnDraw(false);
