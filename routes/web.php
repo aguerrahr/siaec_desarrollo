@@ -1,5 +1,9 @@
 <?php
 use App\Plan;
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -107,10 +111,71 @@ Route::get('cursoList','ServiciosController@getCursos');
 Route::get('periodoList','ServiciosController@getPeriodo');
 Route::get('horarioList','ServiciosController@getHorarios');
 
-
-
 Route::get('alumno/dtsGenerales','ServiciosController@getHorarios');
 
+// PreRegistro
+Route::get('alumno/preregcurso', function () {
+    return view('preregcurso/preregcurso');
+});
+Route::get('alumno/preregcurso/preregpdf', function () {
+    // se puede usar
+        //$pdf = App::make('dompdf.wrapper');
+    // o tanbién se puede usar en vez de la línea anterior
+        //$pdf = resolve('dompdf.wrapper');
+    //se puede usuar
+        //$pdf->loadHTML('<h1>Test</h1>');
+    // o usar el facade
+        // $pdf = PDF::loadHTML('<h1 style = "color:red">Test</h1>');
+    //Mandar al navegador el PDF
+        //return $pdf->stream();
+    //Bajar el PDF
+    //return $pdf->download();
+   
+   
+   
+   
+
+    //$options = new Options();
+    //$options->set('defaultFont', 'Courier');
+    //$pdf = new Dompdf($options);
+
+
+    // $dompdf->set_option('isHtml5ParserEnabled', true);
+    // $canvas = $dompdf->get_canvas();
+    // $canvas->page_script("
+    //     $pdf->line(10,730,800,730,array(0,0,0),1);
+    // ");
+   
+
+
+    // $pdf  = PDF::loadView('preregcurso/preregpdf');
+    // $pdf ->setPaper('Letter','landscape');
+
+    $pdf = App::make('dompdf.wrapper');
+    //$pdf = app('dompdf.wrapper');
+    $pdf->getDomPDF()->set_option("enable_php", true);
+     //$pdf->loadView('your.view.here', $data);
+    $pdf->loadView('preregcurso/preregpdf');
+    $pdf ->setPaper('L','landscape');
+    $pdf->output();
+
+    //$dom_pdf = $pdf->getDomPDF();
+
+    //$canvas = $dom_pdf ->get_canvas();
+    
+    //$canvas->page_text(0, 0, "Page {PAGE_NUM} of {PAGE_COUNT}", null, 10, array(0, 0, 0));
+    //$canvas->line(0,100,800,100,array(0,0,0),1);
+    
+    // $canvas->page_script("
+    //     $pdf->line(10,730,800,730,array(0,0,0),1);
+    // ");
+
+
+
+
+    return $pdf ->stream();
+    //return view('preregcurso/preregpdf');
+});
 
 
 

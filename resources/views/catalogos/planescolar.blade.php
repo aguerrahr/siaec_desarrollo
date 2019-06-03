@@ -151,15 +151,16 @@
 		    $('#create-new-reg').click(function () {
 		        $('#btn-save').val("create-reg");
                 $('#IdCurPlan').val('');
-                
-                $('#cboCurso option[value=0]').attr('selected', 'selected');
-                $('#cboPlantel option[value=0]').attr('selected', 'selected');
-                $('#cboPeriodo option[value=0]').attr('selected', 'selected');
-                $('#cboHorario option[value=0]').attr('selected', 'selected');
-                $('#cboEstatus option[value=0]').attr('selected', 'selected');
-
-
 				$('#rowForm').trigger("reset");
+				
+                
+				$('#cboCurso').val($('#cboCurso option').eq(0).val());
+				$('#cboPlantel').val($('#cboPlantel option').eq(0).val());
+				$('#cboPeriodo').val($('#cboPeriodo option').eq(0).val());
+				$('#cboHorario').val($('#cboHorario option').eq(0).val());
+				$('#cboEstatus').val($('#cboEstatus option').eq(0).val());
+				
+						
 		        $('#rowCrudModal').html("Agregar registro");
                 $('#ajax-crud-modal').modal('show');
                 
@@ -172,12 +173,12 @@
 					$('#rowCrudModal').html("Editar registro");
 					$('#btn-save').val("edit-row");
                     $('#ajax-crud-modal').modal('show');
-                    
-                    $('#cboCurso option[value=' + data.curpla_idcurso + ']').attr('selected', 'selected');
-                    $('#cboPlantel option[value=' + data.curpla_idplan + ']').attr('selected', 'selected');
-                    $('#cboPeriodo option[value=' + data.curpla_idper + ']').attr('selected', 'selected');
-                    $('#cboHorario option[value=' + data.curpla_idhor + ']').attr('selected', 'selected');
-                    $('#cboEstatus option[value=' + data.curpla_idest + ']').attr('selected', 'selected');
+                                     					
+					$('#cboCurso').val($('#cboCurso option').eq(data.curpla_idcurso).val());
+					$('#cboPlantel').val($('#cboPlantel option').eq(data.curpla_idplan).val());
+					$('#cboPeriodo').val($('#cboPeriodo option').eq(data.curpla_idper).val());
+					$('#cboHorario').val($('#cboHorario option').eq(data.curpla_idhor).val());
+					$('#cboEstatus').val($('#cboEstatus option').eq(data.curpla_idest).val());
                                         
                     $('#IdCurPlan').val(data.IdCurPlan);
                     			

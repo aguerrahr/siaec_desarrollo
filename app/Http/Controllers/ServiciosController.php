@@ -15,7 +15,7 @@ class ServiciosController extends Controller
     //
     public function getEstatus()
     {        
-        $stList = Est::all();
+        $stList = Est::orderBy('IdEst')->get();
         return response()->json(['status'=>1,'success'=>true,'lst'=>$stList]);
     }
     public function getIdEstatus($id)
