@@ -344,6 +344,16 @@
                     </div>
                 </div>
             </form>
+            <table>
+                    <tr>
+                        <td><br></td>
+                        <td><br></td>
+                        <td><br></td>
+                        <td style="text-align: center;">
+                            <a href="" class="btn btn-primary">Imprimir</a>
+                        </td>
+                    </tr>
+            </table>
           </div>
         </div>
       </div>
@@ -362,7 +372,7 @@
 <script src="../../js/ui-preregcurso.js"></script>
 <script type="text/javascript">
 	var SITEURL = '{{URL::to('')}}';
-	
+	var detener = true;
 </script>
 @endsection
 

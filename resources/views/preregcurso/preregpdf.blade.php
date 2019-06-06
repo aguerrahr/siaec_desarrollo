@@ -16,7 +16,7 @@
         }
         h1{
             font-family: Arial, Helvetica, sans-serif;
-            font-size: 35px;
+            font-size: 25px;            
         }
         table{
             table-layout: fixed;
@@ -25,9 +25,11 @@
         }
 
         th, td {
-            /* border: 1px solid blue; */
+            /* border: 1px solid blue;  */
             width: 500px;
             word-wrap: break-word;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
         }
 
         table th, table td {
@@ -41,7 +43,7 @@
             if (isset($pdf)) {
                 $x = 250;
                 $y = 10;
-                $text = "Página {PAGE_NUM} de {PAGE_COUNT}";
+                //$text = "{{asset('/images/logo-coapa-azul.png')}}";//"{{ base_path() }}/public/images/logo-coapa-azul.png"; //"Página {PAGE_NUM} de {PAGE_COUNT}";
                 //$font = null;
                 $font = $fontMetrics->getFont("helvetica", "bold");
                 $size = 14;
@@ -51,14 +53,66 @@
                 $angle = 0.0;   //  default
                 //$pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
                 $color = array(0,0,0);
-                $pdf->line(70,540,350,540,$color,2);
-                $pdf->line(430,540,710,540,$color,2);
+                $pdf->line(35,675,295,675,$color,2);
+                $pdf->line(305,675,570,675,$color,2);
+                //$image1= {{ base_path() }}/public/images/l.png"; //"{{ base_path() }}/images/logo-coapa-azul.png";
+                //$pdf->image($image1,"png", 0, 0, 50, 25);
                
             }
     </script>
     <div>
-        <h1 style="text-align: center;">Pre-registro
+        {{-- <table>
+            <tr>                
+                <td>                    
+                    <img src="{{asset('images/logo-coapa-azul.png')}}" alt="Logo" height="75px">
+                </td>>
+                <td>
+                    <h1 style="text-align: left;">Pre-registro
+                </td>
+            </tr>
+        </table> --}}
         <table>
+            <tr>                
+                <td>                                        
+                    {{-- <img src="{{asset('/images/logo-coapa-azul.png')}}" alt="Logo" height="75px"> --}}
+                    {{-- <img src="{{ public_path('images/logo-coapa-azul.png') }}" alt="Logo" height="75px"> --}}
+                    <img src="{{ public_path('/images/logo-coapa-azul.png') }}" alt="Logo" height="45px" width="175px" >
+                </td>>
+                <td style = " padding-left: 100px;"  colspan="3">
+                    <h1>Pre-registro
+                </td>
+            </tr>
+            <tr>
+                    <td>                                                        
+                        <label for="txt_plantel_i">Plantel:</label> 
+                        <input type="text" class="form-control form-control-sm" id="txt_plantel_i" value="Coapa">                              
+                    </td>
+                    <td>
+                        <label for="txt_curso_i">Curso:</label> 
+                        <input type="text" class="form-control form-control-sm" id="txt_curso_i" value="COMIPEMS">                              
+                    </td>
+                    <td>
+                        <label for="txt_periodo_i">Periodo:</label> 
+                        <input type="text" class="form-control form-control-sm" id="txt_periodo_i" value="2019-01">      
+                    </td>
+                    <td>
+                        <label for="txt_horario_i">Horario:</label> 
+                        <input type="text" class="form-control form-control-sm" id="txt_horario_i" value="8:00-11:00">      
+                    </td>
+            </tr>
+            <tr>
+                    <td>
+                        <div class="col-sm-12">
+                            <label for="txt_id_alumno_i">ID:</label>                             
+                            <input type="text" class="form-control form-control-sm" id="txt_id_alumno_i" value="19GUHA75">    
+                        </div>        
+                    </td>
+                    <td colspan="3">
+                </tr>
+        </table>
+        <br>
+        <table>                                    
+            
             <tr>
                 <td>    
                     <div class="col-sm-12">
@@ -164,55 +218,59 @@
             </tr>
             <tr>
                 <td>
-                        <div class="col-sm-12">
-                                <label >Fecha de nacimiento</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_fh_nac" placeholder="" value="15/07/1981">
-                        </div>
+                    <div class="col-sm-12">
+                            <label >Fecha de nacimiento</label>
+                            <input type="text" class="form-control form-control-sm" id="txt_fh_nac" placeholder="" value="15/07/1981">
+                    </div>
                 </td>
                 <td>
-                        <div class="col-sm-12">
-                                <label for="txt_entnac_i">Entidad de nacimiento:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_entnac_i" placeholder="" value="Ciudad de México">
-                        </div>
-                </td>                
+                    <div class="col-sm-12">
+                            <label for="txt_entnac_i">Entidad de nacimiento:</label>
+                            <input type="text" class="form-control form-control-sm" id="txt_entnac_i" placeholder="" value="Ciudad de México">
+                    </div>
+                </td>
+                <td></td>                
             </tr>
             <tr>
                 <td>
-                        <div class="col-sm-12">
-                                <label for="txt_secundaria">Secundaria de Procedencia:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_secundaria_i" placeholder="" value="José Clemento Orozco">
-                        </div>     
+                    <div class="col-sm-12">
+                        <label for="txt_secundaria">Secundaria de Procedencia:</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_secundaria_i" placeholder="" value="José Clemento Orozco">
+                    </div>     
                 </td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="col-sm-12">
+                        <label>Escuela a la que desea ingresar:</label>
+                    </div>
+                </td>
+                <td></td>
             </tr>
             <tr>
                 <td>
-                        <div class="col-sm-12">
-                                <label>Escuela a la que desea ingresar:</label>
-                        </div>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                        <div class="col-sm-12">
-                                <label for="txt_op1_i">Opción 1:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_op1_i" placeholder="" value="Opción 1">
-                        </div>
+                    <div class="col-sm-12">
+                        <label for="txt_op1_i">Opción 1:</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_op1_i" placeholder="" value="Opción 1">
+                    </div>
                 </td>
                 <td>
-                        <div class="col-sm-12">
-                                <label for="txt_op2">Opción 2:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_op2_i" placeholder="" value="Opción 2">
-                        </div>                           
+                    <div class="col-sm-12">
+                        <label for="txt_op2">Opción 2:</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_op2_i" placeholder="" value="Opción 2">
+                    </div>                           
                 </td>
                 <td>
-                        <div class="col-sm-12">
-                                <label for="txt_op3">Opción 3:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_op3_i" placeholder="" value="Opción 3">
-                        </div>
+                    <div class="col-sm-12">
+                        <label for="txt_op3">Opción 3:</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_op3_i" placeholder="" value="Opción 3">
+                    </div>
                 </td>
             </tr>            
         </table> 
-        <table style="margin-top: 80px;">                
+        <br>
+        <table style="margin-top: 110px;">                
                 <tr>
                     {{-- <td style="width: 100px; border: 1px solid blue;"></td> --}}
                     <td style="width: 700px;text-align: center;">

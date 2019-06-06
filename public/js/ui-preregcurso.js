@@ -13,16 +13,28 @@ $(document).ready(function() {
    //$("#accordion.collapse").removeClass("in").css("height","0")
    //$("#accordion.collapse:first").addClass("in").css("height","auto")
    
-//    $('.no-collapsable').on('click', function (e) {
-//     e.stopPropagation();
-//     });
+   $('.no-collapsable').on('click', function (e) {
+        if (detener) {
+            event.stopPropagation()
+            // do stuff
+            detener = false;
+        }
+        else {
+            detener = true;
+        }
+    });
 
     $('#mdlEspere').modal('show');
     setcboCurso();
     setcboPlantel();    
     setcboPeriodo();
     setcboHorario();    
+
 });
+
+$( "#btn_registrar" ).click(function() {
+   
+  });
 function setcboHorario()
 {
 		var url = SITEURL + '/horarioList';

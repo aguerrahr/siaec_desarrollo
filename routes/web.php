@@ -156,7 +156,7 @@ Route::get('alumno/preregcurso/preregpdf', function () {
     $pdf->getDomPDF()->set_option("enable_php", true);
      //$pdf->loadView('your.view.here', $data);
     $pdf->loadView('preregcurso/preregpdf');
-    $pdf ->setPaper('L','landscape');
+    $pdf ->setPaper('L');
     $pdf->output();
 
     //$dom_pdf = $pdf->getDomPDF();

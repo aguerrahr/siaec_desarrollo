@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Alumnos;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Model\Alumnos\Alumno;
-class AlumnoController extends Controller
+use App\Model\Alumnos\DatCur;
+
+class PreRegCursoController extends Controller
 {
     /**
      * Display a listing of the resource.
