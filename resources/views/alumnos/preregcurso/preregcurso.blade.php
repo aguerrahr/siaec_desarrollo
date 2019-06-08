@@ -350,7 +350,7 @@
                         <td><br></td>
                         <td><br></td>
                         <td style="text-align: center;">
-                            <a href="" class="btn btn-primary">Imprimir</a>
+                        <a target="_blank" href="{{ url('alumno/preregcurso/preregpdf/1')}}" class="btn btn-primary">Imprimir</a>
                         </td>
                     </tr>
             </table>
@@ -359,6 +359,31 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" id="cursos-modal" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			    <div class="modal-header">
+			        <h4 class="modal-title" id="rowCrudModal"></h4>
+			    </div>
+			    <div class="modal-body">
+                    <table id="grdDatos" class="table table-responsive-lg table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Curso</th>
+                                <th>Plantel</th>                                
+                                <th>Periodo Escolar</th>
+                                <th>Horario</th>                                       
+                            </tr>
+                        </thead>
+                    </table>
+			    </div>
+			    <div class="modal-footer">
+
+			    </div>
+			</div>
+		</div>
+	</div>
 @endsection
 
 @section('loadingdata')
