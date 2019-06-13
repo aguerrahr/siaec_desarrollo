@@ -2,7 +2,7 @@
 $(document).ready(function() {
 	$('#flash-overlay-modal').modal();
 	
-	$('#btn_imp_formatos').hide();
+	//$('#btn_imp_formatos').hide();
 	
 	/* desabiliota doto el acrordion        
     $('#accordion').on('shown.bs.collapse', function () {
@@ -165,6 +165,13 @@ $( "#btn_imp_prereg" ).click(function() {
 	//
 	window.open(SITEURL + '/alumno/preregcurso/preregpdf/' +  $('#IdAlu').val() , '_blank');
 });
+$( "#btn_imp_formapago" ).click(function() {
+	//
+	window.open(SITEURL + '/alumno/preregcurso/fichapagopdf/' +  $('#IdAlu').val() , '_blank');
+});
+
+//
+
 $( "#btn_cursos" ).click(function() {
 	$('#cursos-modal').modal('show');
 });

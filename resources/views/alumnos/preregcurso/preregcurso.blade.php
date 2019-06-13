@@ -96,7 +96,7 @@
 @section('cuerpo')	
 <div class="container">     
     <input type="hidden" name="IdDatCur" id="IdDatCur">           
-    <input type="hidden" name="IdAlu" id="IdAlu" value="">
+    <input type="hidden" name="IdAlu" id="IdAlu" value="3">
     <div id="accordion">
       <div class="card">
         <div class="card-header">
@@ -372,28 +372,21 @@
                         <h4 class="modal-title" id="rowCrudModal"></h4>
                     </div>
                     <div class="modal-body">                                                                                                                          
-                        <table>
+                        <table  WIDTH="100%">
                             <tr>
-                                <td><br></td>
-                                <td><br></td>
-                                <td><br></td>
-                                <td style="text-align:center;">
+                                <td  style="text-align:center;">
                                     {{-- <a target="_blank" id = "btn_imp_prereg" style="padding-left:auto" href="{{ url('alumno/preregcurso/preregpdf/1')}}" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir Pre-registro</a> --}}
-                                    <button type="button" id = "btn_imp_prereg"  style="padding-left:auto"  class="btn btn-primary"><i class="fas fa-print"></i> Aceptar</button>                            
+                                    <button type="button" id = "btn_imp_prereg"  class="btn btn-primary"><i class="far fa-sticky-note"></i> Pre-Registro</button>                            
                                 </td>
                             </tr>
                             <tr>
-                                <td><br></td>
-                                <td><br></td>
-                                <td><br></td>
                                 <td style="text-align:center;">
                                     {{-- <a target="_blank" id = "btn_imp_formapago" style="padding-left:auto" href="{{ url('alumno/preregcurso/fichapagopdf/1')}}" class="btn btn-primary"><i class="fas fa-dollar-sign"></i> Imprimir Formato de Pago</a> --}}
-                                    <button type="button" id = "btn_imp_formapago"  style="padding-left:auto" class="btn btn-primary"><i class="fas fa-dollar-sign"></i> Imprimir Formato de Pago</button> 
+                                    <button type="button" id = "btn_imp_formapago"  style="padding-left:auto" class="btn btn-primary"><i class="fas fa-dollar-sign"></i> Formato de Pago</button> 
                                 </td>
                             </tr>
-                    </table>
-                    </div>
-                    
+                        </table>
+                    </div>                    
                 </div>
             </div>
         </div>

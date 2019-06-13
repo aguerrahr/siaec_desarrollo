@@ -53,8 +53,8 @@
                 $angle = 0.0;   //  default
                 //$pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
                 $color = array(0,0,0);
-                $pdf->line(35,675,295,675,$color,2);
-                $pdf->line(305,675,570,675,$color,2);
+                //$pdf->line(35,400,295,400,$color,2);
+                $pdf->line(500,435,685,435,$color,2);
               
             }
     </script>
@@ -76,30 +76,30 @@
             <tr>
                     <td>                                                        
                         <label for="txt_monto_i">Monto de Pago:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_monto_i" value="$ 1,900.00 M/N">                              
+                        <input type="text" class="form-control form-control-sm" id="txt_monto_i" value="{{$dtsalu->costo}}">                              
                     </td>
                     <td>                                                        
                         <label for="txt_plantel_i">Plantel:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_plantel_i" value="Coapa">                              
+                        <input type="text" class="form-control form-control-sm" id="txt_plantel_i" value="{{$dtsalu->plan_desc}}">                              
                     </td>
                     <td>
                         <label for="txt_curso_i">Curso:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_curso_i" value="COMIPEMS">                              
+                        <input type="text" class="form-control form-control-sm" id="txt_curso_i" value="{{$dtsalu->cur_desc}}">                              
                     </td>
                     <td>
                         <label for="txt_periodo_i">Periodo:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_periodo_i" value="2019-01">      
+                        <input type="text" class="form-control form-control-sm" id="txt_periodo_i" value="{{$dtsalu->per_desc}}">      
                     </td>
                     <td>
                         <label for="txt_horario_i">Horario:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_horario_i" value="8:00-11:00">      
+                        <input type="text" class="form-control form-control-sm" id="txt_horario_i" value="{{$dtsalu->hor_desc}}">      
                     </td>
             </tr>
             <tr>
                     <td>
                         <div class="col-sm-12">
                             <label for="txt_id_alumno_i">ID:</label>                             
-                            <input type="text" class="form-control form-control-sm" id="txt_id_alumno_i" value="19GUHA75">    
+                            <input type="text" class="form-control form-control-sm" id="txt_id_alumno_i" value="{{$dtsalu->alu_idalu}}">    
                         </div>        
                     </td>
                     <td colspan="4">
@@ -112,19 +112,19 @@
                 <td>    
                     <div class="col-sm-12">
                         <label for="txt_ap_paterno_i">Apellido Paterno:</label>                             
-                        <input type="text" class="form-control form-control-sm" id="txt_ap_paterno_i" value="Guerra">    
+                        <input type="text" class="form-control form-control-sm" id="txt_ap_paterno_i" value="{{$dtsalu->alu_apepat}}">    
                     </div>                                                
                 </td>
                 <td>
                     <div class="col-sm-12">
                         <label for="txt_ap_materno_i">Apellido Materno:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_ap_materno_i" value="Hernández">
+                        <input type="text" class="form-control form-control-sm" id="txt_ap_materno_i" value="{{$dtsalu->alu_apemat}}">
                     </div>
                 </td>
                 <td>
                     <div class="col-sm-12">
                         <label for="txt_nombre_i">Nombre:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_nombre_i" value="Andrés Gilberto">
+                        <input type="text" class="form-control form-control-sm" id="txt_nombre_i" value="{{$dtsalu->alu_nom}}">
                     </div>
                 </td>
             </tr>
@@ -160,7 +160,7 @@
                 <td>
                     <div class="col-sm-12">
                             <label for="txt_fh_emision">Fecha de emisión:</label>
-                            <input type="text" class="form-control form-control-sm" id="txt_fh_emision" placeholder="" value="17-02-2019">
+                            <input type="text" class="form-control form-control-sm" id="txt_fh_emision" placeholder="" value="{{$dtsalu->dt_emi}}">
                     </div>
                 </td>
             </tr>
@@ -205,13 +205,13 @@
                     <br>
                 </td>
                 <td>
-                    <div class="col-sm-12">
+                    <div class="col-sm-8">
                         <label for="txt_fh_recibo">Fecha de Recibido:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_fh_recibo" placeholder="" value="17-02-2019">
+                        <input type="text" style="text-align:center;color:#ffffff" class="form-control form-control-sm" id="txt_fh_recibo" placeholder="" value="________________________">
                     </div>                           
                 </td>
                 <td>
-                    <label style="margin-top: 13px;text-align: center;" for="txt_op3">Nombre y Firma de quien recibe</label>
+                    <label style="margin-top: 18px;text-align: center;" for="txt_op3">Nombre y Firma de quien recibe</label>                    
                 </td>
             </tr>            
         </table> 

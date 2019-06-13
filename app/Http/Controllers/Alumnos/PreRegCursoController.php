@@ -9,6 +9,7 @@ use App\Model\Alumnos\Alumno;
 use App\Model\Alumnos\DatCur;
 use App\Model\Alumnos\TraAlu;
 use App\Model\Alumnos\DtsGraAlu;
+use App\Model\Alumnos\PagoInsAlumno;
 use App\Model\Catalogos\CurPla;
 
 
@@ -279,8 +280,6 @@ class PreRegCursoController extends Controller
         // ");
         //DatCur::where('datcur_curp', $request->txt_curp)->first('datcur_idalu');
         $dtsalu = DtsGraAlu::where('IdAlu','=',$idAlumno)->first();
-
-
         $pdf = App::make('dompdf.wrapper');
         $pdf->getDomPDF()->set_option("enable_php", true);
         $pdf->loadView('alumnos/preregcurso/preregpdf',compact('dtsalu'));
@@ -290,12 +289,13 @@ class PreRegCursoController extends Controller
         
         //return view('alumnos/preregcurso/preregpdf');
     }
-    public function PdfFicPago($id)
+    public function PdfFicPago($idAlumno)
     {
                
+        $dtsalu = PagoInsAlumno::where('IdAlu','=',$idAlumno)->first();
         $pdf = App::make('dompdf.wrapper');
         $pdf->getDomPDF()->set_option("enable_php", true);
-        $pdf->loadView('alumnos/preregcurso/fichapagopdf');
+        $pdf->loadView('alumnos/preregcurso/fichapagopdf',compact('dtsalu'));
         //$pdf ->setPaper('L','landscape');}
         $pdf ->setPaper('Letter','landscape');
         $pdf->output();

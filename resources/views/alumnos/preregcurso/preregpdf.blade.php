@@ -83,6 +83,11 @@
                 </td>
             </tr>
             <tr>
+                <td colspan="5"> 
+                    <hr style=" border: 2px solid #ffc107;">
+                </td>
+            </tr>
+            <tr>
                     <td>                                                        
                         <label for="txt_plantel_i">Plantel:</label> 
                         <input type="text" class="form-control form-control-sm" id="txt_plantel_i" value="{{$dtsalu->plan_desc}}">                              
@@ -278,7 +283,7 @@
             </tr>    
         </table> 
         <br>
-        <table style="margin-top: 110px;">                
+        <table style="margin-top: 50px;">                
                 <tr>
                     {{-- <td style="width: 100px; border: 1px solid blue;"></td> --}}
                     <td style="width: 700px;text-align: center;">

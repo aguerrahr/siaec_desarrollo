@@ -125,7 +125,7 @@ Route::get('alumno/dtsGenerales','ServiciosController@getHorarios');
 //------------------------------------------------------- PreRegistro ---------------------------------------------------------
 
 Route::get('alumno/preregcurso/preregpdf/{idAlumno}', 'Alumnos\PreRegCursoController@PdfPreReg');
-Route::get('alumno/preregcurso/fichapagopdf/{id}', 'Alumnos\PreRegCursoController@PdfFicPago');
+Route::get('alumno/preregcurso/fichapagopdf/{idAlumno}', 'Alumnos\PreRegCursoController@PdfFicPago');
 //------------------------------------------------------- Plan Escolar ---------------------------------------------------------
 
 Route::get('planescolar/lista', 'ServiciosController@getCursosList'); //[0-9]+
