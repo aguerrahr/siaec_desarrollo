@@ -88,6 +88,12 @@ Route::get('/catalogos/accesos', function () {
     }
 });*/
 
+// Rutyas Recusrsos
+//-------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------- Rutas Recursos--------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------
 Route::resource('catalogos/estatus', 'Catalogos\EstatusController'); //[0-9]+
 Route::resource('catalogos/planteles', 'PlanController'); //[0-9]+
 Route::resource('catalogos/cursos', 'Catalogos\CursosController'); //[0-9]+
@@ -95,7 +101,13 @@ Route::resource('catalogos/periodoescolar', 'Catalogos\PeriodoEscolarController'
 Route::resource('catalogos/horarios', 'Catalogos\HorariosController'); //[0-9]+
 Route::resource('catalogos/planescolar', 'Catalogos\PlanEscolarController'); //[0-9]+
 Route::resource('accesos', 'Acceso\UsersController'); //[0-9]+
-Route::resource('alumno/preregcurso','Alumnos\PreRegCursoController');
+Route::resource('alumnos/preregistrocursos','Alumnos\PreRegCursoController');
+
+//-------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------- Rutas GET ------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------------------------------------------------
 
 Route::get('stList', 'ServiciosController@getEstatus'); //[0-9]+
 Route::get('stList/{id}', 'ServiciosController@getIdEstatus')->where('id', '[0-9]+');
@@ -110,10 +122,14 @@ Route::get('horarioList','ServiciosController@getHorarios');
 
 Route::get('alumno/dtsGenerales','ServiciosController@getHorarios');
 
-// PreRegistro
+//------------------------------------------------------- PreRegistro ---------------------------------------------------------
 
-Route::get('alumno/preregcurso/preregpdf/{id}', 'Alumnos\PreRegCursoController@PdfPreReg');
+Route::get('alumno/preregcurso/preregpdf/{idAlumno}', 'Alumnos\PreRegCursoController@PdfPreReg');
 Route::get('alumno/preregcurso/fichapagopdf/{id}', 'Alumnos\PreRegCursoController@PdfFicPago');
+//------------------------------------------------------- Plan Escolar ---------------------------------------------------------
+
+Route::get('planescolar/lista', 'ServiciosController@getCursosList'); //[0-9]+
+
 
 
 /*Route::get('/caalogos/planteles/index', 'PlanController@index'); //[0-9]+
@@ -129,5 +145,4 @@ Route::get('/catalogos/planteles/muestra','PlanController@show');
 Route::get('/catalogos/planteles/crear','PlanController@create');
 Route::get('/catalogos/planteles/welcome','WelcomePlanController');*/
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');

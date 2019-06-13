@@ -48,14 +48,14 @@
                        <div class="form-group">
 			                <label for="per_idper" class="col-sm-2 control-label">per_idper</label>
 			                <div class="col-sm-12">
-			                    <input type="text" class="form-control" id="per_idper" name="per_idper" placeholder="per_idper" value="" maxlength="12" required="">
+			                    <input type="text" class="form-control" id="per_idper" name="per_idper" placeholder="per_idper" value="" maxlength="12" required>
 			                </div>
                         </div>	
 
                         <div class="form-group">
 			                <label for="per_desc" class="col-sm-2 control-label">Curso</label>
 			                <div class="col-sm-12">
-			                    <input type="text" class="form-control" id="per_desc" name="per_desc" placeholder="Descripción del curso" value="" maxlength="12" required="">
+			                    <input type="text" class="form-control" id="per_desc" name="per_desc" placeholder="Descripción del curso" value="" maxlength="12" required>
 			                </div>
                         </div>	
                         

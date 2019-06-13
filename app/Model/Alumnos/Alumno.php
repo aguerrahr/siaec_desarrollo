@@ -10,7 +10,7 @@ class Alumno extends Model
     protected $table = 'alu';
     protected $primaryKey = 'IdAlu';
     protected $fillable = [
-         'alu_idalu', 'alu_nom','curpla_idper','curpla_idhor','curpla_idest','curpla_fechalt','curpla_fechbaj'
+         'alu_idalu', 'alu_nom','alu_apemat','alu_apepat','alu_idest','alu_fechalt','alu_fechbaj'
     ];
     public $timestamps = false;
 }

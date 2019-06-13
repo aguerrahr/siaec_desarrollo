@@ -3,12 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Database\QueryException;
+use DataTables;
 use App\Est;
 use App\Plan;
 use App\Per;
 use App\Model\Catalogos\Cur;
 use App\Model\Catalogos\Hor;
 use Spatie\Permission\Models\Role;
+use App\Model\Catalogos\Curpla;
 
 class ServiciosController extends Controller
 {
@@ -58,6 +61,49 @@ class ServiciosController extends Controller
         $rowList = Hor::select('IdHor','hor_desc')->where('hor_idest','=','1')->get();
         return response()->json(['status'=>1,'success'=>true,'lst'=>$rowList]);
     }
+    public function getCursosList()
+    {
+        try {                                                            
+            $data = Curpla::join('est', 'curpla_idest', '=', 'IdEst')                
+            ->join('cur', 'curpla_idcurso', '=', 'IdCur')
+            ->join('hor', 'curpla_idhor', '=', 'IdHor')
+            ->join('per', 'curpla_idper', '=', 'IdPer')
+            ->join('plan', 'curpla_idplan', '=', 'Idplan')
+            ->select('IdCurPlan','cur_desc','plan_desc','per_desc','hor_desc', 'Est_UsuDesc')
+            ->where('curpla_idest' ,'=','1')->get();
+            
+            $listaCursos = Datatables::of($data)
+                ->addColumn('radiobutton', function($row){                           
+                        $btn = '<input type="radio" id="RbIdCurPlan_' . $row->IdCurPlan . '" name="selecourse"  value="'. $row->IdCurPlan .'">';                                            
+                        return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);                                           
+            return response()->json(['status'=>1,'success'=>false,'message'=>'true','data'=>$listaCursos]);            
+        } 
+        catch (QueryException $e){
+            $strMensaje = "";
+            $error_code = $e->errorInfo[1];
+            switch($error_code)
+            {
+                case 1062:
+                    $strMensaje = '¡¡ Registro duplicado !!';
+                    break;
+                case 1452:
+                    $strMensaje = '¡¡ Debe indicar el Estatus !!';
+                    break;
+                default:
+                    $strMensaje = 'Código de Error = '. $e->errorInfo[1];
+                    break;
 
+            }
+            return response()->json(['status'=>0,'success'=>false,'message'=>$strMensaje]);
+           
+        }
+        catch (\Exception $e)
+        {
+            return 'Fue otro tipo de error = '. $e;
+        }
+    }
 }
 

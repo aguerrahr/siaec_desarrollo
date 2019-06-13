@@ -33,15 +33,15 @@
 		
 		<style>
 			.btnrec {
-			background-color: DodgerBlue;
-			border: none;
-			color: white;
-			padding: 12px 16px;
-			font-size: 16px;
-			cursor: pointer;
+				background-color: DodgerBlue;
+				border: none;
+				color: white;
+				padding: 12px 16px;
+				font-size: 16px;
+				cursor: pointer;
 			}			
 			.btnrec:hover {
-			background-color: RoyalBlue;
+				ackground-color: RoyalBlue;
 			}		
 			.dropdown-submenu {
 				position: relative;

@@ -53,8 +53,8 @@
                 $angle = 0.0;   //  default
                 //$pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
                 $color = array(0,0,0);
-                $pdf->line(35,675,295,675,$color,2);
-                $pdf->line(305,675,570,675,$color,2);
+                $pdf->line(35,700,295,700,$color,2);
+                $pdf->line(305,700,570,700,$color,2);
                 //$image1= {{ base_path() }}/public/images/l.png"; //"{{ base_path() }}/images/logo-coapa-azul.png";
                 //$pdf->image($image1,"png", 0, 0, 50, 25);
                
@@ -85,26 +85,26 @@
             <tr>
                     <td>                                                        
                         <label for="txt_plantel_i">Plantel:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_plantel_i" value="Coapa">                              
+                        <input type="text" class="form-control form-control-sm" id="txt_plantel_i" value="{{$dtsalu->plan_desc}}">                              
                     </td>
                     <td>
                         <label for="txt_curso_i">Curso:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_curso_i" value="COMIPEMS">                              
+                        <input type="text" class="form-control form-control-sm" id="txt_curso_i" value={{$dtsalu->cur_desc}}>                              
                     </td>
                     <td>
                         <label for="txt_periodo_i">Periodo:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_periodo_i" value="2019-01">      
+                        <input type="text" class="form-control form-control-sm" id="txt_periodo_i" value="{{$dtsalu->per_desc}}">      
                     </td>
                     <td>
                         <label for="txt_horario_i">Horario:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_horario_i" value="8:00-11:00">      
+                        <input type="text" class="form-control form-control-sm" id="txt_horario_i" value="{{$dtsalu->hor_desc}}">      
                     </td>
             </tr>
             <tr>
                     <td>
                         <div class="col-sm-12">
                             <label for="txt_id_alumno_i">ID:</label>                             
-                            <input type="text" class="form-control form-control-sm" id="txt_id_alumno_i" value="19GUHA75">    
+                            <input type="text" class="form-control form-control-sm" id="txt_id_alumno_i" value="{{$dtsalu->alu_idalu}}">    
                         </div>        
                     </td>
                     <td colspan="3">
@@ -117,19 +117,19 @@
                 <td>    
                     <div class="col-sm-12">
                         <label for="txt_ap_paterno_i">Apellido Paterno:</label>                             
-                        <input type="text" class="form-control form-control-sm" id="txt_ap_paterno_i" value="Guerra">    
+                        <input type="text" class="form-control form-control-sm" id="txt_ap_paterno_i" value="{{$dtsalu->alu_apepat}}">    
                     </div>                                                
                 </td>
                 <td>
                     <div class="col-sm-12">
                         <label for="txt_ap_materno_i">Apellido Materno:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_ap_materno_i" value="Hernández">
+                        <input type="text" class="form-control form-control-sm" id="txt_ap_materno_i" value="{{$dtsalu->alu_apemat}}">
                     </div>
                 </td>
                 <td>
                     <div class="col-sm-12">
                         <label for="txt_nombre_i">Nombre:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_nombre_i" value="Andrés Gilberto">
+                        <input type="text" class="form-control form-control-sm" id="txt_nombre_i" value="{{$dtsalu->alu_nom}}">
                     </div>
                 </td>
             </tr>
@@ -137,20 +137,20 @@
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_calle_i">Calle:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_calle_i" placeholder="" value="Cándido Aviles">
+                                <input type="text" class="form-control form-control-sm" id="txt_calle_i" placeholder="" value="{{$dtsalu->datcur_nomcalle}}">
                         </div>
                 </td>
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_numero_i">Numero:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_numero_i" placeholder="" value="10">
+                                <input type="text" class="form-control form-control-sm" id="txt_numero_i" placeholder="" value="{{$dtsalu->datcur_numcalle}}">
                         </div>
 
                 </td>
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_colonia_i">Colonia:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_colonia_i" placeholder="" value="Constitución de 1917">
+                                <input type="text" class="form-control form-control-sm" id="txt_colonia_i" placeholder="" value="{{$dtsalu->datcur_colonia}}">
                         </div>
                 </td>   
             </tr>        
@@ -158,19 +158,19 @@
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_alcaldia_i">Alcaldía:</label>                                    
-                                <input type="text" class="form-control form-control-sm" id="txt_alcaldia_i" placeholder="" value="Magdalena Contreras">                            
+                                <input type="text" class="form-control form-control-sm" id="txt_alcaldia_i" placeholder="" value="{{$dtsalu->datcur_alcaldia}}">                            
                         </div>
                 </td>
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_entidad_i">Entidad Federativa:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_entidad_i" placeholder="" value="Ciudad de México">
+                                <input type="text" class="form-control form-control-sm" id="txt_entidad_i" placeholder="" value="{{$dtsalu->datcur_entidadfed}}">
                         </div>
                 </td>
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_cp_i">Código Postal:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_cp_i" placeholder="" value="09574">
+                                <input type="text" class="form-control form-control-sm" id="txt_cp_i" placeholder="" value="{{$dtsalu->datcur_cp}}">
                         </div>    
                 </td>                     
             </tr>
@@ -178,19 +178,19 @@
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_tel_i">Teléfono de casa:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_tel_i" placeholder="" value="56134872">                            
+                                <input type="text" class="form-control form-control-sm" id="txt_tel_i" placeholder="" value="{{$dtsalu->datcur_telcasa}}">                            
                         </div>
                 </td>
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_celular_i">Número Celular:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_celular_i" placeholder="" value="044 55 56126398">
+                                <input type="text" class="form-control form-control-sm" id="txt_celular_i" placeholder="" value="{{$dtsalu->datcur_celular}}">
                         </div>
                 </td>
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_tutor_i">Teléfono padre/tutor:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_tutor_i" placeholder="" value="044 55 82238594">
+                                <input type="text" class="form-control form-control-sm" id="txt_tutor_i" placeholder="" value="{{$dtsalu->datcur_teltutor}}">
                         </div>
                 </td>
             </tr>
@@ -198,21 +198,21 @@
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_email_i">E-mail:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_email_i" placeholder="" value="ejemplo@uno.dos.com">                      
+                                <input type="text" class="form-control form-control-sm" id="txt_email_i" placeholder="" value="{{$dtsalu->datcur_email}}">                      
                         </div>
                         
                 </td>
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_sexo_i">Sexo:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_sexo_i" placeholder="" value="Masculino">
+                                <input type="text" class="form-control form-control-sm" id="txt_sexo_i" placeholder="" value="{{$dtsalu->datcur_sexo}}">
                         </div>
                         
                 </td>
                 <td>
                         <div class="col-sm-12">
                                 <label for="txt_curp_i">CURP:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_curp_i" placeholder="" value="GHUHA750131HDFRR04S">
+                                <input type="text" class="form-control form-control-sm" id="txt_curp_i" placeholder="" value="{{$dtsalu->datcur_curp}}">
                         </div>
                 </td>
             </tr>
@@ -220,13 +220,13 @@
                 <td>
                     <div class="col-sm-12">
                             <label >Fecha de nacimiento</label>
-                            <input type="text" class="form-control form-control-sm" id="txt_fh_nac" placeholder="" value="15/07/1981">
+                            <input type="text" class="form-control form-control-sm" id="txt_fh_nac" placeholder="" value="{{$dtsalu->datcur_fechnac}}">
                     </div>
                 </td>
                 <td>
                     <div class="col-sm-12">
                             <label for="txt_entnac_i">Entidad de nacimiento:</label>
-                            <input type="text" class="form-control form-control-sm" id="txt_entnac_i" placeholder="" value="Ciudad de México">
+                            <input type="text" class="form-control form-control-sm" id="txt_entnac_i" placeholder="" value="{{$dtsalu->datcur_entnac}}">
                     </div>
                 </td>
                 <td></td>                
@@ -235,7 +235,7 @@
                 <td>
                     <div class="col-sm-12">
                         <label for="txt_secundaria">Secundaria de Procedencia:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_secundaria_i" placeholder="" value="José Clemento Orozco">
+                        <input type="text" class="form-control form-control-sm" id="txt_secundaria_i" placeholder="" value="{{$dtsalu->datcur_secupro}}">
                     </div>     
                 </td>
                 <td colspan="2"></td>
@@ -252,22 +252,30 @@
                 <td>
                     <div class="col-sm-12">
                         <label for="txt_op1_i">Opción 1:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_op1_i" placeholder="" value="Opción 1">
+                        <input type="text" class="form-control form-control-sm" id="txt_op1_i" placeholder="" value="{{$dtsalu->datcur_escopc1}}">
                     </div>
                 </td>
                 <td>
                     <div class="col-sm-12">
                         <label for="txt_op2">Opción 2:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_op2_i" placeholder="" value="Opción 2">
+                        <input type="text" class="form-control form-control-sm" id="txt_op2_i" placeholder="" value="{{$dtsalu->datcur_escopc2}}">
                     </div>                           
                 </td>
                 <td>
                     <div class="col-sm-12">
                         <label for="txt_op3">Opción 3:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_op3_i" placeholder="" value="Opción 3">
+                        <input type="text" class="form-control form-control-sm" id="txt_op3_i" placeholder="" value="{{$dtsalu->datcur_escopc3}}">
                     </div>
                 </td>
-            </tr>            
+            </tr>        
+            <tr>
+                <td colspan="3">
+                    <div class="col-sm-6">
+                        <label for="txt_op1_i">Cómo se enteró del centro de asesioría:</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_obs" placeholder="" value="{{$dtsalu->datcur_obs}}">
+                    </div>
+                </td>
+            </tr>    
         </table> 
         <br>
         <table style="margin-top: 110px;">                

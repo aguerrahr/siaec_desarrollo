@@ -178,4 +178,5 @@ class PlanEscolarController extends Controller
     {
         //
     }
+    
 }
