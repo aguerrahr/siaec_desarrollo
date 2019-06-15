@@ -12,6 +12,7 @@ use App\Model\Catalogos\Cur;
 use App\Model\Catalogos\Hor;
 use Spatie\Permission\Models\Role;
 use App\Model\Catalogos\Curpla;
+use App\Model\Alumnos\DtsHorGpo;
 
 class ServiciosController extends Controller
 {
@@ -104,6 +105,11 @@ class ServiciosController extends Controller
         {
             return 'Fue otro tipo de error = '. $e;
         }
+    }
+    public function getGpos()
+    {        
+        $stList = DtsHorGpo::orderBy('IdEst')->get();
+        return response()->json(['status'=>1,'success'=>true,'lst'=>$stList]);
     }
 }
 

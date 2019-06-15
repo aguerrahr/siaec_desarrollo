@@ -37,6 +37,10 @@ class DtsGraAlu extends Model
         'datcur_obs',
         'IdAlu',
         'alu_idalu',
-        'datcur_curp'
+        'datcur_curp',
+        'try_est',
+        'st_trayectoria',
+        'IdCurPlan',
+        'curpla_idhor'
     ];    
 }

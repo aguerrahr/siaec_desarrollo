@@ -102,6 +102,8 @@ Route::resource('catalogos/horarios', 'Catalogos\HorariosController'); //[0-9]+
 Route::resource('catalogos/planescolar', 'Catalogos\PlanEscolarController'); //[0-9]+
 Route::resource('accesos', 'Acceso\UsersController'); //[0-9]+
 Route::resource('alumnos/preregistrocursos','Alumnos\PreRegCursoController');
+Route::resource('alumnos/inscripciones','Alumnos\InscripcionController');
+
 
 //-------------------------------------------------------------------------------------------------------------------------------------------
 //-------------------------------------------------------------------------------------------------------------------------------------------
@@ -130,7 +132,14 @@ Route::get('alumno/preregcurso/fichapagopdf/{idAlumno}', 'Alumnos\PreRegCursoCon
 
 Route::get('planescolar/lista', 'ServiciosController@getCursosList'); //[0-9]+
 
+Route::get('/spinscripcion/{idCurPlan}/{idHor}/{idAlumno}',function($idCurPlan,$idHor,$idAlumno){
 
+    $Idcurso = DB::select('call sp_asigna_alumno_gpo(?,?,?)',array($idCurPlan,$idHor,$idAlumno));
+
+    dd($Idcurso->_gpo_nombre);
+    //_gpo_nombre
+
+});
 
 /*Route::get('/caalogos/planteles/index', 'PlanController@index'); //[0-9]+
 Route::get('/catalogos/planteles/show', 'PlanController@show'); //[0-9]+
