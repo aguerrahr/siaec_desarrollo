@@ -24,7 +24,6 @@ use Illuminate\Database\QueryException;
 use App\Services\PayUService\Exception;
 
 
-
 class PreRegCursoController extends Controller
 {
     /**

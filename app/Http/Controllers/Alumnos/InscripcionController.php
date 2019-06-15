@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Model\Alumnos\DtsGraAlu;
-
+use App\Model\Alumnos\PagoInsAlumno;
 
 use DataTables;
 use Redirect,Response;
@@ -63,8 +63,10 @@ class InscripcionController extends Controller
             $success = false;
             $dtsalu = DtsGraAlu::where('alu_idalu','=',$id)
                                 ->where('try_est',4)->first();
+            $idAlumno = $dtsalu->IdAlu;
+            $dtsPago = PagoInsAlumno::where('IdAlu','=',$idAlumno)->first();
             $success = true;
-            return response()->json(['status'=>1,'success'=>$success,'message'=>$strMensaje,'data'=>$dtsalu]);
+            return response()->json(['status'=>1,'success'=>$success,'message'=>$strMensaje,'data'=>$dtsalu,'dataPago'=>$dtsPago]);
         }
         catch (QueryException $e){
             $strMensaje = "";

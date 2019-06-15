@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Str;
+use App\Services\PayUService\Exception;
+
 use DataTables;
+use DB;
 use App\Est;
 use App\Plan;
 use App\Per;
@@ -13,6 +17,10 @@ use App\Model\Catalogos\Hor;
 use Spatie\Permission\Models\Role;
 use App\Model\Catalogos\Curpla;
 use App\Model\Alumnos\DtsHorGpo;
+use App\Model\Catalogos\Ban;
+
+
+
 
 class ServiciosController extends Controller
 {
@@ -106,10 +114,65 @@ class ServiciosController extends Controller
             return 'Fue otro tipo de error = '. $e;
         }
     }
-    public function getGpos()
-    {        
-        $stList = DtsHorGpo::orderBy('IdEst')->get();
-        return response()->json(['status'=>1,'success'=>true,'lst'=>$stList]);
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getIdGposHorAlu(Request $request)
+    {   
+        try
+        {
+            $strMensaje = "";
+            $success = false;
+            $Idcurso = DB::select('call sp_asigna_alumno_gpo(?,?,?)',array($request->idCurPlan,$request->idHor,$request->idAlumno));                    
+            $strMensaje = "¡¡ Grupo asignado !!";      
+            $success = true;      
+            return response()->json(['status'=>1,'success'=>$success,'message'=>$strMensaje,'idGpo'=>$Idcurso[0]->_gpo_nombre]);
+
+        } 
+        catch (QueryException $e){
+            $strMensaje = "";
+            $error_code = $e->errorInfo[1];
+            switch($error_code)
+            {
+                case 1062:
+                    $strMensaje = '¡¡ Registro duplicado !!';
+                    break;
+                case 1452:
+                    //FK_GPOALU_GRUPO
+                    $strMensajeError = $e->getMessage();
+
+                    $result = Str::contains($strMensajeError, 'FK_GPOALU_GRUPO');
+
+                    if($result){
+                        $strMensaje = "¡¡ No hay grupo para asignar !!";
+                    }
+                    else{
+                        $strMensaje = '¡¡ Error al asignar el grupo, consulte a su administrador !! ' . 'Error: ' . $strMensajeError;
+                    }                    
+                    break;
+                case 1452:
+                    $strMensaje = '¡¡ Tamaño de campo excedido !!';
+                    break;
+                default:
+                    $strMensaje = 'Código de Error = '. $e->errorInfo[1];
+                    break;
+
+            }
+            return response()->json(['status'=>0,'success'=>false,'message'=>$strMensaje,'idGpo'=>null]);
+        
+        }
+        catch (\Exception $err)
+        {
+            $strMensaje = $err->getMessage();
+            return response()->json(['status'=>0,'success'=>false,'message'=>$strMensaje,'idGpo'=>null]);
+        }        
+    }
+
+    public function getBancos()
+    {
+
     }
 }
-

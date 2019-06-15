@@ -109,7 +109,8 @@
             <div class="card-footer">
             </div>
         </div>     
-        <div id="dtsGrales" class="card border-black mb-2 text-center">
+        <div class="-container-fluid">    
+            <div id="dtsGrales" class="card border-black mb-2 text-center">
                 <div style="font-weight: bold;color:#000" class="card-header">
                     Datos Generales
                 </div>
@@ -358,13 +359,130 @@
                             </tbody>
                         </table>
                     </div>
+                    <br>
+                    <div>
+                        <button type="submit" id = "btn_asign_gpo" class="btn btn-primary"><i class="fas fa-users"></i> Asignar Grupo</button>
+                    </div>                    
+                    <br>
+                    <h3 style="text-aling:left;">Pagos</h3>
+                    <br>
+                    <div>
+                        <table id="tbl_pago" class="table table-bordered table-striped mb-0">                                    
+                            <thead class="thead-light">
+                                <tr>
+                                    <th>ID</th>                                    
+                                    <th>Plantel</th>
+                                    <th>Curso</th>
+                                    <th>Tipo de Pago</th>
+                                    <th>Costo</th>                                    
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>                                                     
+                                        <input type="hidden" name="IdPago" id="IdPago">                                                      
+                                        <label id="lbl_id_pagoo"></label> 
+                                    </td>
+                                    <td>                                                        
+                                        <label id="lbl_plantel_pago"></label> 
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="IdCurPlan_pago" id="IdCurPlan_pago">  
+                                        <label id="lbl_curso_pago" ></label> 
+                                    </td>
+                                    <td>
+                                        <label  id="lbl_tp_Pago">Inscripción</label> 
+                                    </td>
+                                    <td>
+                                        <input type="hidden" name="curpla_idhor_pago" id="curpla_idhor_pago">  
+                                        <label  id="lbl_costo"></label> 
+                                    </td>                                    
+                                </tr>                                
+                            </tbody>
+                        </table>
+                        <br>
+                        <table id="tbl_pago" class="table table-bordered table-striped mb-0">                                    
+                                <thead class="thead-light">
+                                    <tr>                                      
+                                        <th>Año</th>
+                                        <th>Mes</th>
+                                        <th>Ciclo</th>
+                                        <th>Banco</th>
+                                        <th>Sucursal</th>
+                                        <th>Autorización</th>
+                                        <th>Pago</th>
+                                        <th>Entrega</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>                                                     
+                                            <label id="lbl_anio_pago"></label> 
+                                        </td>
+                                        <td>                                                        
+                                            <select id="cboMes" name="cboMes" class="form-control">
+                                                <option value="ENE">Enero</option>
+                                                <option value="FEB">FEB</option>
+                                                <option value="MAR">MAR</option>
+                                                <option value="ABR">ABR</option>
+                                                <option value="MAY">MAY</option>
+                                                <option value="JUN">JUN</option>
+                                                <option value="JUL">JUL</option>
+                                                <option value="AGO">AGO</option>
+                                                <option value="SEP">SEP</option>
+                                                <option value="OCT">OCT</option>
+                                                <option value="NOV">NOV</option>
+                                                <option value="DIC">DIC</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select id="cboCiclo" name="cboCiclo" class="form-control">
+                                                <option value="C1">C1</option>
+                                                <option value="C2">C2</option>
+                                                <option value="C3">C3</option>
+                                                <option value="C4">C4</option>
+                                                <option value="C5">C5</option>
+                                                <option value="C6">C6</option>
+                                                <option value="C7">C7</option>
+                                                <option value="C8">C8</option>
+                                                <option value="C9">C9</option>
+                                                <option value="C10">C10</option>
+                                                <option value="C11">C11</option>
+                                                <option value="C12">C12</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <select id="cboBancos" name="cboBancos" class="form-control">
+                                                <option value="Banamex">Banamex</option>
+                                                <option value="BBVA">BBVA</option>
+                                                <option value="Santander">Santander</option>
+                                                <option value="Otro">Otro</option>
+                                            </select>
+                                        </td>
+                                        <td>
+                                            <label  id="lbl_sucursal_pago"></label> 
+                                        </td>
+                                        <td>                                            
+                                                <label  id="lbl_autorizacion_banco"></label> 
+                                        </td>
+                                        <td>
+                                            <label  id="lbl_pago"></label> 
+                                        </td>
+                                        <td>
+                                            <label  id="lbl_entrega_pago"></label> 
+                                        </td>
+                                    </tr>                                
+                                </tbody>
+                            </table>
+                    </div>
                 </div>
                 <div>
-                    <button type="submit" id = "btn_asign_gpo" class="btn btn-primary"><i class="fas fa-users"></i> Asignar Grupo</button>
+                    <button type="submit" id = "btn_asign_pago" class="btn btn-primary"><i class="fas fa-users"></i> Asignar Pago</button>
                 </div>
                 <br>
                 <div class="card-footer">
                 </div>
+            </div>
         </div>
         {{-- <div class="card" style="text-aling: center; margin-top: 100px;width: 18rem;">
             <div class="card-body">
@@ -387,64 +505,6 @@
 
 <script src="{{asset('/js/ui-inscripcion.js')}}"></script>
 <script type="text/javascript">
-    var SITEURL = '{{URL::to('')}}';
-    
-    $( "#btn_buscar" ).click(function() {
-        var idAlumno = $("#txt_idalumno").val();
-        if (idAlumno == ""){
-            //swal("Error", "Indique el Id del Alumno", "error");        
-            $("#dtsGrales").show();
-        }
-        else{
-            var ruta = SITEURL +  '/alumnos/inscripciones/' + idAlumno;
-            $('#mdlEspere').modal('show');
-            $.get( ruta, function (data) {
-                console.log(data);
-                $("#txt_ap_paterno").val(data.data.alu_apepat);
-                $("#txt_ap_materno").val(data.data.alu_apemat);
-                $("#txt_nombre").val(data.data.alu_nom);
-                $("#txt_calle").val(data.data.datcur_nomcalle);
-                $("#txt_numero").val(data.data.datcur_numcalle);
-                $("#txt_colonia").val(data.data.datcur_colonia);
-                $("#txt_alcaldia").val(data.data.datcur_alcaldia);
-                $("#txt_entidad").val(data.data.datcur_entidadfed);
-                $("#txt_cp").val(data.data.datcur_cp);
-                $("#txt_tel").val(data.data.datcur_telcasa);
-                $("#txt_celular").val(data.data.datcur_celular);
-                $("#txt_tutor").val(data.data.datcur_teltutor);
-                $("#txt_email").val(data.data.datcur_email);
-                $("#txt_sexo").val(data.data.datcur_sexo);
-                $("#txt_curp").val(data.data.datcur_curp);
-                $("#fh_nac").val(data.data.datcur_fechnac);
-                $("#txt_entnac").val(data.data.datcur_entnac);
-                $("#txt_secundaria").val(data.data.datcur_secupro);
-                $("#txt_op1").val(data.data.datcur_escopc1);
-                $("#txt_op2").val(data.data.darcur_escopc2);
-                $("#txt_op3").val(data.data.datcur_escopc3);                
-                $("#cboObs option[value="+ data.data.datcur_obs +"]").attr("selected",true);
-                //Trayectoria
-                $("#lbl_plantel").html(data.data.plan_desc);
-                $("#lbl_curso").html(data.data.cur_desc);
-                $("#lbl_periodo").html(data.data.per_desc);
-                $("#lbl_horario").html(data.data.hor_desc);
-                $("#lbl_estatus").html(data.data.st_trayectoria);
-                //Grupo
-                $("#lbl_plantel_gpo").html(data.data.plan_desc);
-                $("#lbl_curso_gpo").html(data.data.cur_desc);
-                $("#lbl_periodo_gpo").html(data.data.per_desc);
-                $("#lbl_horario_gpo").html(data.data.hor_desc);
-                //$("#lbl_grupo_gpo").html();
-                //$("#lbl_area_gpo").html();
-                $("#lbl_idalumno_gpo").html(data.data.alu_idalu);
-                $("#IdCurPlan"),val(data.data.IdCurPlan);
-                $("#curpla_idhor"),val(data.data.curpla_idhor);
-                
-                
-                $("#dtsGrales").show();
-                $('#mdlEspere').modal('hide');                
-            });
-        }
-        
-    });
+    var SITEURL = '{{URL::to('')}}';       
 </script>
 @endsection
