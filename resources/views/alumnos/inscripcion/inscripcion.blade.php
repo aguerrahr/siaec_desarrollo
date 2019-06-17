@@ -110,7 +110,7 @@
             </div>
         </div>     
         <div class="-container-fluid">    
-            <div id="dtsGrales" class="card border-black mb-2 text-center">
+            <div id="dtsGrales" style="display: none;" class="card border-black mb-2 text-center">
                 <div style="font-weight: bold;color:#000" class="card-header">
                     Datos Generales
                 </div>
@@ -364,44 +364,45 @@
                         <button type="submit" id = "btn_asign_gpo" class="btn btn-primary"><i class="fas fa-users"></i> Asignar Grupo</button>
                     </div>                    
                     <br>
-                    <h3 style="text-aling:left;">Pagos</h3>
-                    <br>
-                    <div>
-                        <table id="tbl_pago" class="table table-bordered table-striped mb-0">                                    
-                            <thead class="thead-light">
-                                <tr>
-                                    <th>ID</th>                                    
-                                    <th>Plantel</th>
-                                    <th>Curso</th>
-                                    <th>Tipo de Pago</th>
-                                    <th>Costo</th>                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>                                                     
-                                        <input type="hidden" name="IdPago" id="IdPago">                                                      
-                                        <label id="lbl_id_pagoo"></label> 
-                                    </td>
-                                    <td>                                                        
-                                        <label id="lbl_plantel_pago"></label> 
-                                    </td>
-                                    <td>
-                                        <input type="hidden" name="IdCurPlan_pago" id="IdCurPlan_pago">  
-                                        <label id="lbl_curso_pago" ></label> 
-                                    </td>
-                                    <td>
-                                        <label  id="lbl_tp_Pago">Inscripción</label> 
-                                    </td>
-                                    <td>
-                                        <input type="hidden" name="curpla_idhor_pago" id="curpla_idhor_pago">  
-                                        <label  id="lbl_costo"></label> 
-                                    </td>                                    
-                                </tr>                                
-                            </tbody>
-                        </table>
+                    <div style="display: none;" id="tbl_pago_group">
+                        <h3 style="text-aling:left;">Pagos</h3>
                         <br>
-                        <table id="tbl_pago" class="table table-bordered table-striped mb-0">                                    
+                        <div>
+                            <table id="tbl_pago_dts" class="table table-bordered table-striped mb-0">                                    
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th>ID</th>                                    
+                                        <th>Plantel</th>
+                                        <th>Curso</th>
+                                        <th>Tipo de Pago</th>
+                                        <th>Costo</th>                                    
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>                                                     
+                                            <input type="hidden" name="IdPago" id="IdPago">                                                      
+                                            <label id="lbl_id_pagoo"></label> 
+                                        </td>
+                                        <td>                                                        
+                                            <label id="lbl_plantel_pago"></label> 
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="IdCurPlan_pago" id="IdCurPlan_pago">  
+                                            <label id="lbl_curso_pago" ></label> 
+                                        </td>
+                                        <td>
+                                            <label  id="lbl_tp_Pago">Inscripción</label> 
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="curpla_idhor_pago" id="curpla_idhor_pago">  
+                                            <label  id="lbl_costo"></label> 
+                                        </td>                                    
+                                    </tr>                                
+                                </tbody>
+                            </table>
+                            <br>
+                            <table id="tbl_pago_rec" class="table table-bordered table-striped mb-0">                                    
                                 <thead class="thead-light">
                                     <tr>                                      
                                         <th>Año</th>
@@ -453,10 +454,10 @@
                                         </td>
                                         <td>
                                             <select id="cboBancos" name="cboBancos" class="form-control">
-                                                <option value="Banamex">Banamex</option>
+                                                {{-- <option value="Banamex">Banamex</option>
                                                 <option value="BBVA">BBVA</option>
                                                 <option value="Santander">Santander</option>
-                                                <option value="Otro">Otro</option>
+                                                <option value="Otro">Otro</option> --}}
                                             </select>
                                         </td>
                                         <td>
@@ -474,10 +475,12 @@
                                     </tr>                                
                                 </tbody>
                             </table>
-                    </div>
-                </div>
-                <div>
-                    <button type="submit" id = "btn_asign_pago" class="btn btn-primary"><i class="fas fa-users"></i> Asignar Pago</button>
+                        </div>
+                        <br>
+                        <div>
+                            <button type="submit" id = "btn_asign_pago" class="btn btn-primary"><i class="fas fa-users"></i> Asignar Pago</button>
+                        </div>
+                    </div>                    
                 </div>
                 <br>
                 <div class="card-footer">

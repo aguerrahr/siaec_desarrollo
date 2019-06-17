@@ -1,7 +1,6 @@
 
 $(document).ready(function() {
-    $("#dtsGrales").hide();
-    $('#btn_asign_gpo').show();
+    $("#dtsGrales").hide();        
 });
 $( "#btn_buscar" ).click(function() {
     var idAlumno = $("#txt_idalumno").val();
@@ -13,7 +12,7 @@ $( "#btn_buscar" ).click(function() {
         var ruta = SITEURL +  '/alumnos/inscripciones/' + idAlumno;
         $('#mdlEspere').modal('show');
         $.get( ruta, function (data) {
-            console.log(data);
+            //console.log(data);
             if (!(data.data == null)){
                 $("#txt_ap_paterno").val(data.data.alu_apepat);
                 $("#txt_ap_materno").val(data.data.alu_apemat);
@@ -52,15 +51,15 @@ $( "#btn_buscar" ).click(function() {
                 
                 $("#IdAlu").val(data.data.IdAlu);
                 $("#IdCurPlan").val(data.data.IdCurPlan);
-                $("#curpla_idhor").val(data.data.curpla_idhor);
-                             
+                $("#curpla_idhor").val(data.data.curpla_idhor);                             
                 //Inicia Pago
                 $("#lbl_plantel_pago").html(data.data.plan_desc);
                 $("#lbl_curso_pago").html(data.data.cur_desc);
                 $("#lbl_costo").html(data.dataPago.costo)
-                //Termina Pago
+                //Termina Pago                
+                setcboBancos();
                 $("#dtsGrales").show();
-                $('#mdlEspere').modal('hide');            
+                $('#mdlEspere').modal('hide');
             }    
             else{
                 $('#mdlEspere').modal('hide');            
@@ -96,15 +95,15 @@ $( "#btn_asign_gpo" ).click(function() {
             contentType: "application/json",
             success: function (data) {
               if (data.success){
-                  $("#lbl_grupo_gpo").html(data.idGpo);                  
-                  swal("¡Operación exitosa!", data.message, "success");        
+                  $("#lbl_grupo_gpo").html(data.idGpo);                                           
                   $('#btn_asign_gpo').html('Asignar Grupo');
-                  $('#btn_asign_gpo').hide();
+                  $('#btn_asign_gpo').hide();                  
+                  $('#tbl_pago_group').show();
+                  swal("¡Operación exitosa!", data.message, "success"); 
               }else{
                   swal("Error", data.message, "error");
                   $('#btn_asign_gpo').html('Asignar Grupo');
               }
-
             },
             error: function (request, message, error) {
                 console.log('Error:', error);					  
@@ -115,3 +114,34 @@ $( "#btn_asign_gpo" ).click(function() {
     }
 });
 
+function setcboBancos()
+{
+		var url = SITEURL + '/bancosList';
+		$.ajax({
+			url: url,
+			dataType: 'json',
+			type: 'GET',
+			success: function (result) {						
+				//	$("#mdlEspere").modal("hide");								
+				if (result.success){
+					$("#cboBancos").append('<option value="0">Seleccione una opción</option>');						
+					for (var i = 0; i < result.lst.length; i++) {
+						var descRow = result.lst[i];
+						$("#cboBancos")
+							.append('<option value="' +	descRow.IdBan + '">' + descRow.ban_nomban + '</option>');																
+					}
+				}
+				else{
+					//$("#mdlEspere").modal("hide");
+					swal("Error", "Carga de Bancos", "error");
+				}
+				
+			},
+			error: function (jqXHR, textStatus, errorThrown) {
+				console.log(textStatus);
+				//$("#mdlEspere").modal("hide");
+			}	
+		});
+
+
+}

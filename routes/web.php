@@ -121,6 +121,7 @@ Route::get('plantelList','ServiciosController@getPlanteles');
 Route::get('cursoList','ServiciosController@getCursos');
 Route::get('periodoList','ServiciosController@getPeriodo');
 Route::get('horarioList','ServiciosController@getHorarios');
+Route::get('bancosList','ServiciosController@getCatBancos');
 
 Route::get('alumno/dtsGenerales','ServiciosController@getHorarios');
 

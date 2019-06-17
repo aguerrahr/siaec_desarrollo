@@ -171,8 +171,13 @@ class ServiciosController extends Controller
         }        
     }
 
-    public function getBancos()
+    public function getCatBancos()
     {
-
+        $stList = Ban::orderBy('ban_nomban')->get();
+        //istinct()->get(['ban_nomban']);
+        //select('IdBan','ban_nomban')->groupBy('ban_nomban')->orderBy('ban_nomban')->get();
+        //$stList = Ban::query()->distinct()->get();
+        //$stList = Ban::select('column1', 'column2', 'column3')->distinct()->get();
+        return response()->json(['status'=>1,'success'=>true,'lst'=>$stList]);
     }
 }
