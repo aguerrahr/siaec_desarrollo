@@ -62,7 +62,7 @@
         <table>
             <tr>                
                 <td>                                                            
-                    <img src="{{ public_path('/images/logo-coapa-azul.png') }}" alt="Logo" height="45px" width="175px" >
+                    <img src="http://cursounamcoapa.com/images/logo-coapa-azul.png" alt="Logo" height="45px" width="175px" >
                 </td>>
                 <td style = "text-align: right;"  colspan="4">
                     <h1>Formato de pago

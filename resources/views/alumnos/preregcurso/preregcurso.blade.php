@@ -2,87 +2,7 @@
 @section('headres')
 
 @endsection
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
-<style>
-        /* [class^="col-"]{
-            height: 50px;
-            margin-bottom:1px;
-            text-align:center;
-            line-height:50px;
-            color:#000;
-        }
-        .col-center {
-            background-color: #ffffff;
-        } */
-        .my-custom-scrollbar {
-            position: relative;
-            height: 250px;
-            overflow: auto;
-        }
-            .table-wrapper-scroll-y {
-            display: block;
-        }
-        /* input:invalid {
-            background-color:#ffdddd;
-        } */
 
-        /* form:invalid {
-            border: 5px solid #ffdddd;
-        } */
-
-        /* input:valid {
-            background-color: #ddffdd;
-        } */
-
-        /* form:valid {
-            border: 5px solid #ddffdd;
-        } */
-        
-        /* input:required {
-            border-color: #800000;
-            border-width: 3px;
-        } */
-
-        /* input:required:invalid {
-            border-color: #C00000;
-        } */
-
-        input:invalid {
- 
-        border: 1px solid red;
-        
-        }
-        
-        /* Estilo por defecto */
-        
-        input:valid {
-        
-        border: 1px solid green;
-        
-        }
-        /* Estilo por defecto */
- 
-        input:required:invalid {
-        
-        border: 1px solid red;
-        
-        }
-        
-        input:required:valid {
-        
-        border: 1px solid green;
-        
-        }
-        
-        .text-error{
-            /* border: 1px solid red; */
-            padding: 3px;
-            /* border-radius: 25px; */
-            background-color:red;
-            color: white;
-            margin-top: 3px;
-        }
-    </style>
 @section('menu')
 	
 @endsection
@@ -92,7 +12,6 @@
     </div>    
 	<hr>
 @endsection
-
 @section('cuerpo')	
 <div class="container">     
     <input type="hidden" name="IdDatCur" id="IdDatCur">           
@@ -119,7 +38,7 @@
                 Selecciona el curso al que deseas ingresar:
                 <br/>
                 <br>
-                    <button type="button" id = "btn_cursos" class="btn btn-primary"><i class="fa fa-leanpub"></i> Seleccionar Curso</button>
+                    <button type="button" id = "btn_cursos" class="btn btn-primary"><i class="fab fa-leanpub"></i> Seleccionar Curso</button>
                 <br/>
                 <br>
                 <input type="hidden" name="IdCurPlanSeleccionado" id="IdCurPlanSeleccionado" value="">
@@ -400,11 +319,91 @@
 @endsection
 @section("scripts")
 
-<script src="../../js/ui-preregcurso.js"></script>
-<script type="text/javascript">
-	var SITEURL = '{{URL::to('')}}';
-    var detener = true;
-    $(function() {
+<style>
+        /* [class^="col-"]{
+            height: 50px;
+            margin-bottom:1px;
+            text-align:center;
+            line-height:50px;
+            color:#000;
+        }
+        .col-center {
+            background-color: #ffffff;
+        } */
+        .my-custom-scrollbar {
+            position: relative;
+            height: 250px;
+            overflow: auto;
+        }
+            .table-wrapper-scroll-y {
+            display: block;
+        }
+        /* input:invalid {
+            background-color:#ffdddd;
+        } */
+
+        /* form:invalid {
+            border: 5px solid #ffdddd;
+        } */
+
+        /* input:valid {
+            background-color: #ddffdd;
+        } */
+
+        /* form:valid {
+            border: 5px solid #ddffdd;
+        } */
+        
+        /* input:required {
+            border-color: #800000;
+            border-width: 3px;
+        } */
+
+        /* input:required:invalid {
+            border-color: #C00000;
+        } */
+
+        input:invalid {
+ 
+            border: 1px solid red;
+        
+        }
+        
+        /* Estilo por defecto */
+        
+        input:valid {
+        
+            border: 1px solid green;
+        
+        }
+        /* Estilo por defecto */
+ 
+        input:required:invalid {
+        
+            border: 1px solid red;
+        
+        }
+        
+        input:required:valid {
+        
+            border: 1px solid green;
+        
+        }
+        
+        .text-error{
+            /* border: 1px solid red; */
+            padding: 3px;
+            /* border-radius: 25px; */
+            background-color:red;
+            color: white;
+            margin-top: 3px;
+        }
+    </style>
+    <script src="{{asset('/js/ui-preregcurso.js')}}"></script>
+    <script type="text/javascript">
+        var SITEURL = '{{URL::to('')}}';
+        var detener = true;
+        $(function() {
 		$.ajaxSetup({
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -452,8 +451,7 @@
 		    }
 		  })
 		}
-
-</script>
+    </script>
 @endsection
 
 

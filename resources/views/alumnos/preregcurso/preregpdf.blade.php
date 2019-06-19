@@ -76,7 +76,7 @@
                 <td>                                        
                     {{-- <img src="{{asset('/images/logo-coapa-azul.png')}}" alt="Logo" height="75px"> --}}
                     {{-- <img src="{{ public_path('images/logo-coapa-azul.png') }}" alt="Logo" height="75px"> --}}
-                    <img src="{{ public_path('/images/logo-coapa-azul.png') }}" alt="Logo" height="45px" width="175px" >
+                    <img src="http://cursounamcoapa.com/images/logo-coapa-azul.png" alt="Logo" height="45px" width="175px" >
                 </td>>
                 <td style = " padding-left: 100px;"  colspan="3">
                     <h1>Pre-registro
