@@ -1,3 +1,6 @@
+<?php
+    ini_set('memory_limit','-1');
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -60,22 +63,10 @@
                
             }
     </script>
-    <div>
-        {{-- <table>
-            <tr>                
-                <td>                    
-                    <img src="{{asset('images/logo-coapa-azul.png')}}" alt="Logo" height="75px">
-                </td>>
-                <td>
-                    <h1 style="text-align: left;">Pre-registro
-                </td>
-            </tr>
-        </table> --}}
+    <div>        
         <table>
             <tr>                
-                <td>                                        
-                    {{-- <img src="{{asset('/images/logo-coapa-azul.png')}}" alt="Logo" height="75px"> --}}
-                    {{-- <img src="{{ public_path('images/logo-coapa-azul.png') }}" alt="Logo" height="75px"> --}}
+                <td>                    
                     <img src="http://cursounamcoapa.com/images/logo-coapa-azul.png" alt="Logo" height="45px" width="175px" >
                 </td>>
                 <td style = " padding-left: 100px;"  colspan="3">
@@ -94,7 +85,7 @@
                     </td>
                     <td>
                         <label for="txt_curso_i">Curso:</label> 
-                        <input type="text" class="form-control form-control-sm" id="txt_curso_i" value={{$dtsalu->cur_desc}}>                              
+                        <input type="text" class="form-control form-control-sm" id="txt_curso_i" value="{{$dtsalu->cur_desc}}">                              
                     </td>
                     <td>
                         <label for="txt_periodo_i">Periodo:</label> 
@@ -251,7 +242,7 @@
                         <label>Escuela a la que desea ingresar:</label>
                     </div>
                 </td>
-                <td></td>
+                <td colspan="2"></td>
             </tr>
             <tr>
                 <td>

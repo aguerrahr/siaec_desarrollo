@@ -25,7 +25,7 @@ class EstatusController extends Controller
                 return datatables()->eloquent(
                     Est::select('IdEst','Est_UsuDesc')
                 )
-                ->addColumn('btn','catalogos\estatus\actionsEstatus')
+                ->addColumn('btn','catalogos/estatus/actionsEstatus')
                 ->rawColumns(['btn'])
                 ->toJson();
             }                   

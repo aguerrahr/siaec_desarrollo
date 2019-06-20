@@ -60,9 +60,13 @@ $( "#btn_buscar" ).click(function() {
                 setcboBancos();
                 $("#dtsGrales").show();
                 $('#mdlEspere').modal('hide');
+                $('#mdlEspere').hide();
+			    $('.modal-backdrop').hide();
             }    
             else{
                 $('#mdlEspere').modal('hide');            
+                $('#mdlEspere').hide();
+			    $('.modal-backdrop').hide();
                 swal("Error", "ID de Alumno inválido", "error");        
             }
         });

@@ -21,7 +21,7 @@ class ApiPlanController extends Controller
                 Plan::join('est', 'plan_idest', '=', 'IdEst')
                 ->select('plan.Idplan', 'plan.plan_desc', 'est.Est_UsuDesc')
             )
-            ->addColumn('btn','catalogos\actionsPlan')
+            ->addColumn('btn','catalogos/actionsPlan')
             ->rawColumns(['btn'])
             ->toJson();
     }
