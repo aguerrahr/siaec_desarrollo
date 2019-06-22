@@ -18,8 +18,8 @@ use Spatie\Permission\Models\Role;
 use App\Model\Catalogos\Curpla;
 use App\Model\Alumnos\DtsHorGpo;
 use App\Model\Catalogos\Ban;
-
-
+use App\Model\Catalogos\Cal;
+use App\Model\Catalogos\Suc;
 
 
 class ServiciosController extends Controller
@@ -79,7 +79,8 @@ class ServiciosController extends Controller
             ->join('per', 'curpla_idper', '=', 'IdPer')
             ->join('plan', 'curpla_idplan', '=', 'Idplan')
             ->select('IdCurPlan','cur_desc','plan_desc','per_desc','hor_desc', 'Est_UsuDesc')
-            ->where('curpla_idest' ,'=','1')->get();
+            ->where('curpla_idest' ,'=','1')
+            ->where('curpla_idcurso','<','3')->get();
             
             $listaCursos = Datatables::of($data)
                 ->addColumn('radiobutton', function($row){                           
@@ -179,5 +180,20 @@ class ServiciosController extends Controller
         //$stList = Ban::query()->distinct()->get();
         //$stList = Ban::select('column1', 'column2', 'column3')->distinct()->get();
         return response()->json(['status'=>1,'success'=>true,'lst'=>$stList]);
+    }
+    public function getCalendario()
+    {        
+        $rowList = cal::select("IdCal"
+        ,DB::raw("CONCAT(cal_idanio,'-',cal_idmes,'-',cal_idfase) as full_cal"))
+        ->where('cal_idest','=','1')
+        ->get();
+        return response()->json(['status'=>1,'success'=>true,'lst'=>$rowList]);
+    }
+    public function  getSucursal($idBan)
+    {
+        $rowList = Suc::select('IdSuc','suc_desc')
+                ->where('suc_idban','=',$idBan)
+                ->where('suc_est','=','1')->get();        
+        return response()->json(['status'=>1,'success'=>true,'lst'=>$rowList]);
     }
 }

@@ -41,6 +41,8 @@ class DtsGraAlu extends Model
         'try_est',
         'st_trayectoria',
         'IdCurPlan',
-        'curpla_idhor'
+        'curpla_idhor',
+        'IdTra',
+        'datcur_folescban'
     ];    
 }

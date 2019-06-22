@@ -54,11 +54,13 @@
 				left: 100%;
 				margin-top: -1px;
 			}
-				
+			body{
+				position: relative;
+			}
 		</style>
 
 	</head>
-	<body>
+	<body data-spy="scroll" data-target=".navbar" data-offset="50">
 		<div>
 			@yield("menu")
 			<nav class="navbar navbar-expand-md fixed-top navbar-light bg-warning">
@@ -119,7 +121,7 @@
 													<a href="#" data-toggle="dropdown" class="dropdown-toggle">Control Escolar</a>
 													<ul class="dropdown-menu">
 															<li class="dropdown-item">
-																	<a href="#">Inscripciones</a>
+																<a href="{{ url("alumnos/inscripciones") }}">Inscripciones</a>																	
 															</li>
 															<li class="dropdown-item">
 																	<a href="#">Datos Generales del Alumno</a>

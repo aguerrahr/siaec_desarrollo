@@ -25,7 +25,7 @@
         }
 
         th, td {
-            /* border: 1px solid blue;  */
+            /*border: 1px solid blue;*/
             width: 500px;
             word-wrap: break-word;
             font-family: Arial, Helvetica, sans-serif;
@@ -213,7 +213,34 @@
                 <td>
                     <label style="margin-top: 18px;text-align: center;" for="txt_op3">Nombre y Firma de quien recibe</label>                    
                 </td>
-            </tr>            
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+            <tr>
+                    <td>
+                        <br>
+                    </td>
+                </tr>            
+            <tr>
+                    <td>
+                        <img src="http://cursounamcoapa.com/images/banamex.jpg" alt="Logo" height="45px" width="175px" >
+                    </td>
+                    <td>
+                        <img src="http://cursounamcoapa.com/images/banorte.jpg" alt="Logo" height="45px" width="175px" >
+                    </td>
+                    <td>
+                        <img src="http://cursounamcoapa.com/images/bbva.jpg" alt="Logo" height="45px" width="175px" >
+                    </td>
+                    <td>
+                        <img src="http://cursounamcoapa.com/images/santander.jpg" alt="Logo" height="45px" width="175px" >
+                    </td>
+                </tr>            
         </table> 
     </div>
 </body>

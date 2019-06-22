@@ -15,7 +15,7 @@
 @section('cuerpo')	
 <div class="container">     
     <input type="hidden" name="IdDatCur" id="IdDatCur">           
-    <input type="hidden" name="IdAlu" id="IdAlu" value="3">
+    <input type="hidden" name="IdAlu" id="IdAlu" value="">
     <div id="accordion">
       <div class="card">
         <div class="card-header">
@@ -27,9 +27,9 @@
           <div class="card-body">
                 El alumno deberá entregar en las instalaciones del Instituo Coapa:
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>El formato de Registro debidamente complementado</li>
-                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>El formato de Pago sellado por la Institución Bancaria donde realizó el pago</li>
-                    <li class="list-group-item">Los dumentos:</li>
+                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>El formato de Registro debidamente cumplimentado</li>
+                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>El formato y vourcher de Pago</li>
+                    <li class="list-group-item">Los documentos:</li>
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Certificado de Secundaria</li>
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Acta de nacimiento</li>
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Comprobante de domicilio</li>
@@ -40,8 +40,7 @@
                 <br>
                     <button type="button" id = "btn_cursos" class="btn btn-primary"><i class="fab fa-leanpub"></i> Seleccionar Curso</button>
                 <br/>
-                <br>
-                <input type="hidden" name="IdCurPlanSeleccionado" id="IdCurPlanSeleccionado" value="">
+                <br>                
                 <table id="grdCusrso" class="table table-responsive-lg">
                     <thead class="thead-light">
                         <tr>
@@ -86,6 +85,7 @@
           <div class="card-body">
             <form id="formRegistro" name="formRegistro" class="form-horizontal">               
                 <div class="row">
+                    <input type="hidden" name="IdCurPlanSeleccionado" id="IdCurPlanSeleccionado" value="">
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="txt_ap_paterno">Apellido Paterno:</label>                            
@@ -176,7 +176,12 @@
                         <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="txt_sexo">Sexo:</label>
-                                    <input type="text" class="form-control" id="txt_sexo" name="txt_sexo" placeholder="" required maxlength="1"/>
+                                    {{-- <input type="text" class="form-control" id="txt_sexo" name="txt_sexo" placeholder="" required maxlength="1"/> --}}
+                                    Cómo se enteró del centro de asesioría
+                                    <select id="cboSexo" name="cboSexo" class="form-control">
+                                        <option value="F">Femenido</option>
+                                        <option value="M">Masculino</option>
+                                    </select>
                                 </div>
                         </div>
                         <div class="col-sm-4">
@@ -271,7 +276,7 @@
                                 <th>Curso</th>
                                 <th>Plantel</th>                                
                                 <th>Periodo Escolar</th>
-                                <th>Horario</th>                                       
+                                <th>Horario</th>
                             </tr>
                         </thead>
                         <tbody id="tblCursosBody" ></tbody>                        
@@ -288,7 +293,7 @@
             <div class="modal-dialog modal-sm">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h4 class="modal-title" id="rowCrudModal"></h4>
+                        <h4 class="modal-title" id="rowCrudModal">Impresión de Formatos</h4>
                     </div>
                     <div class="modal-body">                                                                                                                          
                         <table  WIDTH="100%">
@@ -453,5 +458,3 @@
 		}
     </script>
 @endsection
-
-

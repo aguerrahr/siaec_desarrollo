@@ -78,7 +78,7 @@ class PreRegCursoController extends Controller
         // txt_op1
         // txt_op2
         // txt_op3
-         //
+         //IdCurPlanSeleccionado
          date_default_timezone_set('America/Mexico_City');
          $hoy = date("Y-m-d H:i:s");
          
@@ -126,7 +126,7 @@ class PreRegCursoController extends Controller
                     $curso->datcur_celular = $request->txt_celular;
                     $curso->datcur_teltutor = $request->txt_tutor;
                     $curso->datcur_email = $request->txt_email;
-                    $curso->datcur_sexo = $request->txt_sexo;
+                    $curso->datcur_sexo = $request->cboSexo;
                     $curso->datcur_fechnac = $request->fh_nac;
                     $curso->datcur_entnac = $request->txt_entnac;
                     $curso->datcur_secupro = $request->txt_secundaria;
@@ -138,7 +138,7 @@ class PreRegCursoController extends Controller
                     if ($curso->save())
                     {   
                         $tryalu = new TraAlu;                        
-                        $tryalu->try_idcurplan = $curso->IdDatCur;
+                        $tryalu->try_idcurplan = $request->IdCurPlanSeleccionado;
                         $tryalu->try_idalu = $alumno->IdAlu;                        
                         $tryalu->try_cal = 0;
                         $tryalu->try_est = 4;
@@ -174,7 +174,7 @@ class PreRegCursoController extends Controller
                     $strMensaje = '¡¡ El Alumno ya se encuentra registrado !!';
                     break;
                 case 1452:
-                    $strMensaje = '¡¡ Debe indicar el Estatus !!';
+                    $strMensaje = '¡¡ Debe indicar el Estatus !! '. $e->getMessage();
                     break;
                 case 1452:
                     $strMensaje = '¡¡ Tamaño de campo excedido !!';

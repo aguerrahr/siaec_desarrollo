@@ -36,7 +36,10 @@ $( "#btn_buscar" ).click(function() {
                 $("#txt_op2").val(data.data.darcur_escopc2);
                 $("#txt_op3").val(data.data.datcur_escopc3);                
                 $("#cboObs option[value="+ data.data.datcur_obs +"]").attr("selected",true);
-                //Trayectoria
+                
+                $("#datcur_folescban").val(data.data.datcur_folescban);                    
+                //Trayectoria                
+                $("#IdTra").val(data.data.IdTra);
                 $("#lbl_plantel").html(data.data.plan_desc);
                 $("#lbl_curso").html(data.data.cur_desc);
                 $("#lbl_periodo").html(data.data.per_desc);
@@ -53,9 +56,10 @@ $( "#btn_buscar" ).click(function() {
                 $("#IdCurPlan").val(data.data.IdCurPlan);
                 $("#curpla_idhor").val(data.data.curpla_idhor);                             
                 //Inicia Pago
+                $("#IdCosto").val(data.dataPago.IdCos);
                 $("#lbl_plantel_pago").html(data.data.plan_desc);
                 $("#lbl_curso_pago").html(data.data.cur_desc);
-                $("#lbl_costo").html(data.dataPago.costo)
+                $("#lbl_costo").html(data.dataPago.costo)                
                 //Termina Pago                
                 setcboBancos();
                 $("#dtsGrales").show();
@@ -76,9 +80,8 @@ $( "#btn_buscar" ).click(function() {
 
 $( "#btn_asign_gpo" ).click(function() {    
     var descCurso = $('#lbl_curso_gpo').html();
-    var JSONObject = new Object();
-    
-    if (descCurso == 'COMIPEMS')
+    var JSONObject = new Object();    
+    if ((descCurso.indexOf('COMIPEMS',0)!=-1))
     {
         JSONObject.idCurPlan = $("#IdCurPlan").val();
         JSONObject.idHor = $("#curpla_idhor").val();
@@ -103,6 +106,7 @@ $( "#btn_asign_gpo" ).click(function() {
                   $('#btn_asign_gpo').html('Asignar Grupo');
                   $('#btn_asign_gpo').hide();                  
                   $('#tbl_pago_group').show();
+                  set_Calendario();
                   swal("¡Operación exitosa!", data.message, "success"); 
               }else{
                   swal("Error", data.message, "error");
@@ -117,6 +121,73 @@ $( "#btn_asign_gpo" ).click(function() {
         });
     }
 });
+
+$( "#btn_asign_cal" ).click(function() {
+	$('#cal-modal').modal('show');
+});
+
+$( "#btn_selectCal" ).click(function() {
+	var queCal = $('input:radio[name=rbIdCal]:checked').val();		
+    $('#IdCalSeleccionado').val(queCal);    
+	$("#queAnio").html($("#lblAnio_" + queCal).html());	
+	$("#queMes").html($("#lblMes_" + queCal).html());
+	$("#queCiclo").html($("#lblCiclo_" + queCal).html());
+    $('#cal-modal').modal('hide');
+});
+
+$("#cboBancos").change(function() {
+    cargaSucursal();    		
+});
+
+$("#btn_asign_pago").click(function() {
+    var JSONObject = new Object();   
+    JSONObject.IdPag = 0;
+    JSONObject.pag_idtraalu = $("#IdTra").val();
+    JSONObject.pag_idcos = $("#IdCosto").val();
+    JSONObject.pag_idcal = $("#IdCalSeleccionado").val();
+    JSONObject.pag_idsuc = $("#cboSucursal").val();
+    JSONObject.pag_folio = $("#datcur_folescban").val();
+    JSONObject.pag_folaut = $("#txt_autorizacion").val();
+    JSONObject.pag_fechpag = $("#fh_Pago").val();
+    JSONObject.pag_fechent = $("#fh_Entrega").val();
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    var ruta = SITEURL +  '/pagos/pago';
+    var data = JSON.stringify(JSONObject);
+    $('#btn_asign_pago').html('Enviando..');
+    $.ajax({
+        data: data,
+        url: ruta,
+        type: "POST",
+        dataType: 'json',
+        contentType: "application/json",
+        success: function (data) {
+          if (data.success){
+              $('#btn_asign_pago').hide();
+              $('#btn_asign_cal').hide();
+              swal("¡Operación exitosa!", data.message, "success"); 
+          }else{
+              swal("Error", data.message, "error");
+              $('#btn_asign_gpo').html('Asignar Pago');
+          }
+        },
+        error: function (request, message, error) {
+            console.log('Error:', error);					  
+            $('#btn_asign_pago').html('Asignar Pago');
+            swal("Error", "Error inesperado consulte al administrador", "warning");
+        }
+    });
+
+    
+
+});
+
+
+
+
 
 function setcboBancos()
 {
@@ -149,3 +220,76 @@ function setcboBancos()
 
 
 }
+function set_Calendario()
+{
+	var url = SITEURL + "/calList";
+	$.ajax({
+		url : url,
+		type : 'GET',
+		contentType : "application/json;charset=utf-8",
+		//data : JSON.stringify(filter),
+		success : function(result) {
+			//console.log('result: ' + JSON.stringify(result));					
+			if (result.status = 1)
+			{
+                var iCont = 1;
+                //result.data.original.recordsTotal
+				for (var i = 0; i < result.lst.length; i++) {
+                    var calendario = result.lst[i];			
+                    var fh_cal = calendario.full_cal.split('-');
+                    var Anio = fh_cal[0];
+                    var Mes = fh_cal[1];
+                    var Ciclo = fh_cal[2];
+
+					var IdCal = "<td>" +  '<input type="radio" id="RbIdCurPlan_' + calendario.IdCal + '" name="rbIdCal"  value="' + calendario.IdCal + '">' + "</td>";
+					var nbcalendario = '<td>' + '<div id= "lblCal_' + calendario.IdCal + '">'  + calendario.full_cal + '</div>' + '</td>';
+					var _anio = '<td id= "lblAnio_' + calendario.IdCal + '">' + '' + Anio + '' + '</td>';
+					var _mes = '<td id= "lblMes_' + calendario.IdCal + '">' + '' + Mes + '' + '</td>';
+					var _ciclo = '<td id= "lblCiclo_' + calendario.IdCal + '">' + '' + Ciclo + '' + '</td>';																					
+					var row = "<tr>" + IdCal + _anio + _mes + _ciclo + "</tr>"
+					$('#tblCalendarioBody').append(row);
+                    iCont = iCont + i;                    
+				}
+			}
+		},
+		error : function(request, message, error) {
+			$("#mdlEspere").modal("hide");
+			console.error('WSUsuarioCanal: ' + message);
+		}
+	});
+}
+
+function cargaSucursal(){		
+    var idBanco = $("#cboBancos").val();		
+    $("#mdlEspere").modal("show");
+    
+
+    var url = SITEURL + "/sucList/" + idBanco;
+	$.ajax({
+		url : url,
+		type : 'GET',
+		contentType : "application/json;charset=utf-8",
+		//data : JSON.stringify(filter),
+		success : function(result) {
+			//console.log('result: ' + JSON.stringify(result));					
+			if (result.status = 1)
+			{
+                var iCont = 1;
+                //result.data.original.recordsTotal
+                $("#cboSucursal").empty().append('<option value="0">Seleccione una opción</option>');						
+                for (var i = 0; i < result.lst.length; i++) {
+                    var descRow = result.lst[i];
+                    $("#cboSucursal")
+                        .append('<option value="' +	descRow.IdSuc + '">' + descRow.suc_desc + '</option>');																
+                }                
+            }
+            $('#mdlEspere').modal('hide');
+		    $('#mdlEspere').hide();
+		    $('.modal-backdrop').hide();
+		},
+		error : function(request, message, error) {
+			$("#mdlEspere").modal("hide");
+			console.error('WSUsuarioCanal: ' + message);
+		}
+	});
+};

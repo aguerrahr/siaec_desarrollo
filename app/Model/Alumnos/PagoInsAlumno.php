@@ -22,6 +22,8 @@ class PagoInsAlumno extends Model
         'tp_pago',
         'costo',
         'dt_emi',
-        'cos_tipcos'
+        'cos_tipcos',
+        'IdCos',
+        'IdTipCos'
     ];    
 }

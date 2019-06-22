@@ -103,6 +103,7 @@ Route::resource('catalogos/planescolar', 'Catalogos\PlanEscolarController'); //[
 Route::resource('accesos', 'Acceso\UsersController'); //[0-9]+
 Route::resource('alumnos/preregistrocursos','Alumnos\PreRegCursoController');
 Route::resource('alumnos/inscripciones','Alumnos\InscripcionController');
+Route::resource('pagos/pago','Pagos\PagoController');
 
 
 //-------------------------------------------------------------------------------------------------------------------------------------------
@@ -114,14 +115,16 @@ Route::resource('alumnos/inscripciones','Alumnos\InscripcionController');
 Route::get('stList', 'ServiciosController@getEstatus'); //[0-9]+
 Route::get('stList/{id}', 'ServiciosController@getIdEstatus')->where('id', '[0-9]+');
 Route::get('stList/{desc}', 'ServiciosController@getDescEstatus')->where('desc', '[A-Za-z]+');
-
 Route::get('rolesList', 'ServiciosController@getRoles'); //[0-9]+
-
 Route::get('plantelList','ServiciosController@getPlanteles');
 Route::get('cursoList','ServiciosController@getCursos');
 Route::get('periodoList','ServiciosController@getPeriodo');
 Route::get('horarioList','ServiciosController@getHorarios');
 Route::get('bancosList','ServiciosController@getCatBancos');
+Route::get('calList','ServiciosController@getCalendario');
+Route::get('sucList/{idBan}','ServiciosController@getSucursal');
+
+
 
 Route::get('alumno/dtsGenerales','ServiciosController@getHorarios');
 
