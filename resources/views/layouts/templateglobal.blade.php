@@ -110,7 +110,13 @@
 															</li>
 															<li class="dropdown-item">
 																<a href="{{ url("catalogos/planescolar") }}">Plan escolar</a>
-															</li>												
+															</li>
+															<li class="dropdown-item">
+																<a href="{{ url("catalogos/calendario") }}">Calendario</a>
+															</li>
+															<li class="dropdown-item">
+																<a href="{{ url("catalogos/materias") }}">Materias</a>
+															</li>											
 
 													</ul>
 											</li>

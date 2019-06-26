@@ -149,15 +149,15 @@ $("#btn_asign_pago").click(function() {
     JSONObject.pag_folio = $("#datcur_folescban").val();
     JSONObject.pag_folaut = $("#txt_autorizacion").val();
     JSONObject.pag_fechpag = $("#fh_Pago").val();
-    JSONObject.pag_fechent = $("#fh_Entrega").val();
+    JSONObject.pag_fechent = $("#fh_Entrega").val();    
+    var ruta = SITEURL +  '/pagos/pago';
+    var data = JSON.stringify(JSONObject);
+    $('#btn_asign_pago').html('Enviando..');
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
         }
     });
-    var ruta = SITEURL +  '/pagos/pago';
-    var data = JSON.stringify(JSONObject);
-    $('#btn_asign_pago').html('Enviando..');
     $.ajax({
         data: data,
         url: ruta,
