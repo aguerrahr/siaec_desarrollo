@@ -126,7 +126,7 @@ class MatController extends Controller
      */
     public function show($id)
     {
-        //
+        //       
     }
 
     /**

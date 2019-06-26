@@ -205,7 +205,8 @@ class PreRegCursoController extends Controller
     public function show($id)
     {
         //
-        
+        $dat_cur = DatCur::all()->where('datcur_curp','=',$id);        
+        return response()->json(['status'=>1,'success'=>true,'message'=>$dat_cur->count()]);
     }
 
     /**
