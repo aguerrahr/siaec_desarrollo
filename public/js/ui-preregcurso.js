@@ -175,9 +175,6 @@ $( "#btn_selectCurso" ).click(function() {
 	detener = false;
 });
 
-$( "#btn_registrar" ).click(function() {
-   
-  });
 function set_Cusrsos()
 {
 	var url = SITEURL + "/planescolar/lista";

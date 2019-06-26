@@ -28,11 +28,14 @@
                 El alumno deberá entregar en las instalaciones del Instituo Coapa:
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>El formato de Registro debidamente cumplimentado</li>
-                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>El formato y vourcher de Pago</li>
+                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>El formato y vourcher/comprobante de Pago</li>
                     <li class="list-group-item">Los documentos:</li>
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Certificado de Secundaria</li>
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Acta de nacimiento</li>
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Comprobante de domicilio</li>
+                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Copia de CURP</li>
+                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Foto tamaño infantil B/N</li>
+
                 </ul>
                 <br>
                 Selecciona el curso al que deseas ingresar:
@@ -174,6 +177,12 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <div class="form-group">
+                                <label for="txt_email_pt">E-mail padre/tutor:</label>                                
+                                <input type="email" class="form-control" id="txt_email_pt" name="txt_email_pt" placeholder="" required maxlength="80"/>                      
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="txt_sexo">Sexo:</label>
                                     {{-- <input type="text" class="form-control" id="txt_sexo" name="txt_sexo" placeholder="" required maxlength="1"/> --}}
@@ -186,7 +195,7 @@
                         </div>
                         <div class="col-sm-4">
                                 <label for="txt_curp">CURP:</label>
-                                <input type="text" class="form-control" id="txt_curp" name="txt_curp" placeholder="" required maxlength="18"/>
+                                <input type="text" class="form-control masc_curp" id="txt_curp" name="txt_curp" placeholder="" required maxlength="18"/>
                         </div>
                     </div>
                     <div class="row">
@@ -212,7 +221,15 @@
                                     <input type="text" class="form-control" id="txt_secundaria" name="txt_secundaria" placeholder="" required maxlength="80"/>
                                 <br/>
                             </div>
-                        </div>                        
+                        </div>  
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <br>
+                                    <label for="txt_secundaria_tp">Tipo de secundaria:</label>
+                                    <input type="text" class="form-control" id="txt_secundaria_tp" name="txt_secundaria_tp" placeholder="Diurna,Técnica,Particular" required maxlength="80"/>
+                                <br/>
+                            </div>
+                        </div>                       
                     </div>                    
                     <div class="row">
                         <div class="col-sm-12">
@@ -244,7 +261,8 @@
                             Cómo se enteró del centro de asesioría
                             <select id="cboObs" name="cboObs" class="form-control">
                                 <option value="Internet">Internet</option>
-                                <option value="Flyer">Flyer</option>
+                                <option value="Bolante">Bolante</option>
+                                <option value="Bolante">Espectacular</option>
                                 <option value="Amigo">Un amigo</option>
                                 <option value="Otro">Otro</option>
                             </select>
@@ -402,6 +420,9 @@
             background-color:red;
             color: white;
             margin-top: 3px;
+        }
+        .masc_curp {
+            text-transform:uppercase;
         }
     </style>
     <script src="{{asset('/js/ui-preregcurso.js')}}"></script>

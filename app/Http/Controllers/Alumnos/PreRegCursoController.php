@@ -120,20 +120,22 @@ class PreRegCursoController extends Controller
                     $curso->datcur_numcalle = $request->txt_numero;
                     $curso->datcur_colonia = $request->txt_colonia;
                     $curso->datcur_alcaldia = $request->txt_alcaldia;
-                    $curso->datcur_cp = $request->txt_cp;
+                    $curso->datcur_cp = strtoupper($request->txt_cp);
                     $curso->datcur_entidadfed = $request->txt_entidad;
                     $curso->datcur_telcasa = $request->txt_tel;
                     $curso->datcur_celular = $request->txt_celular;
                     $curso->datcur_teltutor = $request->txt_tutor;
                     $curso->datcur_email = $request->txt_email;
+                    $curso->datcur_email_pt = $request->txt_email_pt;
                     $curso->datcur_sexo = $request->cboSexo;
                     $curso->datcur_fechnac = $request->fh_nac;
                     $curso->datcur_entnac = $request->txt_entnac;
                     $curso->datcur_secupro = $request->txt_secundaria;
+                    $curso->datcur_tpescuela= $request->txt_secundaria_tp;
                     $curso->datcur_escopc1 = $request->txt_op1;
                     $curso->darcur_escopc2 = $request->txt_op2;
                     $curso->datcur_escopc3 = $request->txt_op3;
-                    $curso->datcur_obs = $request->cboObs;
+                    $curso->datcur_obs = $request->cboObs;                    
                     $curso->datcur_folescban = $alumno->IdAlu;
                     if ($curso->save())
                     {   

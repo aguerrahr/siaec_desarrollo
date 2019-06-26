@@ -25,7 +25,7 @@
         }
 
         th, td {
-            /*border: 1px solid blue;*/
+            /* border: 1px solid blue;  */
             width: 500px;
             word-wrap: break-word;
             font-family: Arial, Helvetica, sans-serif;
@@ -54,7 +54,7 @@
                 //$pdf->page_text($x, $y, $text, $font, $size, $color, $word_space, $char_space, $angle);
                 $color = array(0,0,0);
                 //$pdf->line(35,400,295,400,$color,2);
-                $pdf->line(500,435,685,435,$color,2);
+                $pdf->line(250,420,450,420,$color,2);
               
             }
     </script>
@@ -152,10 +152,16 @@
             </tr>
             <tr>
                 <td>
-                    <br>
+                    <div class="col-sm-12">
+                            <label for="txt_num_suc">Núm de Suc:</label>
+                            <input type="text"  style="text-align:center;color:#ffffff" class="form-control form-control-sm" id="txt_num_suc" placeholder=""  value="________________________">
+                    </div>
                 </td>
                 <td>
-                    <br>
+                    <div class="col-sm-12">
+                            <label for="txt_suc">Suc:</label>
+                            <input type="text"  style="text-align:center;color:#ffffff" class="form-control form-control-sm" id="txt_suc" placeholder=""  value="________________________">
+                    </div>
                 </td>
                 <td>
                     <div class="col-sm-12">
@@ -192,18 +198,8 @@
                 </td>
                 <td colspan="2"></td>
             </tr>
-            <tr>
-                <td colspan="2">
-                    <br>
-                </td>
-                <td>
-                    <br>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <br>
-                </td>
+           
+            <tr>                
                 <td>
                     <div class="col-sm-8">
                         <label for="txt_fh_recibo">Fecha de Recibido:</label>
@@ -212,6 +208,9 @@
                 </td>
                 <td>
                     <label style="margin-top: 18px;text-align: center;" for="txt_op3">Nombre y Firma de quien recibe</label>                    
+                </td>
+                <td>
+                    <label style="margin-top: 18px;text-align: center;" for="txt_op3">Junto con este formato se deberá entregar el voucher/comprobante de pago</label>
                 </td>
             </tr>
             <tr>
@@ -228,18 +227,27 @@
                     </td>
                 </tr>            
             <tr>
-                    <td>
-                        <img src="http://cursounamcoapa.com/images/banamex.jpg" alt="Logo" height="45px" width="175px" >
+                    <td style = "text-align: center;">
+                        <img src="http://cursounamcoapa.com/images/banamex.png" alt="Logo" height="45px" width="165px" >
                     </td>
-                    <td>
-                        <img src="http://cursounamcoapa.com/images/banorte.jpg" alt="Logo" height="45px" width="175px" >
+                    <td style = "text-align: left;">
+                        {{-- <img src="http://cursounamcoapa.com/images/banorte.jpg" alt="Logo" height="45px" width="175px" > --}}                        
+                        <pre  style = "margin-left: -1.5cm; text-align: left; font-family: Arial, Helvetica, sans-serif;font-size: 10px; font-weight: bold;">
+                        TRANSFERENCIA INTERBANCARIA
+                        CLAVE: 002180408701448245
+                            -Con los datos del alumno
+                            -Llevar impreso el comprobante
+                        REENVIAR COMPROBANTE AL SIGUINETE CORREO:
+                        institutocoapatransferencias@gmail.com
+                        </pre>
                     </td>
-                    <td>
+                    <td colspan="2"></td>
+                    {{-- <td>
                         <img src="http://cursounamcoapa.com/images/bbva.jpg" alt="Logo" height="45px" width="175px" >
                     </td>
                     <td>
                         <img src="http://cursounamcoapa.com/images/santander.jpg" alt="Logo" height="45px" width="175px" >
-                    </td>
+                    </td> --}}
                 </tr>            
         </table> 
     </div>
