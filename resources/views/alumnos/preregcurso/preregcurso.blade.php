@@ -92,20 +92,20 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="txt_ap_paterno">Apellido Paterno:</label>                            
-                            <input type="text" class="form-control" id="txt_ap_paterno" name="txt_ap_paterno" placeholder="" required maxlength="80"/>
+                            <input type="text" class="form-control masc_upc" id="txt_ap_paterno" name="txt_ap_paterno" placeholder="" required maxlength="80"/>
                         </div>
                     </div>
                     <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="txt_ap_materno">Apellido Materno:</label>
-                                <input type="text" class="form-control" id="txt_ap_materno" name="txt_ap_materno" placeholder="" required maxlength="80"/>
+                                <input type="text" class="form-control masc_upc" id="txt_ap_materno" name="txt_ap_materno" placeholder="" required maxlength="80"/>
                             </div>
                             
                     </div>
                     <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="txt_nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="txt_nombre" name="txt_nombre" placeholder="" required maxlength="80"/>                            
+                                <input type="text" class="form-control masc_upc" id="txt_nombre" name="txt_nombre" placeholder="" required maxlength="80"/>                            
                             </div> 
                     </div>
                 </div>
@@ -113,19 +113,19 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="txt_calle">Calle:</label>                                
-                                <input type="text" class="form-control" id="txt_calle" name="txt_calle" placeholder="" required maxlength="80"/>                            
+                                <input type="text" class="form-control masc_upc" id="txt_calle" name="txt_calle" placeholder="" required maxlength="80"/>                            
                             </div>
                         </div>
                         <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="txt_numero">Numero:</label>
-                                    <input type="text" class="form-control" id="txt_numero" name="txt_numero" placeholder="" required maxlength="20"/>
+                                    <input type="text" class="form-control masc_upc" id="txt_numero" name="txt_numero" placeholder="" required maxlength="20"/>
                                 </div>
                         </div>
                         <div class="col-sm-4">
                                 <div class="form-group">                                    
                                     <label for="txt_colonia">Colonia:</label>
-                                    <input type="text" class="form-control" id="txt_colonia" name="txt_colonia" placeholder="" required maxlength="80"/>
+                                    <input type="text" class="form-control masc_upc" id="txt_colonia" name="txt_colonia" placeholder="" required maxlength="80"/>
                                 </div>
                         </div>
                     </div>
@@ -133,13 +133,13 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="txt_alcaldia">Alcaldía:</label>                                
-                                <input type="text" class="form-control" id="txt_alcaldia" name="txt_alcaldia" placeholder="" required maxlength="80"/>                            
+                                <input type="text" class="form-control masc_upc" id="txt_alcaldia" name="txt_alcaldia" placeholder="" required maxlength="80"/>                            
                             </div>
                         </div>
                         <div class="col-sm-4">
                                 <div class="form-group">
                                     <label for="txt_entidad">Entidad Federativa:</label>
-                                    <input type="text" class="form-control" id="txt_entidad" name="txt_entidad" placeholder="" required maxlength="80"/>
+                                    <input type="text" class="form-control masc_upc" id="txt_entidad" name="txt_entidad" placeholder="" required maxlength="80"/>
                                 </div>
                         </div>
                         <div class="col-sm-4">
@@ -153,7 +153,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="txt_tel">Teléfono de casa:</label>                                
-                                <input type="text" class="form-control" id="txt_tel" name="txt_tel" placeholder="" required maxlength="10"/>                            
+                                <input type="text" class="form-control masc_upc" id="txt_tel" name="txt_tel" placeholder="" required maxlength="10"/>                            
                             </div>
                         </div>
                         <div class="col-sm-4">
@@ -188,14 +188,14 @@
                                     {{-- <input type="text" class="form-control" id="txt_sexo" name="txt_sexo" placeholder="" required maxlength="1"/> --}}
                                     Cómo se enteró del centro de asesioría
                                     <select id="cboSexo" name="cboSexo" class="form-control">
-                                        <option value="F">Femenido</option>
+                                        <option value="F">Femenino</option>
                                         <option value="M">Masculino</option>
                                     </select>
                                 </div>
                         </div>
                         <div class="col-sm-4">
                                 <label for="txt_curp">CURP:</label>
-                                <input type="text" class="form-control masc_curp" id="txt_curp" name="txt_curp" placeholder="" required maxlength="18"/>
+                                <input type="text" class="form-control masc_upc" id="txt_curp" name="txt_curp" placeholder="" required maxlength="18"/>
                         </div>
                     </div>
                     <div class="row">
@@ -209,7 +209,7 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="txt_entnac">Entidad de nacimiento:</label>
-                                <input type="text" class="form-control" id="txt_entnac" name="txt_entnac" placeholder="" required maxlength="80"/>
+                                <input type="text" class="form-control masc_upc" id="txt_entnac" name="txt_entnac" placeholder="" required maxlength="80"/>
                             </div>
                         </div>
                     </div>
@@ -218,10 +218,23 @@
                             <div class="form-group">
                                 <br>
                                     <label for="txt_secundaria">Secundaria de Procedencia:</label>
-                                    <input type="text" class="form-control" id="txt_secundaria" name="txt_secundaria" placeholder="" required maxlength="80"/>
+                                    <input type="text" class="form-control masc_upc" id="txt_secundaria" name="txt_secundaria" placeholder="" required maxlength="80"/>
                                 <br/>
                             </div>
                         </div>  
+                        <div class="col-sm-4">
+                            <label for="txt_secundaria_tp">Tipo de secundaria:</label>                            
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="txt_secundaria_tp" id="txt_secundaria_tp_pub" value="Publica">Pública
+                                </label>
+                             </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                  <input type="radio" class="form-check-input" name="txt_secundaria_tp" id="txt_secundaria_tp_priv"  value="Privada">Privada
+                                </label>
+                             </div>
+                        </div>         
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <br>
@@ -240,19 +253,19 @@
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="txt_op1">Opción 1:</label>
-                                <input type="text" class="form-control" id="txt_op1" name="txt_op1" placeholder="" required maxlength="80"/>
+                                <input type="text" class="form-control masc_upc" id="txt_op1" name="txt_op1" placeholder="" required maxlength="80"/>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="txt_op2">Opción 2:</label>
-                                <input type="text" class="form-control" id="txt_op2" name="txt_op2" placeholder="" maxlength="80"/>
+                                <input type="text" class="form-control masc_upc" id="txt_op2" name="txt_op2" placeholder="" maxlength="80"/>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="form-group">
                                 <label for="txt_op3">Opción 3:</label>
-                                <input type="text" class="form-control" id="txt_op3" name="txt_op3" placeholder="" maxlength="80"/>
+                                <input type="text" class="form-control masc_upc" id="txt_op3" name="txt_op3" placeholder="" maxlength="80"/>
                             </div>
                         </div>
                     </div>
@@ -421,7 +434,7 @@
             color: white;
             margin-top: 3px;
         }
-        .masc_curp {
+        .masc_upc {
             text-transform:uppercase;
         }
     </style>
@@ -452,16 +465,9 @@
 					if (data.success){
                         $('#btn-save').html('Aceptar');
                         swal("¡Operación exitosa!", data.message, "success");
-                        detener = true;         
+                        detener = true;
                         $('#btn_imp_formatos').show();
-                        $('#IdAlu').val(data.IdAlu);               
-                        
-						// $('#formRegistro').trigger("reset");
-						// $('#cboEstatus option[value=0]').attr('selected', 'selected');
-						// $('#ajax-crud-modal').modal('hide');
-						// $('#btn-save').html('Guardar Cambios');
-						// var oTable = $('#grdDatos').dataTable();
-						// oTable.fnDraw(false);
+                        $('#IdAlu').val(data.IdAlu);
 					}else{
 						swal("Error", data.message, "error");
 						$('#btn-save').html('Aceptar');

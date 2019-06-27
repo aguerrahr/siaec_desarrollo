@@ -154,13 +154,13 @@
                 <td>
                     <div class="col-sm-12">
                             <label for="txt_num_suc">Núm de Suc:</label>
-                            <input type="text"  style="text-align:center;color:#ffffff" class="form-control form-control-sm" id="txt_num_suc" placeholder=""  value="________________________">
+                            <input type="text"  style="text-align:center;color:#000000" class="form-control form-control-sm" id="txt_num_suc" placeholder=""  value="144824">
                     </div>
                 </td>
                 <td>
                     <div class="col-sm-12">
                             <label for="txt_suc">Suc:</label>
-                            <input type="text"  style="text-align:center;color:#ffffff" class="form-control form-control-sm" id="txt_suc" placeholder=""  value="________________________">
+                            <input type="text"  style="text-align:center;color:#000000" class="form-control form-control-sm" id="txt_suc" placeholder=""  value="4087">
                     </div>
                 </td>
                 <td>

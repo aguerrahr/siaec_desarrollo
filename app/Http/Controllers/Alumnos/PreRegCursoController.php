@@ -92,16 +92,16 @@ class PreRegCursoController extends Controller
 
                 //alu_idalu
                 $alumno = Alumno::where('IdAlu','=', $alumnoCurp->datcur_idalu)->first('alu_idalu');
-
                 $strMensaje = 'El alumno ya cuenta con registro y su IDAlumno es: ' . $alumno->alu_idalu .chr(13).chr(10). 
                 '-Si deseas volver a imprimir tus formatos para la inscripción ingresar con tu IDAlumno a la liga “Re-impresión”.'
                 .chr(13).chr(10). '-Si ya fuiste alumno de la escuela y deseas ingresar a otro curso, favor de asistir al plantel”';                
             }
             else{
                
-                $anio = substr($hoy,2,2);
-                $curp = substr($request->txt_curp,0,6);
-                $alu_idalu = $anio.$curp;                
+                //$anio = substr($hoy,2,2);
+                //$curp = substr($request->txt_curp,0,6);
+                $curp = substr($request->txt_curp,0,9);
+                $alu_idalu = $curp;                
                 $alumno = new Alumno;                       
                 $alumno->alu_idalu = $alu_idalu;
                 $alumno->alu_nom = $request->txt_nombre;             
@@ -304,5 +304,10 @@ class PreRegCursoController extends Controller
         return $pdf ->stream();
         
         //return view('alumnos/preregcurso/preregpdf');
+    }
+    private function searChAlumno($id){
+        //
+        $dat_cur = DatCur::all()->where('datcur_curp','=',$id);        
+        return $dat_cur->count();
     }
 }
