@@ -33,7 +33,9 @@ class DatCur extends Model
         'datcur_folescban',
         'datcur_cp',
         'datcur_email_pt',
-        'datcur_tpescuela'
+        'datcur_tpescuela',
+        'datcur_nomesc',
+        'datcur_numesc'
      ];
      public $timestamps = false;
 }

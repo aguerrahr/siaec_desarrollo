@@ -104,9 +104,9 @@ class PreRegCursoController extends Controller
                 $alu_idalu = $curp;                
                 $alumno = new Alumno;                       
                 $alumno->alu_idalu = $alu_idalu;
-                $alumno->alu_nom = $request->txt_nombre;             
-                $alumno->alu_apemat = $request->txt_ap_materno;
-                $alumno->alu_apepat = $request->txt_ap_paterno;
+                $alumno->alu_nom = strtoupper($request->txt_nombre);             
+                $alumno->alu_apemat = strtoupper($request->txt_ap_materno);
+                $alumno->alu_apepat = strtoupper($request->txt_ap_paterno);
                 $alumno->alu_idest = 4; //Estatud pre-registro
                 $alumno->alu_fechalt = $hoy;
                 $alumno->alu_fechbaj = $hoy;
@@ -115,13 +115,13 @@ class PreRegCursoController extends Controller
                 {                    
                     $curso = new DatCur;
                     $curso->datcur_idalu = $alumno->IdAlu;
-                    $curso->datcur_curp = $request->txt_curp;
-                    $curso->datcur_nomcalle = $request->txt_calle;
+                    $curso->datcur_curp = strtoupper($request->txt_curp);
+                    $curso->datcur_nomcalle = strtoupper($request->txt_calle);
                     $curso->datcur_numcalle = $request->txt_numero;
-                    $curso->datcur_colonia = $request->txt_colonia;
+                    $curso->datcur_colonia = strtoupper($request->txt_colonia);
                     $curso->datcur_alcaldia = $request->txt_alcaldia;
                     $curso->datcur_cp = strtoupper($request->txt_cp);
-                    $curso->datcur_entidadfed = $request->txt_entidad;
+                    $curso->datcur_entidadfed = strtoupper($request->txt_entidad);
                     $curso->datcur_telcasa = $request->txt_tel;
                     $curso->datcur_celular = $request->txt_celular;
                     $curso->datcur_teltutor = $request->txt_tutor;
@@ -130,11 +130,13 @@ class PreRegCursoController extends Controller
                     $curso->datcur_sexo = $request->cboSexo;
                     $curso->datcur_fechnac = $request->fh_nac;
                     $curso->datcur_entnac = $request->txt_entnac;
-                    $curso->datcur_secupro = $request->txt_secundaria;
+                    $curso->datcur_secupro = strtoupper($request->txt_secundaria);
                     $curso->datcur_tpescuela= $request->txt_secundaria_tp;
-                    $curso->datcur_escopc1 = $request->txt_op1;
-                    $curso->darcur_escopc2 = $request->txt_op2;
-                    $curso->datcur_escopc3 = $request->txt_op3;
+                    $curso->datcur_nomesc= "";
+                    $curso->datcur_numesc= $request->txt_secundaria_num;
+                    $curso->datcur_escopc1 = strtoupper($request->txt_op1);
+                    $curso->darcur_escopc2 = strtoupper($request->txt_op2);
+                    $curso->datcur_escopc3 = strtoupper($request->txt_op3);
                     $curso->datcur_obs = $request->cboObs;                    
                     $curso->datcur_folescban = $alumno->IdAlu;
                     if ($curso->save())
@@ -182,7 +184,7 @@ class PreRegCursoController extends Controller
                     $strMensaje = '¡¡ Tamaño de campo excedido !!';
                     break;
                 default:
-                    $strMensaje = 'Código de Error = '. $e->errorInfo[1];
+                    $strMensaje = 'Código de Error = '. $e->errorInfo[1] . ' - Desc: ' .  $e->getMessage();
                     break;
 
             }

@@ -103,7 +103,10 @@ Route::resource('catalogos/planescolar', 'Catalogos\PlanEscolarController'); //[
 Route::resource('catalogos/calendario', 'Catalogos\CalController'); //[0-9]+
 Route::resource('catalogos/materias', 'Catalogos\MatController'); //[0-9]+
 Route::resource('accesos', 'Acceso\UsersController'); //[0-9]+
+
 Route::resource('alumnos/preregistrocursos','Alumnos\PreRegCursoController');
+Route::resource('alumnos/preregreimp','Alumnos\PreRegReimpCursoController');
+
 Route::resource('alumnos/inscripciones','Alumnos\InscripcionController');
 Route::resource('pagos/pago','Pagos\PagoController');
 Route::resource('profesores', 'Profesores\ProfController'); //[0-9]+

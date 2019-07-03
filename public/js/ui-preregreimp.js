@@ -1,37 +1,7 @@
 
 $(document).ready(function() {
-	$('#flash-overlay-modal').modal();
-	
-	//$('#btn_imp_formatos').hide();
-	
-	/* desabiliota doto el acrordion        
-    $('#accordion').on('shown.bs.collapse', function () {
-        $('[data-toggle=collapse]').prop('disabled',true);
-    });
-    */
-   //$("#collapseTwo a[data-toggle]").attr("data-toggle","");
-   //$("#collapseTwo .collapse").addClass("in").css("height","auto")
-
-   //$("#accordion a[data-toggle]").attr("data-toggle","collapse");
-   //$("#accordion.collapse").removeClass("in").css("height","0")
-   //$("#accordion.collapse:first").addClass("in").css("height","auto")
-   
-   $('.no-collapsable').on('click', function (e) {
-        if (detener) {
-            event.stopPropagation()
-            // do stuff
-            //detener = false;
-        }
-        else {
-            detener = true;
-        }
-	});
-	$('#btn_imp_formatos').on('click', function (e) {
-		$('#imprimir-modal').modal('show');
-	});
-	$('#mdlEspere').modal('show');
-	set_Cusrsos();        
-	$("#txt_ap_paterno").rules("add", {
+    $("#dtsGrales").hide();        
+    $("#txt_ap_paterno").rules("add", {
 		required: true,
 		messages: {
 			required: '<div class="text-error">El campo Apellido Paterno es obligatorio</div>'
@@ -155,7 +125,74 @@ $(document).ready(function() {
 		}
 	});
 });
+$( "#btn_buscar" ).click(function() {
+    var idAlumno = $("#txt_idalumno").val();
+    if (idAlumno == ""){
+        swal("Error", "Indique el Id del Alumno", "error");        
+        //$("#dtsGrales").show();
+    }
+    else{
+        var ruta = SITEURL +  '/alumnos/inscripciones/' + idAlumno;
+        $('#mdlEspere').modal('show');
+        
+        $.get( ruta, function(data,status,xhr) {
+            $('#IdAlu').val(data.data.IdAlu);
+            $("#txt_ap_paterno").val(data.data.alu_apepat);
+            $("#txt_ap_materno").val(data.data.alu_apemat);
+            $("#txt_nombre").val(data.data.alu_nom);
+            $("#txt_calle").val(data.data.datcur_nomcalle);
+            $("#txt_numero").val(data.data.datcur_numcalle);
+            $("#txt_colonia").val(data.data.datcur_colonia);
+            $("#txt_alcaldia").val(data.data.datcur_alcaldia);
+            $("#txt_entidad").val(data.data.datcur_entidadfed);
+            $("#txt_cp").val(data.data.datcur_cp);
+            $("#txt_tel").val(data.data.datcur_telcasa);
+            $("#txt_celular").val(data.data.datcur_celular);
+            $("#txt_tutor").val(data.data.datcur_teltutor);
+            $("#txt_email").val(data.data.datcur_email);
+            $("#txt_email_pt").val(data.data.datcur_email_pt);             
+            $("#txt_sexo").val(data.data.datcur_sexo);
+            $("#txt_curp").val(data.data.datcur_curp);
+            $("#fh_nac").val(data.data.datcur_fechnac);
+            $("#txt_entnac").val(data.data.datcur_entnac);
+            $("#txt_secundaria").val(data.data.datcur_secupro);
+            $("#txt_op1").val(data.data.datcur_escopc1);
+            $("#txt_op2").val(data.data.darcur_escopc2);
+            $("#txt_op3").val(data.data.datcur_escopc3);                
 
+            $("#cboObs option[value="+ data.data.datcur_obs +"]").attr("selected",true);
+            $("#cboSexo option[value="+ data.data.datcur_sexo +"]").attr("selected",true);
+            
+            
+            
+
+            if (data.data.datcur_tpescuela == "Publica"){
+                $("#txt_secundaria_tp_pub").prop("checked", true);
+            }
+            else{
+                $("#txt_secundaria_tp_priv").prop("checked", true);
+            }                      
+            $("#txt_secundaria_num").val(data.data.datcur_numesc);
+                                                
+            
+          })
+            .done(function(data,status,xhr) {
+                $("#dtsGrales").show();
+            })
+            .fail(function(data,status,xhr) {
+                console.log('Error:', error);					  
+                $('#btn-save').html('Aceptar');
+                swal("Error", "Error inesperado consulte al administrador", "warning");
+            })
+            .always(function(data,status,xhr) {
+                $('#mdlEspere').modal('hide');
+            });
+    }
+    
+});
+$('#btn_imp_formatos').on('click', function (e) {
+    $('#imprimir-modal').modal('show');
+});
 
 $( "#btn_imp_prereg" ).click(function() {
 	//
@@ -165,55 +202,3 @@ $( "#btn_imp_formapago" ).click(function() {
 	//
 	window.open(SITEURL + '/alumno/preregcurso/fichapagopdf/' +  $('#IdAlu').val() , '_blank');
 });
-
-//
-
-$( "#btn_cursos" ).click(function() {
-	$('#cursos-modal').modal('show');
-});
-$( "#btn_selectCurso" ).click(function() {
-	var queCurso = $('input:radio[name=rbIdCurso]:checked').val();		
-	$('#IdCurPlanSeleccionado').val(queCurso);
-	$("#queCurso").html($("#lblCur_" + queCurso).html());	
-	$("#quePla").html($("#lblPla_" + queCurso).html());
-	$("#quePer").html($("#lblPer_" + queCurso).html());
-	$("#queHor").html($("#lblHor_" + queCurso).html());	
-	$('#cursos-modal').modal('hide');
-	detener = false;
-});
-
-function set_Cusrsos()
-{
-	var url = SITEURL + "/planescolar/lista";
-	$.ajax({
-		url : url,
-		type : 'GET',
-		contentType : "application/json;charset=utf-8",
-		//data : JSON.stringify(filter),
-		success : function(result) {
-			//console.log('result: ' + JSON.stringify(result));					
-			if (result.status = 1)
-			{
-				var iCont = 1;
-				for (var i = 0; i < result.data.original.recordsTotal; i++) {
-					var curso = result.data.original.data[i];					
-					var IdCurso = "<td>" +  '<input type="radio" id="RbIdCurPlan_' + curso.IdCurPlan + '" name="rbIdCurso"  value="' + curso.IdCurPlan + '">' + "</td>";
-					var nbCurso = '<td>' + '<div id= "lblCur_' + curso.IdCurPlan + '">'  + curso.cur_desc + '</div>' + '</td>';
-					var plantel = '<td id= "lblPla_' + curso.IdCurPlan + '">' + '' + curso.plan_desc + '' + '</td>';
-					var periodo = '<td id= "lblPer_' + curso.IdCurPlan + '">' + '' + curso.per_desc + '' + '</td>';
-					var horario = '<td id= "lblHor_' + curso.IdCurPlan + '">' + '' + curso.hor_desc + '' + '</td>';																					
-					var row = "<tr>" + IdCurso + nbCurso + plantel + periodo + horario + "</tr>"
-					$('#tblCursosBody').append(row);
-					iCont = iCont + i;
-				}
-			}
-			$('#mdlEspere').modal('hide');
-			$('#mdlEspere').hide();
-			$('.modal-backdrop').hide();
-		},
-		error : function(request, message, error) {
-			$("#mdlEspere").modal("hide");
-			console.error('WSUsuarioCanal: ' + message);
-		}
-	});
-}

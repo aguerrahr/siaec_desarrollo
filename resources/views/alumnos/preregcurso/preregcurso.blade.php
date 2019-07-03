@@ -184,9 +184,8 @@
                         </div>
                         <div class="col-sm-4">
                                 <div class="form-group">
-                                    <label for="txt_sexo">Sexo:</label>
-                                    {{-- <input type="text" class="form-control" id="txt_sexo" name="txt_sexo" placeholder="" required maxlength="1"/> --}}
-                                    Cómo se enteró del centro de asesioría
+                                    <label for="cboSexo">Sexo:</label>
+                                    {{-- <input type="text" class="form-control" id="txt_sexo" name="txt_sexo" placeholder="" required maxlength="1"/> --}}                                    
                                     <select id="cboSexo" name="cboSexo" class="form-control">
                                         <option value="F">Femenino</option>
                                         <option value="M">Masculino</option>
@@ -215,31 +214,31 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-4">
+                            <label for="txt_secundaria_tp">Tipo de secundaria:</label>                            
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="txt_secundaria_tp" id="txt_secundaria_tp_pub" value="Publica" checked>Pública
+                                </label>
+                                </div>
+                            <div class="form-check">
+                                <label class="form-check-label">
+                                    <input type="radio" class="form-check-input" name="txt_secundaria_tp" id="txt_secundaria_tp_priv"  value="Privada">Privada
+                                </label>
+                                </div>
+                        </div>        
+                        <div class="col-sm-4">
                             <div class="form-group">
                                 <br>
                                     <label for="txt_secundaria">Secundaria de Procedencia:</label>
                                     <input type="text" class="form-control masc_upc" id="txt_secundaria" name="txt_secundaria" placeholder="" required maxlength="80"/>
                                 <br/>
                             </div>
-                        </div>  
+                        </div>                           
                         <div class="col-sm-4">
-                            <label for="txt_secundaria_tp">Tipo de secundaria:</label>                            
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="txt_secundaria_tp" id="txt_secundaria_tp_pub" value="Publica">Pública
-                                </label>
-                             </div>
-                            <div class="form-check">
-                                <label class="form-check-label">
-                                  <input type="radio" class="form-check-input" name="txt_secundaria_tp" id="txt_secundaria_tp_priv"  value="Privada">Privada
-                                </label>
-                             </div>
-                        </div>         
-                        <div class="col-sm-4">
-                            <div class="form-group">
+                            <div class="form-group" id="num_sec">
                                 <br>
-                                    <label for="txt_secundaria_tp">Tipo de secundaria:</label>
-                                    <input type="text" class="form-control" id="txt_secundaria_tp" name="txt_secundaria_tp" placeholder="Diurna,Técnica,Particular" required maxlength="80"/>
+                                    <label for="txt_secundaria_num">No. Secundaria:</label>
+                                    <input type="text" class="form-control" id="txt_secundaria_num" name="txt_secundaria_num" placeholder="" required maxlength="80"/>
                                 <br/>
                             </div>
                         </div>                       
@@ -275,7 +274,7 @@
                             <select id="cboObs" name="cboObs" class="form-control">
                                 <option value="Internet">Internet</option>
                                 <option value="Bolante">Bolante</option>
-                                <option value="Bolante">Espectacular</option>
+                                <option value="Espectacular">Espectacular</option>
                                 <option value="Amigo">Un amigo</option>
                                 <option value="Otro">Otro</option>
                             </select>
@@ -325,6 +324,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="rowCrudModal">Impresión de Formatos</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">                                                                                                                          
                         <table  WIDTH="100%">
@@ -443,45 +443,45 @@
         var SITEURL = '{{URL::to('')}}';
         var detener = true;
         $(function() {
-		$.ajaxSetup({
-          headers: {
-              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          }
-		});			
-	});
-    if ($("#formRegistro").length > 0) {
-	    	$("#formRegistro").validate({
-		     submitHandler: function(form) {
+            $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+            });			
+	    });
+        if ($("#formRegistro").length > 0) {
+                $("#formRegistro").validate({
+                submitHandler: function(form) {
 
-		      var actionType = $('#btn-save').val();
-		      $('#btn-save').html('Enviando..');
+                var actionType = $('#btn-save').val();
+                $('#btn-save').html('Enviando..');
 
-		      $.ajax({
-		          data: $('#formRegistro').serialize(),
-		          url: "{{ route('preregistrocursos.store') }}",
-		          type: "POST",
-		          dataType: 'json',
-		          success: function (data) {
-					if (data.success){
+                $.ajax({
+                    data: $('#formRegistro').serialize(),
+                    url: "{{ route('preregistrocursos.store') }}",
+                    type: "POST",
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.success){
+                            $('#btn-save').html('Aceptar');
+                            swal("¡Operación exitosa!", data.message, "success");
+                            detener = true;
+                            $('#btn_imp_formatos').show();
+                            $('#IdAlu').val(data.IdAlu);
+                        }else{
+                            swal("Error", data.message, "error");
+                            $('#btn-save').html('Aceptar');
+                        }
+
+                    },
+                    error: function (request, message, error) {
+                        console.log('Error:', error);					  
                         $('#btn-save').html('Aceptar');
-                        swal("¡Operación exitosa!", data.message, "success");
-                        detener = true;
-                        $('#btn_imp_formatos').show();
-                        $('#IdAlu').val(data.IdAlu);
-					}else{
-						swal("Error", data.message, "error");
-						$('#btn-save').html('Aceptar');
-					}
-
-		          },
-		          error: function (request, message, error) {
-					  console.log('Error:', error);					  
-					  $('#btn-save').html('Aceptar');
-					  swal("Error", "Error inesperado consulte al administrador", "warning");
-		          }
-		      });
-		    }
-		  })
-		}
+                        swal("Error", "Error inesperado consulte al administrador", "warning");
+                    }
+                });
+                }
+            })
+        }
     </script>
 @endsection

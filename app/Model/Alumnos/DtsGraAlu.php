@@ -45,6 +45,8 @@ class DtsGraAlu extends Model
         'IdTra',
         'datcur_folescban',
         'datcur_email_pt',
-        'datcur_tpescuela'
+        'datcur_tpescuela',
+        'datcur_nomesc',
+        'datcur_numesc'
     ];    
 }
