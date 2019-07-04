@@ -192,27 +192,32 @@
             </tr>
             <tr>
                 <td>
-                        <div class="col-sm-12">
-                                <label for="txt_email_i">E-mail:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_email_i" placeholder="" value="{{$dtsalu->datcur_email}}">                      
-                        </div>
+                    <div class="col-sm-12">
+                            <label for="txt_email_i">E-mail:</label>
+                            <input type="text" class="form-control form-control-sm" id="txt_email_i" placeholder="" value="{{$dtsalu->datcur_email}}">                      
+                    </div>                        
+                </td>
+                <td>
+                    <div class="col-sm-12">
+                            <label for="txt_email_pt_i">E-mail padre/tutor:</label>
+                            <input type="text" class="form-control form-control-sm" id="txt_email_pt_i" placeholder="" value="{{$dtsalu->datcur_email_pt}}">                      
+                    </div>
                         
                 </td>
                 <td>
-                        <div class="col-sm-12">
-                                <label for="txt_sexo_i">Sexo:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_sexo_i" placeholder="" value="{{$dtsalu->datcur_sexo}}">
-                        </div>
-                        
-                </td>
-                <td>
-                        <div class="col-sm-12">
-                                <label for="txt_curp_i">CURP:</label>
-                                <input type="text" class="form-control form-control-sm" id="txt_curp_i" placeholder="" value="{{$dtsalu->datcur_curp}}">
-                        </div>
+                    <div class="col-sm-12">
+                            <label for="txt_sexo_i">Sexo:</label>
+                            <input type="text" class="form-control form-control-sm" id="txt_sexo_i" placeholder="" value="{{$dtsalu->datcur_sexo}}">
+                    </div>     
                 </td>
             </tr>
             <tr>
+                <td>
+                    <div class="col-sm-12">
+                            <label for="txt_curp_i">CURP:</label>
+                            <input type="text" class="form-control form-control-sm" id="txt_curp_i" placeholder="" value="{{$dtsalu->datcur_curp}}">
+                    </div>
+                </td>
                 <td>
                     <div class="col-sm-12">
                             <label >Fecha de nacimiento</label>
@@ -223,18 +228,28 @@
                     <div class="col-sm-12">
                             <label for="txt_entnac_i">Entidad de nacimiento:</label>
                             <input type="text" class="form-control form-control-sm" id="txt_entnac_i" placeholder="" value="{{$dtsalu->datcur_entnac}}">
-                    </div>
-                </td>
-                <td></td>                
+                    </div>                
+                </td>                
             </tr>
             <tr>
                 <td>
                     <div class="col-sm-12">
+                        <label for="txt_secundaria_tp_i">Tipo de secundaria:</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_secundaria_tp_i" placeholder="" value="{{$dtsalu->datcur_tpescuela}}">
+                    </div>   
+                </td>
+                <td>
+                    <div class="col-sm-12">
                         <label for="txt_secundaria">Secundaria de Procedencia:</label>
                         <input type="text" class="form-control form-control-sm" id="txt_secundaria_i" placeholder="" value="{{$dtsalu->datcur_secupro}}">
+                    </div>    
+                </td> 
+                <td>
+                    <div class="col-sm-12">
+                        <label for="txt_secundaria_num_i">No. Secundaria:</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_secundaria_num_i" placeholder="" value="{{$dtsalu->datcur_numesc}}">
                     </div>     
-                </td>
-                <td colspan="2"></td>
+                </td>                
             </tr>
             <tr>
                 <td colspan="2">
@@ -253,8 +268,8 @@
                 </td>
                 <td>
                     <div class="col-sm-12">
-                        <label for="txt_op2">Opción 2:</label>
-                        <input type="text" class="form-control form-control-sm" id="txt_op2_i" placeholder="" value="{{$dtsalu->datcur_escopc2}}">
+                        <label for="txt_op2_i">Opción 2:</label>
+                        <input type="text" class="form-control form-control-sm" id="txt_op2_i" placeholder="" value="{{$dtsalu->darcur_escopc2}}">
                     </div>                           
                 </td>
                 <td>

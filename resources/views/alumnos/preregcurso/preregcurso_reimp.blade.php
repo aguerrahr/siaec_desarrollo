@@ -259,7 +259,7 @@
                                 <div class="form-group" id="num_sec">
                                     <br>
                                         <label for="txt_secundaria_num">No. Secundaria:</label>
-                                        <input type="text" class="form-control" id="txt_secundaria_num" name="txt_secundaria_num" placeholder="" required maxlength="80"/>
+                                        <input type="text" class="form-control" id="txt_secundaria_num" name="txt_secundaria_num" placeholder="" required maxlength="4"/>
                                     <br/>
                                 </div>
                             </div>                       
@@ -304,7 +304,7 @@
                         <br>
                         <div class="row">
                             <div class="col-sm-12">
-                                <button type="submit" id = "btn-save" class="btn btn-primary"><i class="fas fa-check-circle"></i> Guardar</button>
+                                <button type="button" id = "btn_save" class="btn btn-primary"><i class="fas fa-check-circle"></i> Guardar</button>
                                 <button type="button" id = "btn_imp_formatos" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir Formatos</button> 
                             </div>  
                         </div>
@@ -435,6 +435,10 @@
         .masc_upc {
             text-transform:uppercase;
         }
+        .modal-title{
+            font: 18px arial, sans-serif;
+            font-weight: bold;
+        }
     </style>
 <script src="{{asset('/js/ui-preregreimp.js')}}"></script>
 <script type="text/javascript">
@@ -446,12 +450,24 @@
             }
         });			
     });
+    $( "#btn_save" ).click(function() {
+        var blnGuardar = true;
+        var numsec = $("#txt_secundaria_num").val();             
+        var tp_sec =  $("#txt_secundaria_tp_pub").is(':checked');
+        if (tp_sec){              
+            if (numsec==""){
+                blnGuardar = false;
+                swal("¡Falta información!", "Indicar número de secundaria pública", "error");
+            }                
+        }
+        if (blnGuardar==true) $("#frmAlumno").submit();
+    });
     if ($("#frmAlumno").length > 0) {
         $("#frmAlumno").validate({
             submitHandler: function(form) {
-                var actionType = $('#btn-save').val();
+                var actionType = $('#btn_save').val();
                 $('#mdlEspere').modal('show');
-                $('#btn-save').html('Enviando..');
+                $('#btn_save').html('Enviando...');
                 $.ajax({
                     data: $('#frmAlumno').serialize(),
                     url: "{{ route('preregreimp.store') }}",
@@ -459,19 +475,19 @@
                     dataType: 'json',
                     success: function (data) {
                         if (data.success){
-                            $('#btn-save').html(' Guardar');
+                            $('#btn_save').html(' Guardar');
                             $('#mdlEspere').modal('hide');
                             swal("¡Operación exitosa!", data.message, "success");                           
                             $('#btn_imp_formatos').show();                            
                         }else{
                             swal("Error", data.message, "error");
-                            $('#btn-save').html(' Guardar');
+                            $('#btn_save').html(' Guardar');
                             $('#mdlEspere').modal('hide');
                         }
                     },
                     error: function (request, message, error) {
                         console.log('Error:', error);					  
-                        $('#btn-save').html(' Guardar');
+                        $('#btn_save').html(' Guardar');
                         $('#mdlEspere').modal('hide');
                         swal("Error", "Error inesperado consulte al administrador", "warning");
                     }

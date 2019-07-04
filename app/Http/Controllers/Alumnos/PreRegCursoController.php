@@ -94,7 +94,8 @@ class PreRegCursoController extends Controller
                 $alumno = Alumno::where('IdAlu','=', $alumnoCurp->datcur_idalu)->first('alu_idalu');
                 $strMensaje = 'El alumno ya cuenta con registro y su IDAlumno es: ' . $alumno->alu_idalu .chr(13).chr(10). 
                 '-Si deseas volver a imprimir tus formatos para la inscripción ingresar con tu IDAlumno a la liga “Re-impresión”.'
-                .chr(13).chr(10). '-Si ya fuiste alumno de la escuela y deseas ingresar a otro curso, favor de asistir al plantel”';                
+                .chr(13).chr(10). '-Si ya fuiste alumno de la escuela y deseas ingresar a otro curso, favor de asistir al plantel”'; 
+                $curp = "";               
             }
             else{
                
@@ -119,7 +120,7 @@ class PreRegCursoController extends Controller
                     $curso->datcur_nomcalle = strtoupper($request->txt_calle);
                     $curso->datcur_numcalle = $request->txt_numero;
                     $curso->datcur_colonia = strtoupper($request->txt_colonia);
-                    $curso->datcur_alcaldia = $request->txt_alcaldia;
+                    $curso->datcur_alcaldia = strtoupper($request->txt_alcaldia);
                     $curso->datcur_cp = strtoupper($request->txt_cp);
                     $curso->datcur_entidadfed = strtoupper($request->txt_entidad);
                     $curso->datcur_telcasa = $request->txt_tel;
@@ -129,7 +130,7 @@ class PreRegCursoController extends Controller
                     $curso->datcur_email_pt = $request->txt_email_pt;
                     $curso->datcur_sexo = $request->cboSexo;
                     $curso->datcur_fechnac = $request->fh_nac;
-                    $curso->datcur_entnac = $request->txt_entnac;
+                    $curso->datcur_entnac = strtoupper($request->txt_entnac);
                     $curso->datcur_secupro = strtoupper($request->txt_secundaria);
                     $curso->datcur_tpescuela= $request->txt_secundaria_tp;
                     $curso->datcur_nomesc= "";
@@ -150,7 +151,9 @@ class PreRegCursoController extends Controller
                         $tryalu->try_fechbaj = $hoy;
                         if ($tryalu->save())
                         {
-                            $strMensaje = "Alumno y Curso correctamente";  
+                            $strMensaje = ' Alumno y Curso correctamente, 
+                                            Este es tu ID : ' . $curp .' por favor anótalo ya que te será requerido 
+                                            para la inscripción o reimprimir tus formatos';  
                             $success = true;    
                         }
                         
@@ -166,7 +169,7 @@ class PreRegCursoController extends Controller
 
             }
 
-            return response()->json(['status'=>1,'success'=>$success,'message'=>$strMensaje,'IdAlu'=>$alumno->IdAlu]);
+            return response()->json(['status'=>1,'success'=>$success,'message'=>$strMensaje,'IdAlu'=>$alumno->IdAlu,'IdAlumno'=>$curp]);
            
         } 
         catch (QueryException $e){

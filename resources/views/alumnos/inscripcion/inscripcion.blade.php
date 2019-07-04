@@ -205,6 +205,12 @@
                                 </div>
                             </div>
                             <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="txt_email_pt">E-mail padre/tutor:</label>                                
+                                    <input type="email" class="form-control" id="txt_email_pt" name="txt_email_pt" placeholder="" required maxlength="80"/>                      
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
                                     <div class="form-group">
                                         <label for="txt_sexo">Sexo:</label>
                                         <input type="text" class="form-control" id="txt_sexo" name="txt_sexo" placeholder="" required maxlength="1"/>
@@ -232,13 +238,34 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-4">
+                                <label for="txt_secundaria_tp">Tipo de secundaria:</label>                            
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="txt_secundaria_tp" id="txt_secundaria_tp_pub" value="Publica" checked>Pública
+                                    </label>
+                                    </div>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input type="radio" class="form-check-input" name="txt_secundaria_tp" id="txt_secundaria_tp_priv"  value="Privada">Privada
+                                    </label>
+                                    </div>
+                            </div>
+                            <div class="col-sm-4">
                                 <div class="form-group">
                                     <br>
                                         <label for="txt_secundaria">Secundaria de Procedencia:</label>
                                         <input type="text" class="form-control" id="txt_secundaria" name="txt_secundaria" placeholder="" required maxlength="80"/>
                                     <br/>
                                 </div>
-                            </div>                        
+                            </div>       
+                            <div class="col-sm-4">
+                                <div class="form-group" id="num_sec">
+                                    <br>
+                                        <label for="txt_secundaria_num">No. Secundaria:</label>
+                                        <input type="text" class="form-control" id="txt_secundaria_num" name="txt_secundaria_num" placeholder="" maxlength="4"/>
+                                    <br/>
+                                </div>
+                            </div>                     
                         </div>                    
                         <div class="row">
                             <div class="col-sm-12">

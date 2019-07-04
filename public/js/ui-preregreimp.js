@@ -150,8 +150,8 @@ $( "#btn_buscar" ).click(function() {
             $("#txt_celular").val(data.data.datcur_celular);
             $("#txt_tutor").val(data.data.datcur_teltutor);
             $("#txt_email").val(data.data.datcur_email);
-            $("#txt_email_pt").val(data.data.datcur_email_pt);             
-            $("#txt_sexo").val(data.data.datcur_sexo);
+            $("#txt_email_pt").val(data.data.datcur_email_pt);
+            //$("#txt_sexo").val(data.data.datcur_sexo=="M"?"Masculino":"Femenino");
             $("#txt_curp").val(data.data.datcur_curp);
             $("#fh_nac").val(data.data.datcur_fechnac);
             $("#txt_entnac").val(data.data.datcur_entnac);

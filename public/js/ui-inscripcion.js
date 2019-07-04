@@ -27,7 +27,8 @@ $( "#btn_buscar" ).click(function() {
                 $("#txt_celular").val(data.data.datcur_celular);
                 $("#txt_tutor").val(data.data.datcur_teltutor);
                 $("#txt_email").val(data.data.datcur_email);
-                $("#txt_sexo").val(data.data.datcur_sexo);
+                $("#txt_email_pt").val(data.data.datcur_email_pt);
+                $("#txt_sexo").val(data.data.datcur_sexo=="M"?"Masculino":"Femenino");
                 $("#txt_curp").val(data.data.datcur_curp);
                 $("#fh_nac").val(data.data.datcur_fechnac);
                 $("#txt_entnac").val(data.data.datcur_entnac);
@@ -35,9 +36,15 @@ $( "#btn_buscar" ).click(function() {
                 $("#txt_op1").val(data.data.datcur_escopc1);
                 $("#txt_op2").val(data.data.darcur_escopc2);
                 $("#txt_op3").val(data.data.datcur_escopc3);                
-                $("#cboObs option[value="+ data.data.datcur_obs +"]").attr("selected",true);
-                
+                $("#cboObs option[value="+ data.data.datcur_obs +"]").attr("selected",true);            
                 $("#datcur_folescban").val(data.data.datcur_folescban);                    
+                if (data.data.datcur_tpescuela == "Publica"){
+                    $("#txt_secundaria_tp_pub").prop("checked", true);
+                }
+                else{
+                    $("#txt_secundaria_tp_priv").prop("checked", true);
+                }                      
+                $("#txt_secundaria_num").val(data.data.datcur_numesc);
                 //Trayectoria                
                 $("#IdTra").val(data.data.IdTra);
                 $("#lbl_plantel").html(data.data.plan_desc);

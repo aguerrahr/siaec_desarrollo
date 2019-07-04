@@ -30,9 +30,9 @@
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>El formato de Registro debidamente cumplimentado</li>
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>El formato y vourcher/comprobante de Pago</li>
                     <li class="list-group-item">Los documentos:</li>
-                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Certificado de Secundaria</li>
+                    {{-- <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Certificado de Secundaria</li>
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Acta de nacimiento</li>
-                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Comprobante de domicilio</li>
+                    <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Comprobante de domicilio</li> --}}
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Copia de CURP</li>
                     <li class="list-group-item"><i class="fas fa-thumbtack text-info mx-2"></i>Foto tamaño infantil B/N</li>
 
@@ -238,7 +238,7 @@
                             <div class="form-group" id="num_sec">
                                 <br>
                                     <label for="txt_secundaria_num">No. Secundaria:</label>
-                                    <input type="text" class="form-control" id="txt_secundaria_num" name="txt_secundaria_num" placeholder="" required maxlength="80"/>
+                                    <input type="text" class="form-control" id="txt_secundaria_num" name="txt_secundaria_num" placeholder="" maxlength="4"/>
                                 <br/>
                             </div>
                         </div>                       
@@ -278,11 +278,15 @@
                                 <option value="Amigo">Un amigo</option>
                                 <option value="Otro">Otro</option>
                             </select>
+                        </div>                        
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 text-center">
+                            <div style="padding-top:20px">
+                                <button type="button" id = "btn_save" class="btn btn-primary"><i class="fas fa-check-circle"></i> Aceptar</button>
+                                <button type="button" id = "btn_imp_formatos" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir Formatos</button> 
+                            </div>
                         </div>
-                        <div style="padding-top:20px" class="col-sm-8">
-                            <button type="submit" id = "btn-save" class="btn btn-primary"><i class="fas fa-check-circle"></i> Aceptar</button>
-                            <button type="button" id = "btn_imp_formatos" class="btn btn-primary"><i class="fas fa-print"></i> Imprimir Formatos</button> 
-                        </div>                    
                     </div>
             </form>
           </div>
@@ -294,7 +298,8 @@
 		<div class="modal-dialog modal-lg">
 			<div class="modal-content">
 			    <div class="modal-header">
-			        <h4 class="modal-title" id="rowCrudModal"></h4>
+                    <h4 class="modal-title" id="rowCrudModal"></h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
 			    </div>
 			    <div class="modal-body">
                     <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -437,6 +442,10 @@
         .masc_upc {
             text-transform:uppercase;
         }
+        .modal-title{
+            font: 18px arial, sans-serif;
+            font-weight: bold;
+        }
     </style>
     <script src="{{asset('/js/ui-preregcurso.js')}}"></script>
     <script type="text/javascript">
@@ -448,40 +457,59 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
             });			
-	    });
-        if ($("#formRegistro").length > 0) {
-                $("#formRegistro").validate({
+        });
+        $( "#btn_save" ).click(function() {
+            var blnGuardar = true;
+            var numsec = $("#txt_secundaria_num").val();             
+            var tp_sec =  $("#txt_secundaria_tp_pub").is(':checked');
+            if (tp_sec){              
+                if (numsec==""){
+                    blnGuardar = false;
+                    swal("¡Falta información!", "Indicar número de secundaria pública", "error");
+                }                
+            }
+            if (blnGuardar==true) $("#formRegistro").submit();
+        });
+        
+        if ($("#formRegistro").length > 0) {                 
+            $("#formRegistro").validate({
                 submitHandler: function(form) {
+                    var actionType = $('#btn_save').val();
+                    $('#mdlEspere').modal('show');
+                    $('#btn_save').html('Enviando...');
+                    $.ajax({
+                        data: $('#formRegistro').serialize(),
+                        url: "{{ route('preregistrocursos.store') }}",
+                        type: "POST",
+                        dataType: 'json',
+                        success: function (data) {
+                            if (data.success){
+                                $('#btn_save').html('Aceptar');
+                                $('#mdlEspere').modal('hide');
+                                swal("¡Operación exitosa!", data.message, "success");
+                                detener = true;
+                                $('#btn_imp_formatos').show();
+                                $('#IdAlu').val(data.IdAlu);
+                                
+                            }else{
+                                $('#mdlEspere').modal('hide');
+                                swal("Error", data.message, "error");
+                                $('#btn_save').html('Aceptar');
+                            }
 
-                var actionType = $('#btn-save').val();
-                $('#btn-save').html('Enviando..');
-
-                $.ajax({
-                    data: $('#formRegistro').serialize(),
-                    url: "{{ route('preregistrocursos.store') }}",
-                    type: "POST",
-                    dataType: 'json',
-                    success: function (data) {
-                        if (data.success){
-                            $('#btn-save').html('Aceptar');
-                            swal("¡Operación exitosa!", data.message, "success");
-                            detener = true;
-                            $('#btn_imp_formatos').show();
-                            $('#IdAlu').val(data.IdAlu);
-                        }else{
-                            swal("Error", data.message, "error");
-                            $('#btn-save').html('Aceptar');
+                        },
+                        error: function (request, message, error) {
+                            console.log('Error:', error);	
+                            $('#mdlEspere').modal('hide');				  
+                            $('#btn_save').html('Aceptar');
+                            swal("Error", "Error inesperado consulte al administrador", "warning");
                         }
-
-                    },
-                    error: function (request, message, error) {
-                        console.log('Error:', error);					  
-                        $('#btn-save').html('Aceptar');
-                        swal("Error", "Error inesperado consulte al administrador", "warning");
-                    }
-                });
+                    });
                 }
-            })
+            });
+            
         }
+        
+        
     </script>
 @endsection
