@@ -102,7 +102,7 @@ class PreRegCursoController extends Controller
                 //$anio = substr($hoy,2,2);
                 //$curp = substr($request->txt_curp,0,6);
                 $curp = substr($request->txt_curp,0,9);
-                $alu_idalu = $curp;                
+                $alu_idalu = strtoupper($curp);                
                 $alumno = new Alumno;                       
                 $alumno->alu_idalu = $alu_idalu;
                 $alumno->alu_nom = strtoupper($request->txt_nombre);             

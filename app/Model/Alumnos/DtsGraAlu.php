@@ -47,6 +47,7 @@ class DtsGraAlu extends Model
         'datcur_email_pt',
         'datcur_tpescuela',
         'datcur_nomesc',
-        'datcur_numesc'
+        'datcur_numesc',
+        'cur_tipcur'
     ];    
 }

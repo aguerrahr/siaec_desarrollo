@@ -259,7 +259,7 @@
                                 <div class="form-group" id="num_sec">
                                     <br>
                                         <label for="txt_secundaria_num">No. Secundaria:</label>
-                                        <input type="text" class="form-control" id="txt_secundaria_num" name="txt_secundaria_num" placeholder="" required maxlength="4"/>
+                                        <input type="text" class="form-control" id="txt_secundaria_num" name="txt_secundaria_num" placeholder="" maxlength="4"/>
                                     <br/>
                                 </div>
                             </div>                       

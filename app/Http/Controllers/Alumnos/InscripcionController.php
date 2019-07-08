@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Model\Alumnos\DtsGraAlu;
 use App\Model\Alumnos\PagoInsAlumno;
-
+use App\Model\Catalogos\Gpo;
 use DataTables;
 use Redirect,Response;
 use Illuminate\Database\QueryException;
@@ -65,8 +65,22 @@ class InscripcionController extends Controller
                                 ->where('try_est',4)->first();
             $idAlumno = $dtsalu->IdAlu;
             $dtsPago = PagoInsAlumno::where('IdAlu','=',$idAlumno)->first();
+
+
+            if($dtsalu->cur_tipcur =="A")
+            {
+                $areaList = Gpo::select('IdGpo','gpo_area')
+                ->where('gpo_idcurplan','=',$dtsalu->IdCurPlan)
+                ->distinct()
+                ->get();        
+            }
+            else
+            {
+                $areaList = null;
+            }
+            
             $success = true;
-            return response()->json(['status'=>1,'success'=>$success,'message'=>$strMensaje,'data'=>$dtsalu,'dataPago'=>$dtsPago]);
+            return response()->json(['status'=>1,'success'=>$success,'message'=>$strMensaje,'data'=>$dtsalu,'dataPago'=>$dtsPago,'areaList'=>$areaList]);
         }
         catch (QueryException $e){
             $strMensaje = "";

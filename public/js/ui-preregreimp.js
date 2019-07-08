@@ -185,7 +185,8 @@ $( "#btn_buscar" ).click(function() {
                 swal("Error", "Error inesperado consulte al administrador", "warning");
             })
             .always(function(data,status,xhr) {
-                $('#mdlEspere').modal('hide');
+				$('#mdlEspere').modal('hide');
+				$('#mdlEspere').hide();
             });
     }
     

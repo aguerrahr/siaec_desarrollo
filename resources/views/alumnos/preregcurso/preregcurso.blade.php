@@ -468,7 +468,9 @@
                     swal("¡Falta información!", "Indicar número de secundaria pública", "error");
                 }                
             }
-            if (blnGuardar==true) $("#formRegistro").submit();
+            if (blnGuardar==true){
+                $("#formRegistro").submit();
+            }
         });
         
         if ($("#formRegistro").length > 0) {                 

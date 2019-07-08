@@ -381,7 +381,10 @@
                                         <label  id="lbl_grupo_gpo"></label> 
                                     </td>
                                     <td>
-                                        <label  id="lbl_area_gpo"></label> 
+                                        <select id="cboAreas" name="cboAreas" class="form-control">   
+                                        <input type="hidden" name="cur_tipcur" id="cur_tipcur">  
+                                        {{-- <label  id="lbl_area_gpo"></label>  --}}
+                                        
                                     </td>
                                 </tr>                                
                             </tbody>

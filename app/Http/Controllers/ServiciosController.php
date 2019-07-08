@@ -127,7 +127,7 @@ class ServiciosController extends Controller
         {
             $strMensaje = "";
             $success = false;
-            $Idcurso = DB::select('call sp_asigna_alumno_gpo(?,?,?)',array($request->idCurPlan,$request->idHor,$request->idAlumno));                    
+            $Idcurso = DB::select('call sp_asigna_alumno_gpo(?,?,?,?,?)',array($request->idCurPlan,$request->idHor,$request->idAlumno,$request->gpo_area,$request->cur_tipcur));                    
             $strMensaje = "¡¡ Grupo asignado !!";      
             $success = true;      
             return response()->json(['status'=>1,'success'=>$success,'message'=>$strMensaje,'idGpo'=>$Idcurso[0]->_gpo_nombre]);

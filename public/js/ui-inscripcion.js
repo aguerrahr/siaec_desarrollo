@@ -14,6 +14,7 @@ $( "#btn_buscar" ).click(function() {
         $.get( ruta, function (data) {
             //console.log(data);
             if (!(data.data == null)){
+                             
                 $("#txt_ap_paterno").val(data.data.alu_apepat);
                 $("#txt_ap_materno").val(data.data.alu_apemat);
                 $("#txt_nombre").val(data.data.alu_nom);
@@ -58,7 +59,8 @@ $( "#btn_buscar" ).click(function() {
                 $("#lbl_curso_gpo").html(data.data.cur_desc);
                 $("#lbl_periodo_gpo").html(data.data.per_desc);
                 $("#lbl_horario_gpo").html(data.data.hor_desc);
-                
+                $("#cur_tipcur").val(data.data.cur_tipcur);
+                                              
                 $("#IdAlu").val(data.data.IdAlu);
                 $("#IdCurPlan").val(data.data.IdCurPlan);
                 $("#curpla_idhor").val(data.data.curpla_idhor);                             
@@ -68,11 +70,16 @@ $( "#btn_buscar" ).click(function() {
                 $("#lbl_curso_pago").html(data.data.cur_desc);
                 $("#lbl_costo").html(data.dataPago.costo)                
                 //Termina Pago                
-                setcboBancos();
-                $("#dtsGrales").show();
-                $('#mdlEspere').modal('hide');
-                $('#mdlEspere').hide();
-			    $('.modal-backdrop').hide();
+
+                if (data.data.cur_tipcur == "A"){
+                    $("#cboAreas").show();
+                    setcboAreas(data.areaList);   
+                }
+                else{
+                    $("#cboAreas").hide();
+                }
+                setcboBancos();		
+               	    
             }    
             else{
                 $('#mdlEspere').modal('hide');            
@@ -80,7 +87,20 @@ $( "#btn_buscar" ).click(function() {
 			    $('.modal-backdrop').hide();
                 swal("Error", "ID de Alumno inválido", "error");        
             }
-        });
+        })
+            .done(function(data,status,xhr) {                
+                 
+                $("#dtsGrales").show();              
+            })
+            .fail(function(data,status,xhr) {
+                console.log('Error:', error);					                  
+                swal("Error", "Error inesperado consulte al administrador", "warning");
+            })
+            .always(function(data,status,xhr) {
+                $('.modal-backdrop').hide();
+                $('#mdlEspere').modal('hide');
+                $('#mdlEspere').hide();
+            });
     }
     
 });
@@ -88,11 +108,15 @@ $( "#btn_buscar" ).click(function() {
 $( "#btn_asign_gpo" ).click(function() {    
     var descCurso = $('#lbl_curso_gpo').html();
     var JSONObject = new Object();    
-    if ((descCurso.indexOf('COMIPEMS',0)!=-1))
-    {
+    //descCurso.indexOf('COMIPEMS',0)!=-1
+    // if ($("#cur_tipcur").val()=="C")
+    // {
         JSONObject.idCurPlan = $("#IdCurPlan").val();
         JSONObject.idHor = $("#curpla_idhor").val();
         JSONObject.idAlumno = $("#IdAlu").val();
+        JSONObject.cur_tipcur = $("#cur_tipcur").val();
+        JSONObject.gpo_area = $("#cboAreas option:selected").text();
+            
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -126,7 +150,7 @@ $( "#btn_asign_gpo" ).click(function() {
                 swal("Error", "Error inesperado consulte al administrador", "warning");
             }
         });
-    }
+    // }
 });
 
 $( "#btn_asign_cal" ).click(function() {
@@ -194,7 +218,17 @@ $("#btn_asign_pago").click(function() {
 
 
 
+function setcboAreas(arealist)
+{    				
+    $("#cboAreas").append('<option value="0">Seleccione una opción</option>');	
+    for (var i = 0; i < arealist.length; i++) {
+        var descRow = arealist[i];
+        $("#cboAreas")
+            .append('<option value="' +	descRow.IdGpo + '">' + descRow.gpo_area + '</option>');																
+    }
+        
 
+}
 
 function setcboBancos()
 {
