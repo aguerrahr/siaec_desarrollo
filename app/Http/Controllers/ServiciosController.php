@@ -78,10 +78,17 @@ class ServiciosController extends Controller
             ->join('hor', 'curpla_idhor', '=', 'IdHor')
             ->join('per', 'curpla_idper', '=', 'IdPer')
             ->join('plan', 'curpla_idplan', '=', 'Idplan')
+            ->join('cos', 'cos_idcurplan', '=', 'IdCurPlan')
             ->select('IdCurPlan','cur_desc','plan_desc','per_desc','hor_desc', 'Est_UsuDesc')
             ->where('curpla_idest' ,'=','1')
             ->where('curpla_idcurso','<','3')->get();
             
+            //var_dump($data);
+            /*
+            DB::enableQueryLog();
+            $log = DB::getQueryLog();
+            var_dump($log);
+            */
             $listaCursos = Datatables::of($data)
                 ->addColumn('radiobutton', function($row){                           
                         $btn = '<input type="radio" id="RbIdCurPlan_' . $row->IdCurPlan . '" name="selecourse"  value="'. $row->IdCurPlan .'">';                                            

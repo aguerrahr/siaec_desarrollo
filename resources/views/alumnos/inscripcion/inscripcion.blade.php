@@ -103,8 +103,8 @@
                         <span style="background-color: #2196F3;color:#ffffff;cursor: hand;" class="input-group-text lighten-3" id="btn_buscar">
                             <i style="cursor: hand;" class="fas fa-search text-grey" aria-hidden="true"></i>
                         </span>
-                    </div>
-                    </div>
+                    </div>                    
+                </div>
             </div>
             <div class="card-footer">
             </div>

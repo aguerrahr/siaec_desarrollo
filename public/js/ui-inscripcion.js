@@ -1,7 +1,9 @@
 
 $(document).ready(function() {
-    $("#dtsGrales").hide();        
+    $("#dtsGrales").hide();    
+    var objLimite = .25;    
 });
+
 $( "#btn_buscar" ).click(function() {
     var idAlumno = $("#txt_idalumno").val();
     if (idAlumno == ""){
