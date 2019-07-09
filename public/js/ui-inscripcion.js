@@ -1,7 +1,6 @@
 
 $(document).ready(function() {
     $("#dtsGrales").hide();    
-    var objLimite = .25;    
 });
 
 $( "#btn_buscar" ).click(function() {
