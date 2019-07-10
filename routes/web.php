@@ -71,7 +71,11 @@ Route::get('planescolar/lista', 'ServiciosController@getCursosList'); //[0-9]+
 Route::post('servicios/getIdGposHorAlu','ServiciosController@getIdGposHorAlu');
 
 
+//--------------------------------------------------Menu Inscripciones ---------------------------------------------------------
 
+Route::get('/inscripcion',function(){
+    return view('menuins');
+});
 
 
 /*Route::get('/caalogos/planteles/index', 'PlanController@index'); //[0-9]+

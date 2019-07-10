@@ -81,15 +81,7 @@
 
 @section('cuerpo')	            
         <div class="w3-container w3-yellow"> 
-            <h2 id="Titulo">Control Escolar Accesos</h2>
-                {{-- <nav class="navbar navbar-expand-lg navbar-light nav-bk"> --}}
-                {{-- <a class="navbar-brand" href="{{ url("/")}}">
-                    <img src="/images/logo-coapa-azul.png" height="45" width="180">
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="siaec-navbar" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>				                   --}}
-            
+            <h2 id="Titulo">Control Escolar Accesos</h2>                        
         </div>
         <div id="card_buscar" class="card border-black mb-2 text-center">
             <div style="font-weight: bold;color:#000" class="card-header">
