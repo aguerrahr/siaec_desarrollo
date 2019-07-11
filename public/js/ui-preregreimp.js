@@ -136,48 +136,54 @@ $( "#btn_buscar" ).click(function() {
         $('#mdlEspere').modal('show');
         
         $.get( ruta, function(data,status,xhr) {
-            $('#IdAlu').val(data.data.IdAlu);
-            $("#txt_ap_paterno").val(data.data.alu_apepat);
-            $("#txt_ap_materno").val(data.data.alu_apemat);
-            $("#txt_nombre").val(data.data.alu_nom);
-            $("#txt_calle").val(data.data.datcur_nomcalle);
-            $("#txt_numero").val(data.data.datcur_numcalle);
-            $("#txt_colonia").val(data.data.datcur_colonia);
-            $("#txt_alcaldia").val(data.data.datcur_alcaldia);
-            $("#txt_entidad").val(data.data.datcur_entidadfed);
-            $("#txt_cp").val(data.data.datcur_cp);
-            $("#txt_tel").val(data.data.datcur_telcasa);
-            $("#txt_celular").val(data.data.datcur_celular);
-            $("#txt_tutor").val(data.data.datcur_teltutor);
-            $("#txt_email").val(data.data.datcur_email);
-            $("#txt_email_pt").val(data.data.datcur_email_pt);
-            //$("#txt_sexo").val(data.data.datcur_sexo=="M"?"Masculino":"Femenino");
-            $("#txt_curp").val(data.data.datcur_curp);
-            $("#fh_nac").val(data.data.datcur_fechnac);
-            $("#txt_entnac").val(data.data.datcur_entnac);
-            $("#txt_secundaria").val(data.data.datcur_secupro);
-            $("#txt_op1").val(data.data.datcur_escopc1);
-            $("#txt_op2").val(data.data.darcur_escopc2);
-            $("#txt_op3").val(data.data.datcur_escopc3);                
+			if (data.data == null)
+			{
+				$('#mdlEspere').modal('hide');            
+                $('#mdlEspere').hide();
+			    $('.modal-backdrop').hide();
+                swal("Error", "ID de Alumno inválido", "error"); 
+			}
+			else
+			{
+				$('#IdAlu').val(data.data.IdAlu);
+				$("#txt_ap_paterno").val(data.data.alu_apepat);
+				$("#txt_ap_materno").val(data.data.alu_apemat);
+				$("#txt_nombre").val(data.data.alu_nom);
+				$("#txt_calle").val(data.data.datcur_nomcalle);
+				$("#txt_numero").val(data.data.datcur_numcalle);
+				$("#txt_colonia").val(data.data.datcur_colonia);
+				$("#txt_alcaldia").val(data.data.datcur_alcaldia);
+				$("#txt_entidad").val(data.data.datcur_entidadfed);
+				$("#txt_cp").val(data.data.datcur_cp);
+				$("#txt_tel").val(data.data.datcur_telcasa);
+				$("#txt_celular").val(data.data.datcur_celular);
+				$("#txt_tutor").val(data.data.datcur_teltutor);
+				$("#txt_email").val(data.data.datcur_email);
+				$("#txt_email_pt").val(data.data.datcur_email_pt);
+				//$("#txt_sexo").val(data.data.datcur_sexo=="M"?"Masculino":"Femenino");
+				$("#txt_curp").val(data.data.datcur_curp);
+				$("#fh_nac").val(data.data.datcur_fechnac);
+				$("#txt_entnac").val(data.data.datcur_entnac);
+				$("#txt_secundaria").val(data.data.datcur_secupro);
+				$("#txt_op1").val(data.data.datcur_escopc1);
+				$("#txt_op2").val(data.data.darcur_escopc2);
+				$("#txt_op3").val(data.data.datcur_escopc3);                
 
-            $("#cboObs option[value="+ data.data.datcur_obs +"]").attr("selected",true);
-            $("#cboSexo option[value="+ data.data.datcur_sexo +"]").attr("selected",true);
-            
-            
-            
-
-            if (data.data.datcur_tpescuela == "Publica"){
-                $("#txt_secundaria_tp_pub").prop("checked", true);
-            }
-            else{
-                $("#txt_secundaria_tp_priv").prop("checked", true);
-            }                      
-            $("#txt_secundaria_num").val(data.data.datcur_numesc);
-                                                
+				$("#cboObs option[value="+ data.data.datcur_obs +"]").attr("selected",true);
+				$("#cboSexo option[value="+ data.data.datcur_sexo +"]").attr("selected",true);
+										
+				if (data.data.datcur_tpescuela == "Publica"){
+					$("#txt_secundaria_tp_pub").prop("checked", true);
+				}
+				else{
+					$("#txt_secundaria_tp_priv").prop("checked", true);
+				}                      
+				$("#txt_secundaria_num").val(data.data.datcur_numesc);
+			}                                 
             
           })
             .done(function(data,status,xhr) {
-                $("#dtsGrales").show();
+				if (!(data.data == null)) $("#dtsGrales").show();
             })
             .fail(function(data,status,xhr) {
                 console.log('Error:', error);					  
@@ -186,7 +192,9 @@ $( "#btn_buscar" ).click(function() {
             })
             .always(function(data,status,xhr) {
 				$('#mdlEspere').modal('hide');
+				$('.modal-backdrop').hide();
 				$('#mdlEspere').hide();
+				
             });
     }
     
