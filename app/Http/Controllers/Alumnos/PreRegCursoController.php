@@ -291,6 +291,9 @@ class PreRegCursoController extends Controller
         $pdf->getDomPDF()->set_option("enable_php", true);
         $pdf->loadView('alumnos/preregcurso/preregpdf',compact('dtsalu'));
         $pdf ->setPaper('Letter');
+        //$customPaper = array(0,0,360,360);
+        //$customPaper = array(0,0,567.00,283.80);
+        //$pdf ->setPaper($customPaper);
         $pdf->output();
         return $pdf ->stream();
         

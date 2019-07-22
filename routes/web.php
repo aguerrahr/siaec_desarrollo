@@ -33,6 +33,7 @@ Route::resource('accesos', 'Acceso\UsersController'); //[0-9]+
 
 Route::resource('alumnos/preregistrocursos','Alumnos\PreRegCursoController');
 Route::resource('alumnos/preregreimp','Alumnos\PreRegReimpCursoController');
+Route::resource('alumnos/credencial','Alumnos\CredencialController');
 
 Route::resource('alumnos/inscripciones','Alumnos\InscripcionController');
 Route::resource('pagos/pago','Pagos\PagoController');
@@ -70,6 +71,9 @@ Route::get('alumno/preregcurso/fichapagopdf/{idAlumno}', 'Alumnos\PreRegCursoCon
 Route::get('planescolar/lista', 'ServiciosController@getCursosList'); //[0-9]+
 Route::post('servicios/getIdGposHorAlu','ServiciosController@getIdGposHorAlu');
 
+//------------------------------------------------------- Credecniales ---------------------------------------------------------
+
+Route::get('alumno/credencial/credencialpdf/{idAlumno}', 'Alumnos\CredencialController@PdfCredencial');
 
 //--------------------------------------------------Menu Inscripciones ---------------------------------------------------------
 
